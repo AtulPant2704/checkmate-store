@@ -1,0 +1,41 @@
+:root {
+  --wishlist-hover-color: #f0e8e8;
+}
+
+html {
+  height: 100%;
+}
+
+main {
+  width: 100%;
+}
+
+body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-header {
+  margin: 0;
+}
+
+.hamburger-menu {
+  display: block;
+}
+
+.title i {
+  font-size: 1.8rem;
+}
+
+.nav-title {
+  font-size: 1.8rem;
+}
+
+.page-title {
+  font-size: 1.5rem;
+}
+
+a {
+  text-decoration: none;
+}
