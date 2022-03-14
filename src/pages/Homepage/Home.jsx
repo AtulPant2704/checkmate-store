@@ -10,9 +10,9 @@ const Home = () => {
           <h1 className="intro-heading">CheckMate</h1>
           <h1 className="intro-heading intro-colored">Chess</h1>
           <p className="intro-para">Best Chess Sets, Books & Clocks for Sale</p>
-          <a href="./product/product.html">
+          <Link to="/products">
             <button className="btn btn-solid-primary">Shop Now</button>
-          </a>
+          </Link>
         </div>
       </section>
 

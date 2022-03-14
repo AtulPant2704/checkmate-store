@@ -1,4 +1,6 @@
 import {useState} from "react";
+import {Link} from "react-router-dom";
+
 const Navbar = () => {
     const [menuOpen,setMenuOpen] = useState(false);
 
@@ -14,9 +16,9 @@ const Navbar = () => {
         <div className="nav-header">
           <div className="title">
             <i className="fas fa-bars menu-bar" onClick={openMenuBar}></i>
-            <a href="./index.html">
+            <Link to="/">
               <h2 className="nav-title">CheckMate</h2>
-            </a>
+            </Link>
           </div>
           <div className="search">
             <span className="btn-search">
@@ -25,17 +27,17 @@ const Navbar = () => {
             <input type="text" placeholder="Search" className="input-search" />
           </div>
           <div className="user-controls">
-            <a href="./authentication/login/login.html">
+            <Link to="/login">
               <button className="btn-login">Login</button>
-            </a>
-            <a className="btn-check" href="./wishlist/wishlist.html">
+            </Link>
+            <Link className="btn-check" to="/wishlist">
               <i className="far fa-heart"></i>
               <span className="count">0</span>
-            </a>
-            <a className="btn-check" href="./cart/cart.html">
+            </Link>
+            <Link className="btn-check" to="/cart">
               <i className="fas fa-shopping-cart"></i>
               <span className="count">0</span>
-            </a>
+            </Link>
           </div>
         </div>
   
@@ -47,22 +49,22 @@ const Navbar = () => {
           <div className="page-routes">
             <ul>
               <li>
-                <a href="./index.html">Home</a>
+                <Link to="/">Home</Link>
               </li>
               <li>
-                <a href="./product/product.html">Shop Now</a>
+                <Link to="/products">Shop Now</Link>
               </li>
               <li>
-                <a href="./cart/cart.html">Orders</a>
+                <Link to="/cart">Orders</Link>
               </li>
               <li>
-                <a href="./wishlist/wishlist.html">Wishlist</a>
+                <Link to="/wishlist">Wishlist</Link>
               </li>
               <li>
-                <a href="./authentication/login/login.html">Login</a>
+                <Link to="/login">Login</Link>
               </li>
               <li>
-                <a href="./authentication/sign-up/sign-up.html">Sign Up</a>
+                <Link to="/signup">Sign Up</Link>
               </li>
             </ul>
           </div>
