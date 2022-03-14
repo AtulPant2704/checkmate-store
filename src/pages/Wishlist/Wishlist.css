@@ -1,0 +1,38 @@
+/* Wishlist Section Styling */
+.wishlist-container {
+  width: 80%;
+  margin: 1rem auto 3rem;
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+
+.product-card {
+  margin: auto;
+}
+
+.img-container i {
+  padding: 5px;
+}
+
+.img-container i:hover {
+  background-color: var(--wishlist-hover-color);
+  border-radius: 50%;
+}
+
+.ecommerce-btn {
+  border-radius: 0;
+}
+
+/* Responsive Styling Starts */
+@media only screen and (max-width: 600px) {
+  .product-card {
+    width: 60%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .product-card {
+    width: 80%;
+  }
+}
