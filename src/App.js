@@ -1,13 +1,13 @@
+import Sign from "jsonwebtoken/sign";
 import "./App.css";
-import { Navbar } from "./components/index";
-import { Footer } from "./components/index";
-import { Login, SignUp, Home, Wishlist, Cart, Products } from "./pages/index";
+import { Navbar, Footer } from "./components/index";
+import { Login, SignUp, Home, Wishlist, Cart, ProductsListing } from "./pages/index";
 
 function App() {
   return (
     <div className="App">
       <Navbar />
-      <Products />
+      <Login />
       <Footer />
     </div>
   );

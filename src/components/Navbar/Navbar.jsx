@@ -1,9 +1,19 @@
+import {useState} from "react";
 const Navbar = () => {
+    const [menuOpen,setMenuOpen] = useState(false);
+
+    const openMenuBar=()=>{
+      setMenuOpen(true);
+    }
+    const closeMenuBar=()=>{
+      setMenuOpen(false);
+    }
+    
     return (
       <header>
         <div className="nav-header">
           <div className="title">
-            <i className="fas fa-bars menu-bar"></i>
+            <i className="fas fa-bars menu-bar" onClick={openMenuBar}></i>
             <a href="./index.html">
               <h2 className="nav-title">CheckMate</h2>
             </a>
@@ -29,10 +39,10 @@ const Navbar = () => {
           </div>
         </div>
   
-        <div className="hamburger-menu">
+        <div className={`hamburger-menu ${menuOpen ? "hamburger-menu-open" : ""}`}>
           <div className="profile-header">
             <i className="fas fa-user"></i>
-            <i className="fas fa-times menu-bar-close"></i>
+            <i className="fas fa-times menu-bar-close" onClick={closeMenuBar}></i>
           </div>
           <div className="page-routes">
             <ul>

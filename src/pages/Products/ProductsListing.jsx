@@ -1,4 +1,4 @@
-import "./Products.css";
+import "./ProductsListing.css";
 import { Filters } from "./components/Filters";
 import { ProductCard } from "./components/ProductCard";
 import {
@@ -8,7 +8,7 @@ import {
   clockImg
 } from "../../assets/index";
 
-const Products = () => {
+const ProductsListing = () => {
   return (
     <div>
       <main>
@@ -64,4 +64,4 @@ const Products = () => {
   );
 };
 
-export { Products };
+export { ProductsListing };
