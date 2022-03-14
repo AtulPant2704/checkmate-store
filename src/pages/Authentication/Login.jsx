@@ -1,4 +1,5 @@
 import "./Authentication.css";
+import {Link} from "react-router-dom";
 
 const Login = () => {
   return (
@@ -27,15 +28,15 @@ const Login = () => {
           <div className="user-history">
             <input type="checkbox" id="user-save" />
             <label for="user-save">Remember me</label>
-            <a href="./Put route to forgot password">Forgot your Password?</a>
+            <Link to="./Put route to forgot password">Forgot your Password?</Link>
           </div>
           <button type="submit" className="btn-submit">
             Submit
           </button>
         </form>
-        <a href="../SignUp/SignUp.jsx" className="new-account">
+        <Link to="/signup" className="new-account">
           Create New Account <i className="fas fa-chevron-right"></i>
-        </a>
+        </Link>
       </div>
     </section>
   );

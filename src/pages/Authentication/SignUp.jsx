@@ -1,4 +1,5 @@
 import "./Authentication.css";
+import {Link} from "react-router-dom";
 
 const SignUp = () => {
   return (
@@ -50,9 +51,9 @@ const SignUp = () => {
             Create New Account
           </button>
         </form>
-        <a href="../Login/Login" className="new-account">
+        <Link to="/login" className="new-account">
           Already have an Account <i className="fas fa-chevron-right"></i>
-        </a>
+        </Link>
       </div>
     </section>
   );
