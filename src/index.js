@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
 import { makeServer } from "./server";
 import {BrowserRouter} from "react-router-dom"
+import App from "./App";
 
 // Call make Server
 makeServer();
