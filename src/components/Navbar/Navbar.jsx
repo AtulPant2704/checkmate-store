@@ -1,5 +1,6 @@
 import {useState} from "react";
 import {Link} from "react-router-dom";
+import { useEffect } from "react/cjs/react.production.min";
 
 const Navbar = () => {
     const [menuOpen,setMenuOpen] = useState(false);
@@ -49,22 +50,22 @@ const Navbar = () => {
           <div className="page-routes">
             <ul>
               <li>
-                <Link to="/">Home</Link>
+                <Link to="/" onClick={closeMenuBar}>Home</Link>
               </li>
               <li>
-                <Link to="/products">Shop Now</Link>
+                <Link to="/products" onClick={closeMenuBar}>Shop Now</Link>
               </li>
               <li>
-                <Link to="/cart">Orders</Link>
+                <Link to="/cart" onClick={closeMenuBar}>Orders</Link>
               </li>
               <li>
-                <Link to="/wishlist">Wishlist</Link>
+                <Link to="/wishlist" onClick={closeMenuBar}>Wishlist</Link>
               </li>
               <li>
-                <Link to="/login">Login</Link>
+                <Link to="/login" onClick={closeMenuBar}>Login</Link>
               </li>
               <li>
-                <Link to="/signup">Sign Up</Link>
+                <Link to="/signup" onClick={closeMenuBar}>Sign Up</Link>
               </li>
             </ul>
           </div>
