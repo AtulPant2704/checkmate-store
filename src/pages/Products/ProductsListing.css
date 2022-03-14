@@ -1,0 +1,139 @@
+/* Full Page After Navbar Styling*/
+.filter-product-container {
+  display: flex;
+  gap: 1rem;
+  width: 95%;
+  margin: 1rem auto 3rem;
+}
+
+.filter-container {
+  width: 18%;
+  position: sticky;
+  top: 0;
+  height: fit-content;
+}
+
+.product-container {
+  width: 82%;
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  margin: auto;
+}
+
+/* Filter Section Styling */
+.filter-clear-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.clear-filters-btn:hover {
+  background-color: white;
+  color: var(--secondary-color);
+  font-weight: 600;
+}
+
+.filter-type {
+  margin: 1rem 0;
+}
+
+.filter-type-container {
+  margin: 0.5rem 0;
+}
+
+.filter-type-container .slider {
+  margin-top: 5px;
+}
+
+.filter-type-container label {
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.filter-type-container input {
+  cursor: pointer;
+}
+
+.filter-type .slider {
+  width: 70%;
+}
+
+/* Product Section Styling */
+.product-card {
+  margin: auto;
+}
+
+.product-card .img-container i {
+  color: var(--secondary-color);
+  padding: 5px;
+}
+
+.product-card .img-container i:hover {
+  background-color: var(--wishlist-hover-color);
+  border-radius: 50%;
+}
+
+.ecommerce-btn {
+  border-radius: 0;
+}
+
+.filter-mobile-container {
+  display: none;
+}
+
+/* Media Queries */
+@media screen and (max-width: 800px) {
+  .filter-container {
+    display: none;
+  }
+
+  .filter-mobile-container {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  .filter-mobile-container .btn {
+    width: 50%;
+    border-radius: 0;
+    font-weight: 600;
+    color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+  }
+
+  .filter-mobile-container .btn-filter {
+    border-left: none;
+  }
+
+  .filter-mobile-container .btn-sort {
+    border-right: none;
+  }
+
+  .filter-mobile-container .btn:hover {
+    color: white;
+    background-color: var(--secondary-color);
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .product-card {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 560px) {
+  .product-card {
+    width: 60%;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .product-card {
+    width: 80%;
+  }
+}
