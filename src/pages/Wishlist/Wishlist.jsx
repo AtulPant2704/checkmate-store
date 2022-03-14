@@ -4,7 +4,7 @@ import {
   pieceImg,
   bookImg,
   clockImg
-} from "../Homepage/components/imgExports";
+} from "../../assets/index";
 import { WishlistCard } from "./components/WishlistCard";
 
 const Wishlist = () => {

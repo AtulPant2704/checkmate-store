@@ -6,7 +6,7 @@ import {
   pieceImg,
   bookImg,
   clockImg
-} from "../Homepage/components/imgExports";
+} from "../../assets/index";
 
 const Products = () => {
   return (

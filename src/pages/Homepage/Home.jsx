@@ -1,6 +1,6 @@
 import "./Home.css";
 import { ProductsCategory } from "./components/ProductsCategory";
-import { boardImg, pieceImg, bookImg, clockImg } from "./components/imgExports";
+import { boardImg, pieceImg, bookImg, clockImg } from "../../assets/index";
 
 const Home = () => {
   return (

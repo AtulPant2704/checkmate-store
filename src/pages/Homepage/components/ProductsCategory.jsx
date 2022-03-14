@@ -1,4 +1,5 @@
 const ProductsCategory = ({ cardType, cardImg, cardAlt, cardTitle }) => {
+    console.log(cardTitle);
     return (
       <div className="card-container">
         <div className="background">

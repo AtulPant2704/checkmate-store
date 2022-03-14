@@ -1,6 +1,6 @@
 import "./Cart.css";
+import { pieceImg, bookImg, clockImg } from "../../assets/index";
 import { CartItem } from "./components/CartItem";
-import { pieceImg, bookImg, clockImg } from "../Homepage/components/imgExports";
 import { CartBill } from "./components/CartBill";
 
 const Cart = () => {

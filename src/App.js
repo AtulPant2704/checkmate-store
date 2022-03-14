@@ -1,12 +1,7 @@
 import "./App.css";
-import { Navbar } from "./components/Navbar";
-import { Footer } from "./components/Footer/Footer";
-import { Home } from "./pages/Homepage/Home";
-import { Login } from "./pages/Authentication/Login/Login";
-import { SignUp } from "./pages/Authentication/SignUp/SignUp";
-import { Wishlist } from "./pages/Wishlist/Wishlist";
-import { Cart } from "./pages/Cart/Cart";
-import { Products } from "./pages/Products/Products";
+import { Navbar } from "./components/index";
+import { Footer } from "./components/index";
+import { Login, SignUp, Home, Wishlist, Cart, Products } from "./pages/index";
 
 function App() {
   return (
