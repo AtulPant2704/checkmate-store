@@ -3,9 +3,12 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Filters } from "./components/Filters";
 import { ProductCard } from "./components/ProductCard";
+import { useFilter } from "../../hooks";
+import { sortData, filterData } from "../../utils"
 
 const ProductsListing = () => {
   const [products, setProducts] = useState([]);
+  const { state } = useFilter();
 
   const loadProducts = async () => {
     try {
@@ -19,6 +22,9 @@ const ProductsListing = () => {
 
   useEffect(() => loadProducts(), [])
 
+  const sortedData = sortData(products, state);
+  const filteredData = filterData(sortedData, state);
+
   return (
     <div>
       <main>
@@ -28,7 +34,7 @@ const ProductsListing = () => {
           </div>
 
           <div className="product-container">
-            {products.map(product => (
+            {filteredData.map(product => (
               <ProductCard
                 productImg={product.image}
                 productAlt={product.title}
