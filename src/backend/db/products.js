@@ -9,7 +9,7 @@ import { boardImg, pieceImg, bookImg, clockImg, image1, image2, image3, image4, 
 export const products = [
   {
     _id: uuid(),
-    title: "You Can WIN",
+    title: "Fischer-Spassky Chess Set",
     image: pieceImg,
     price: "5000",
     badge: "Out of Stock",
@@ -18,7 +18,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    title: "You Can WIN",
+    title: "Fianchetto Grunfield",
     image: bookImg,
     price: "8000",
     badge: "None",
@@ -27,7 +27,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    title: "You Can WIN",
+    title: "DGT 2010 Digital Clock",
     image: clockImg,
     price: "2000",
     badge: "None",
@@ -36,7 +36,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    title: "You Can WIN",
+    title: "Wooden Deluxe Board",
     image: boardImg,
     price: "1000",
     badge: "None",
@@ -45,7 +45,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    title: "You Can WIN",
+    title: "Berlin Minimalist Maroon Set",
     image: image1,
     price: "1500",
     badge: "None",
@@ -54,7 +54,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    title: "You Can WIN",
+    title: "Alban Wooden Chess Set",
     image: image2,
     price: "2300",
     badge: "None",
@@ -63,16 +63,16 @@ export const products = [
   },
   {
     _id: uuid(),
-    title: "You Can WIN",
+    title: "Nimzo Larsen Attack",
     image: image3,
     price: "5100",
     badge: "Out of Stock",
     wishlist: false,
-    categoryName: "chess-pieces"
+    categoryName: "chess-book"
   },
   {
     _id: uuid(),
-    title: "You Can WIN",
+    title: "Stauton Pattern Camel Set",
     image: image4,
     price: "4500",
     badge: "None",
@@ -81,7 +81,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    title: "You Can WIN",
+    title: "Sikh Empire Chess Set",
     image: image5,
     price: "3100",
     badge: "None",
@@ -90,56 +90,56 @@ export const products = [
   },
   {
     _id: uuid(),
-    title: "You Can WIN",
+    title: "Dark Knight System",
     image: image7,
     price: "9000",
     badge: "None",
     wishlist: false,
-    categoryName: "chess-pieces"
+    categoryName: "chess-book"
   },
   {
     _id: uuid(),
-    title: "You Can WIN",
+    title: "Travel Series Chess Board",
     image: image8,
     price: "7100",
     badge: "None",
     wishlist: false,
-    categoryName: "chess-pieces"
+    categoryName: "chess-board"
   },
   {
     _id: uuid(),
-    title: "You Can WIN",
+    title: "Multiple Choice Chess-2",
     image: image9,
     price: "7000",
     badge: "Out of Stock",
     wishlist: false,
-    categoryName: "chess-pieces"
+    categoryName: "chess-book"
   },
   {
     _id: uuid(),
-    title: "You Can WIN",
+    title: "Offbeat Spanish",
     image: image10,
     price: "5900",
     badge: "None",
     wishlist: false,
-    categoryName: "chess-pieces"
+    categoryName: "chess-book"
   },
   {
     _id: uuid(),
-    title: "You Can WIN",
+    title: "Rules of Winning Chess",
     image: image11,
     price: "8000",
     badge: "None",
     wishlist: false,
-    categoryName: "chess-pieces"
+    categoryName: "chess-book"
   },
   {
     _id: uuid(),
-    title: "You Can WIN",
+    title: "Round Magnetic Chess Board",
     image: image12,
     price: "8500",
     badge: "Out of Stock",
     wishlist: false,
-    categoryName: "chess-pieces"
+    categoryName: "chess-board"
   },
 ];
