@@ -1,64 +1,48 @@
 import "./ProductsListing.css";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import { Filters } from "./components/Filters";
 import { ProductCard } from "./components/ProductCard";
-import {
-  boardImg,
-  pieceImg,
-  bookImg,
-  clockImg
-} from "../../assets/index";
 
 const ProductsListing = () => {
+  const [products, setProducts] = useState([]);
+
+  const loadProducts = async () => {
+    try {
+      const response = await axios.get("/api/products");
+      setProducts(response.data.products);
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => loadProducts(), [])
+
   return (
     <div>
       <main>
-        <section class="filter-product-container">
-          <div class="filter-container">
+        <section className="filter-product-container">
+          <div className="filter-container">
             <Filters />
           </div>
 
-          <div class="product-container">
-            <ProductCard
-              productImg={boardImg}
-              productAlt={"chess-dark-brown-light-pieces"}
-              productBadge={"Sold Out"}
-              productTitle={"Hard Bud Rose Wood Series Chess Pieces"}
-              productPrice={"₹ 5000"}
-            />
-            <ProductCard
-              productImg={pieceImg}
-              productAlt={"chess-dark-brown-light-pieces"}
-              productBadge={"Sold Out"}
-              productTitle={"Hard Bud Rose Wood Series Chess Pieces"}
-              productPrice={"₹ 5000"}
-            />
-            <ProductCard
-              productImg={bookImg}
-              productAlt={"chess-dark-brown-light-pieces"}
-              productBadge={"Sold Out"}
-              productTitle={"Hard Bud Rose Wood Series Chess Pieces"}
-              productPrice={"₹ 5000"}
-            />
-            <ProductCard
-              productImg={clockImg}
-              productAlt={"chess-dark-brown-light-pieces"}
-              productBadge={"Sold Out"}
-              productTitle={"Hard Bud Rose Wood Series Chess Pieces"}
-              productPrice={"₹ 5000"}
-            />
-            <ProductCard
-              productImg={clockImg}
-              productAlt={"chess-dark-brown-light-pieces"}
-              productBadge={"Sold Out"}
-              productTitle={"Hard Bud Rose Wood Series Chess Pieces"}
-              productPrice={"₹ 5000"}
-            />
+          <div className="product-container">
+            {products.map(product => (
+              <ProductCard
+                productImg={product.image}
+                productAlt={product.title}
+                productBadge={product.badge}
+                productTitle={product.title}
+                productPrice={product.price}
+              />
+            ))}
           </div>
         </section>
       </main>
-      <div class="filter-mobile-container">
-        <button class="btn btn-outline-primary btn-filter">Filter</button>
-        <button class="btn btn-outline-primary btn-sort">Sort</button>
+      <div className="filter-mobile-container">
+        <button className="btn btn-outline-primary btn-filter">Filter</button>
+        <button className="btn btn-outline-primary btn-sort">Sort</button>
       </div>
     </div>
   );
