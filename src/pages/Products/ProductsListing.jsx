@@ -22,12 +22,12 @@ const ProductsListing = () => {
   return (
     <div>
       <main>
-        <section class="filter-product-container">
-          <div class="filter-container">
+        <section className="filter-product-container">
+          <div className="filter-container">
             <Filters />
           </div>
 
-          <div class="product-container">
+          <div className="product-container">
             {products.map(product => (
               <ProductCard
                 productImg={product.image}
@@ -40,9 +40,9 @@ const ProductsListing = () => {
           </div>
         </section>
       </main>
-      <div class="filter-mobile-container">
-        <button class="btn btn-outline-primary btn-filter">Filter</button>
-        <button class="btn btn-outline-primary btn-sort">Sort</button>
+      <div className="filter-mobile-container">
+        <button className="btn btn-outline-primary btn-filter">Filter</button>
+        <button className="btn btn-outline-primary btn-sort">Sort</button>
       </div>
     </div>
   );
