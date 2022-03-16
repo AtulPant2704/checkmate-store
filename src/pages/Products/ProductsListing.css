@@ -74,6 +74,23 @@
   border-radius: 50%;
 }
 
+.product-card .card-details{
+  margin-left: 0.5rem;
+  align-items: flex-start;
+}
+
+.product-card .card-details .card-title{
+  text-align: left;
+}
+
+.product-card .rating-container{
+  margin: 0;
+}
+
+.product-card .rating-container i{
+  font-size: 1rem;
+}
+
 .ecommerce-btn {
   border-radius: 0;
 }

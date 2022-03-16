@@ -3,8 +3,12 @@ const ProductCard = ({
   productAlt,
   productBadge,
   productTitle,
-  productPrice
+  productPrice,
+  productRating
 }) => {
+
+  const ratingArray = [1, 2, 3, 4, 5];
+
   return (
     <div className="product-card">
       <div className="img-container">
@@ -15,9 +19,14 @@ const ProductCard = ({
       <div className="card-details">
         <p className="card-title">{productTitle}</p>
         <h3 className="card-price">₹ {productPrice}</h3>
-        <button className="cart-btn ecommerce-btn">Add to Cart</button>
+        <div className="rating-container">
+          {ratingArray.map(item => (
+            <i className={`${item <= Number(productRating) ? "fas" : "far"} fa-star`} ></i>
+          ))}
+        </div>
       </div>
-    </div>
+      <button className="cart-btn ecommerce-btn">Add to Cart</button>
+    </div >
   );
 };
 

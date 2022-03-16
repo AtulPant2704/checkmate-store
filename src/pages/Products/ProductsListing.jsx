@@ -4,7 +4,7 @@ import axios from "axios";
 import { Filters } from "./components/Filters";
 import { ProductCard } from "./components/ProductCard";
 import { useFilter } from "../../hooks";
-import { sortData, filterData } from "../../utils"
+import { sortData, categoryFilter, priceFilter, ratingFilter, inStockFilter } from "../../utils"
 
 const ProductsListing = () => {
   const [products, setProducts] = useState([]);
@@ -23,7 +23,12 @@ const ProductsListing = () => {
   useEffect(() => loadProducts(), [])
 
   const sortedData = sortData(products, state);
-  const filteredData = filterData(sortedData, state);
+  const categoryFilteredData = categoryFilter(sortedData, state);
+  const ratingFilteredData = ratingFilter(categoryFilteredData, state);
+  const inStockFilteredData = inStockFilter(ratingFilteredData, state);
+  const priceFilteredData = priceFilter(inStockFilteredData, state);
+
+  console.log(priceFilteredData);
 
   return (
     <div>
@@ -34,13 +39,15 @@ const ProductsListing = () => {
           </div>
 
           <div className="product-container">
-            {filteredData.map(product => (
+            {priceFilteredData.map(product => (
               <ProductCard
+                key={product.id}
                 productImg={product.image}
                 productAlt={product.title}
                 productBadge={product.badge}
                 productTitle={product.title}
                 productPrice={product.price}
+                productRating={product.rating}
               />
             ))}
           </div>
