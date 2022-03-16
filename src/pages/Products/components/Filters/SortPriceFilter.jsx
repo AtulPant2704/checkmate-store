@@ -1,14 +1,14 @@
-const SortPriceFilter = ({ lowToHigh, highToLow, dispatch }) => {
+const SortPriceFilter = ({ sortBy, dispatch }) => {
     return (
         <div className="filter-type">
             <h3 className="filter-type-heading">Sort by</h3>
 
             {/* Sort Low to High Products */}
             <div className="filter-type-container">
-                <input type="radio" id="low-high" name="radio-sort" checked={lowToHigh}
+                <input type="radio" id="low-high" name="radio-sort" checked={sortBy === "LOW_TO_HIGH"}
                     onChange={() =>
                         dispatch({
-                            type: "SORT_LOW_TO_HIGH",
+                            type: "LOW_TO_HIGH",
                             payload: {}
                         })
                     } />
@@ -17,10 +17,10 @@ const SortPriceFilter = ({ lowToHigh, highToLow, dispatch }) => {
 
             {/* Sort High to Low Products */}
             <div className="filter-type-container">
-                <input type="radio" id="high-low" name="radio-sort" checked={highToLow}
+                <input type="radio" id="high-low" name="radio-sort" checked={sortBy === "HIGH_TO_LOW"}
                     onChange={() =>
                         dispatch({
-                            type: "SORT_HIGH_TO_LOW",
+                            type: "HIGH_TO_LOW",
                             payload: {}
                         })
                     } />

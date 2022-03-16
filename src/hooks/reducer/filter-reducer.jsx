@@ -2,11 +2,11 @@ const filterReducer = (state, action) => {
     const { chessPieces, chessBoard, chessBooks, chessClock, ratingValue, inStock, rangeValue } = action.payload;
 
     switch (action.type) {
-        case "SORT_LOW_TO_HIGH":
-            return { ...state, lowToHigh: true, highToLow: false };
+        case "LOW_TO_HIGH":
+            return { ...state, sortBy: action.type };
 
-        case "SORT_HIGH_TO_LOW":
-            return { ...state, lowToHigh: false, highToLow: true };
+        case "HIGH_TO_LOW":
+            return { ...state, sortBy: action.type };
 
         case "CHESS_PIECES":
             return { ...state, chessPieces: chessPieces };
@@ -31,8 +31,7 @@ const filterReducer = (state, action) => {
 
         case "RESET":
             return {
-                lowToHigh: false,
-                highToLow: false,
+                sortBy: "",
                 chessPieces: false,
                 chessBooks: false,
                 chessBoard: false,

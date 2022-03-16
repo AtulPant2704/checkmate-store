@@ -5,8 +5,7 @@ const FilterContext = createContext(null);
 
 const FilterProvider = ({ children }) => {
     const [state, dispatch] = useReducer(filterReducer, {
-        lowToHigh: false,
-        highToLow: false,
+        sortBy: "",
         chessPieces: false,
         chessBooks: false,
         chessBoard: false,

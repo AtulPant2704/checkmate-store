@@ -22,13 +22,11 @@ const ProductsListing = () => {
 
   useEffect(() => loadProducts(), [])
 
-  const sortedData = sortData(products, state);
-  const categoryFilteredData = categoryFilter(sortedData, state);
+  const categoryFilteredData = categoryFilter(products, state);
   const ratingFilteredData = ratingFilter(categoryFilteredData, state);
   const inStockFilteredData = inStockFilter(ratingFilteredData, state);
   const priceFilteredData = priceFilter(inStockFilteredData, state);
-
-  console.log(priceFilteredData);
+  const sortedData = sortData(priceFilteredData, state);
 
   return (
     <div>
@@ -39,7 +37,7 @@ const ProductsListing = () => {
           </div>
 
           <div className="product-container">
-            {priceFilteredData.map(product => (
+            {sortedData.map(product => (
               <ProductCard
                 key={product.id}
                 productImg={product.image}
