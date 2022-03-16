@@ -1,5 +1,5 @@
 const filterReducer = (state, action) => {
-    const { onlyInStock, fastDelivery, rangeValue } = action.payload;
+    const { chessPieces, chessBoard, chessBooks, chessClock, ratingValue, inStock, rangeValue } = action.payload;
 
     switch (action.type) {
         case "SORT_LOW_TO_HIGH":
@@ -8,22 +8,38 @@ const filterReducer = (state, action) => {
         case "SORT_HIGH_TO_LOW":
             return { ...state, lowToHigh: false, highToLow: true };
 
-        case "ONLY-IN-STOCK":
-            return { ...state, onlyInStock: onlyInStock };
+        case "CHESS_PIECES":
+            return { ...state, chessPieces: chessPieces };
 
-        case "FAST-DELIVERY":
-            return { ...state, fastDelivery: fastDelivery };
+        case "CHESS_BOARD":
+            return { ...state, chessBoard: chessBoard };
 
-        case "RANGE-FILTER":
+        case "CHESS_CLOCK":
+            return { ...state, chessClock: chessClock };
+
+        case "CHESS_BOOKS":
+            return { ...state, chessBooks: chessBooks };
+
+        case "RANGE_FILTER":
             return { ...state, rangeValue: rangeValue };
+
+        case "RATING":
+            return { ...state, ratingValue: ratingValue };
+
+        case "IN_STOCK":
+            return { ...state, inStock: inStock };
 
         case "RESET":
             return {
                 lowToHigh: false,
                 highToLow: false,
-                onlyInStock: false,
-                fastDelivery: false,
-                rangeValue: 1000
+                chessPieces: false,
+                chessBooks: false,
+                chessBoard: false,
+                chessClock: false,
+                ratingValue: "",
+                inStock: false,
+                rangeValue: 10000
             };
 
         default:

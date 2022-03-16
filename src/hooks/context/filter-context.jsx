@@ -7,9 +7,13 @@ const FilterProvider = ({ children }) => {
     const [state, dispatch] = useReducer(filterReducer, {
         lowToHigh: false,
         highToLow: false,
-        onlyInStock: false,
-        fastDelivery: false,
-        rangeValue: 1000
+        chessPieces: false,
+        chessBooks: false,
+        chessBoard: false,
+        chessClock: false,
+        ratingValue: "",
+        inStock: false,
+        rangeValue: 10000
     });
 
     return (
