@@ -21,7 +21,7 @@ const ProductCard = ({
         <h3 className="card-price">₹ {productPrice}</h3>
         <div className="rating-container">
           {ratingArray.map(item => (
-            <i className={`${item <= Number(productRating) ? "fas" : "far"} fa-star`} ></i>
+            <i key={item} className={`${item <= Number(productRating) ? "fas" : "far"} fa-star`} ></i>
           ))}
         </div>
       </div>
