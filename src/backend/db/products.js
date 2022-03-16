@@ -14,6 +14,7 @@ export const products = [
     price: "5000",
     badge: "Out of Stock",
     wishlist: false,
+    rating: "2",
     categoryName: "chess-pieces"
   },
   {
@@ -23,7 +24,8 @@ export const products = [
     price: "8000",
     badge: "None",
     wishlist: true,
-    categoryName: "chess-book"
+    rating: "4",
+    categoryName: "chess-books"
   },
   {
     _id: uuid(),
@@ -32,6 +34,7 @@ export const products = [
     price: "2000",
     badge: "None",
     wishlist: false,
+    rating: "1",
     categoryName: "chess-clock"
   },
   {
@@ -41,15 +44,17 @@ export const products = [
     price: "1000",
     badge: "None",
     wishlist: false,
+    rating: "1",
     categoryName: "chess-board"
   },
   {
     _id: uuid(),
-    title: "Berlin Minimalist Maroon Set",
+    title: "Berlin Minimalist Set",
     image: image1,
     price: "1500",
     badge: "None",
     wishlist: false,
+    rating: "5",
     categoryName: "chess-pieces"
   },
   {
@@ -59,6 +64,7 @@ export const products = [
     price: "2300",
     badge: "None",
     wishlist: false,
+    rating: "2",
     categoryName: "chess-pieces"
   },
   {
@@ -68,7 +74,8 @@ export const products = [
     price: "5100",
     badge: "Out of Stock",
     wishlist: false,
-    categoryName: "chess-book"
+    rating: "3",
+    categoryName: "chess-books"
   },
   {
     _id: uuid(),
@@ -77,6 +84,7 @@ export const products = [
     price: "4500",
     badge: "None",
     wishlist: false,
+    rating: "2",
     categoryName: "chess-pieces"
   },
   {
@@ -86,6 +94,7 @@ export const products = [
     price: "3100",
     badge: "None",
     wishlist: false,
+    rating: "4",
     categoryName: "chess-pieces"
   },
   {
@@ -95,7 +104,8 @@ export const products = [
     price: "9000",
     badge: "None",
     wishlist: false,
-    categoryName: "chess-book"
+    rating: "3",
+    categoryName: "chess-books"
   },
   {
     _id: uuid(),
@@ -104,6 +114,7 @@ export const products = [
     price: "7100",
     badge: "None",
     wishlist: false,
+    rating: "2",
     categoryName: "chess-board"
   },
   {
@@ -113,7 +124,8 @@ export const products = [
     price: "7000",
     badge: "Out of Stock",
     wishlist: false,
-    categoryName: "chess-book"
+    rating: "2",
+    categoryName: "chess-books"
   },
   {
     _id: uuid(),
@@ -122,7 +134,8 @@ export const products = [
     price: "5900",
     badge: "None",
     wishlist: false,
-    categoryName: "chess-book"
+    rating: "1",
+    categoryName: "chess-books"
   },
   {
     _id: uuid(),
@@ -131,15 +144,17 @@ export const products = [
     price: "8000",
     badge: "None",
     wishlist: false,
-    categoryName: "chess-book"
+    rating: "4",
+    categoryName: "chess-books"
   },
   {
     _id: uuid(),
-    title: "Round Magnetic Chess Board",
+    title: "Round Magnetic Board",
     image: image12,
     price: "8500",
     badge: "Out of Stock",
     wishlist: false,
+    rating: "3",
     categoryName: "chess-board"
   },
 ];
