@@ -42,17 +42,18 @@ const Login = () => {
         navigate("/");
       }
       else if (response.status === 404) {
-        alert("Email not found");
+        throw new Error("Email not found");
       }
       else if (response.status === 401) {
-        alert("Wrong Password");
+        console.log("wrong");
+        throw new Error("Wrong Password");
       }
       else if (response.status === 500) {
-        alert("Server Error");
+        throw new Error("Server Error");
       }
     }
     catch (error) {
-      console.log(error);
+      alert(error);
     }
   }
 

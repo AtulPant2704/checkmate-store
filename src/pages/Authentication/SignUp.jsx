@@ -44,14 +44,14 @@ const SignUp = () => {
           navigate("/");
         }
         else if (response.status === 422) {
-          alert("User already exists");
+          throw new Error("User already exists");
         }
         else if (response.status === 500) {
-          alert("Server Error");
+          throw new Error("Server Error");
         }
       }
       catch (error) {
-        console.log(error);
+        alert(error);
       }
     }
   }
