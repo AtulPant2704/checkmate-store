@@ -1,7 +1,34 @@
 import "./Authentication.css";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useAuth } from "../../hooks"
 
 const SignUp = () => {
+  const { signUp } = useAuth();
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+    fullName: "",
+    confirmPassword: ""
+  })
+
+  const changeHandler = (event) => {
+    const { name, value } = event.target;
+    setUser({ ...user, [name]: value })
+  }
+
+  const submitHandler = async (event) => {
+    console.log("signing up");
+    event.preventDefault();
+    try {
+      let status = await signUp(user);
+      console.log("signed ");
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <section className="form-section">
       <div className="form-wrapper">
@@ -14,6 +41,7 @@ const SignUp = () => {
               type="text"
               placeholder="Enter your name"
               required
+              onChange={changeHandler}
             />
           </div>
           <div className="form-email">
@@ -23,6 +51,7 @@ const SignUp = () => {
               type="email"
               placeholder="tanay@neog.camp"
               required
+              onChange={changeHandler}
             />
           </div>
           <div className="form-password">
@@ -32,6 +61,7 @@ const SignUp = () => {
               type="password"
               placeholder="********"
               required
+              onChange={changeHandler}
             />
           </div>
           <div className="form-confirm-password">
@@ -41,13 +71,14 @@ const SignUp = () => {
               type="password"
               placeholder="********"
               required
+              onChange={changeHandler}
             />
           </div>
           <div className="user-history">
             <input type="checkbox" id="user-request" />
             <label for="user-request">I accept all Terms & Conditions</label>
           </div>
-          <button type="submit" className="btn-submit">
+          <button type="submit" className="btn-submit" onClick={submitHandler}>
             Create New Account
           </button>
         </form>
