@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { makeServer } from "./server";
-import { BrowserRouter } from "react-router-dom"
+import { BrowserRouter } from "react-router-dom";
+import { AuthProvider } from "./hooks";
 import { FilterProvider } from "./hooks"
 import App from "./App";
 
@@ -11,9 +12,11 @@ makeServer();
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <FilterProvider>
-        <App />
-      </FilterProvider>
+      <AuthProvider>
+        <FilterProvider>
+          <App />
+        </FilterProvider>
+      </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
