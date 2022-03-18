@@ -21,25 +21,38 @@ const SignUp = () => {
     setUser({ ...user, [name]: value })
   }
 
+  const checkPasswordHandler = () => {
+    if (user.password !== user.confirmPassword) {
+      alert("Your confirm password is different then the real password");
+    } else {
+      return true;
+    }
+  }
+
   const signUpHandler = async (event) => {
     event.preventDefault();
-    try {
-      const response = await axios.post("/api/auth/signup", user);
-      if (response.status === 201) {
+    if (checkPasswordHandler()) {
+      try {
+        const response = await axios.post("/api/auth/signup", user);
+        if (response.status === 201) {
 
-        localStorage.setItem("token", response.data.encodedToken);
-        localStorage.setItem("user", JSON.stringify(response.data.createdUser));
+          localStorage.setItem("token", response.data.encodedToken);
+          localStorage.setItem("user", JSON.stringify(response.data.createdUser));
 
-        authDispatch({ type: "SIGN_UP", payload: { user: response.data.createdUser, token: response.data.encodedToken } })
+          authDispatch({ type: "SIGN_UP", payload: { user: response.data.createdUser, token: response.data.encodedToken } })
 
-        navigate("/");
+          navigate("/");
+        }
+        else if (response.status === 422) {
+          alert("User already exists");
+        }
+        else if (response.status === 500) {
+          alert("Server Error");
+        }
       }
-      else {
-        throw new Error();
+      catch (error) {
+        console.log(error);
       }
-    }
-    catch (error) {
-      console.log(error);
     }
   }
 

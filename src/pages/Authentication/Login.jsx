@@ -41,8 +41,14 @@ const Login = () => {
 
         navigate("/");
       }
-      else {
-        throw new Error();
+      else if (response.status === 404) {
+        alert("Email not found");
+      }
+      else if (response.status === 401) {
+        alert("Wrong Password");
+      }
+      else if (response.status === 500) {
+        alert("Server Error");
       }
     }
     catch (error) {
