@@ -6,27 +6,27 @@ import { RatingFilter } from "./Filters/RatingFilter";
 import { InStockFilter } from "./Filters/InStockFilter";
 
 const Filters = () => {
-  const { state, dispatch } = useFilter();
+  const { filterState, filterDispatch } = useFilter();
 
   return (
     <div>
 
       <div className="filter-clear-heading">
         <h2 className="filter-heading">Filters</h2>
-        <button className="text-underline clear-filters-btn btn btn-text-primary gray-text" onClick={() => dispatch({ type: "RESET", payload: {} })}>
+        <button className="text-underline clear-filters-btn btn btn-text-primary gray-text" onClick={() => filterDispatch({ type: "RESET", payload: {} })}>
           Clear
           </button>
       </div>
 
-      <PriceRangeFilter {...state} dispatch={dispatch} />
+      <PriceRangeFilter {...filterState} filterDispatch={filterDispatch} />
 
-      <SortPriceFilter {...state} dispatch={dispatch} />
+      <SortPriceFilter {...filterState} filterDispatch={filterDispatch} />
 
-      <CategoryFilter {...state} dispatch={dispatch} />
+      <CategoryFilter {...filterState} filterDispatch={filterDispatch} />
 
-      <RatingFilter {...state} dispatch={dispatch} />
+      <RatingFilter {...filterState} filterDispatch={filterDispatch} />
 
-      <InStockFilter {...state} dispatch={dispatch} />
+      <InStockFilter {...filterState} filterDispatch={filterDispatch} />
 
     </div>
   );

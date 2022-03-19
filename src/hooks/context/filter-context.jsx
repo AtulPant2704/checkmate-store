@@ -4,7 +4,7 @@ import { filterReducer } from "../reducer/filter-reducer";
 const FilterContext = createContext(null);
 
 const FilterProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(filterReducer, {
+    const [filterState, filterDispatch] = useReducer(filterReducer, {
         sortBy: "",
         chessPieces: false,
         chessBooks: false,
@@ -16,7 +16,7 @@ const FilterProvider = ({ children }) => {
     });
 
     return (
-        <FilterContext.Provider value={{ state, dispatch }}>
+        <FilterContext.Provider value={{ filterState, filterDispatch }}>
             {children}
         </FilterContext.Provider>
     );

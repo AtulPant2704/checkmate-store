@@ -1,4 +1,4 @@
-const InStockFilter = ({ inStock, dispatch }) => {
+const InStockFilter = ({ inStock, filterDispatch }) => {
     return (
         <div className="filter-type">
             <h3 className="filter-type-heading">Others</h3>
@@ -6,11 +6,11 @@ const InStockFilter = ({ inStock, dispatch }) => {
                 <input type="checkbox" id="in-stock" checked={inStock}
                     onChange={(event) =>
                         event.target.checked
-                            ? dispatch({
+                            ? filterDispatch({
                                 type: "IN_STOCK",
                                 payload: { inStock: true }
                             })
-                            : dispatch({
+                            : filterDispatch({
                                 type: "IN_STOCK",
                                 payload: { inStock: false }
                             })

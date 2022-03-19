@@ -1,4 +1,4 @@
-const RatingFilter = ({ ratingValue, dispatch }) => {
+const RatingFilter = ({ ratingValue, filterDispatch }) => {
     return (
 
         <div className="filter-type">
@@ -8,7 +8,7 @@ const RatingFilter = ({ ratingValue, dispatch }) => {
             <div className="filter-type-container">
                 <input type="radio" id="four-star" name="radio-rating" value="4" checked={ratingValue === "4"}
                     onChange={(event) =>
-                        dispatch({
+                        filterDispatch({
                             type: "RATING",
                             payload: { ratingValue: event.target.value }
                         })
@@ -20,7 +20,7 @@ const RatingFilter = ({ ratingValue, dispatch }) => {
             <div className="filter-type-container">
                 <input type="radio" id="three-star" name="radio-rating" value="3" checked={ratingValue === "3"}
                     onChange={(event) =>
-                        dispatch({
+                        filterDispatch({
                             type: "RATING",
                             payload: { ratingValue: event.target.value }
                         })
@@ -32,7 +32,7 @@ const RatingFilter = ({ ratingValue, dispatch }) => {
             <div className="filter-type-container">
                 <input type="radio" id="two-star" name="radio-rating" value="2" checked={ratingValue === "2"}
                     onChange={(event) =>
-                        dispatch({
+                        filterDispatch({
                             type: "RATING",
                             payload: { ratingValue: event.target.value }
                         })
@@ -44,7 +44,7 @@ const RatingFilter = ({ ratingValue, dispatch }) => {
             <div className="filter-type-container">
                 <input type="radio" id="one-star" name="radio-rating" value="1" checked={ratingValue === "1"}
                     onChange={(event) =>
-                        dispatch({
+                        filterDispatch({
                             type: "RATING",
                             payload: { ratingValue: event.target.value }
                         })

@@ -8,7 +8,7 @@ import { sortData, categoryFilter, priceFilter, ratingFilter, inStockFilter } fr
 
 const ProductsListing = () => {
   const [products, setProducts] = useState([]);
-  const { state } = useFilter();
+  const { filterState } = useFilter();
 
   const loadProducts = async () => {
     try {
@@ -22,11 +22,11 @@ const ProductsListing = () => {
 
   useEffect(() => loadProducts(), [])
 
-  const categoryFilteredData = categoryFilter(products, state);
-  const ratingFilteredData = ratingFilter(categoryFilteredData, state);
-  const inStockFilteredData = inStockFilter(ratingFilteredData, state);
-  const priceFilteredData = priceFilter(inStockFilteredData, state);
-  const sortedData = sortData(priceFilteredData, state);
+  const categoryFilteredData = categoryFilter(products, filterState);
+  const ratingFilteredData = ratingFilter(categoryFilteredData, filterState);
+  const inStockFilteredData = inStockFilter(ratingFilteredData, filterState);
+  const priceFilteredData = priceFilter(inStockFilteredData, filterState);
+  const sortedData = sortData(priceFilteredData, filterState);
 
   return (
     <div>

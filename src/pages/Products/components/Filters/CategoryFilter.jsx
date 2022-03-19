@@ -1,4 +1,4 @@
-const CategoryFilter = ({ chessPieces, chessBoard, chessBooks, chessClock, dispatch }) => {
+const CategoryFilter = ({ chessPieces, chessBoard, chessBooks, chessClock, filterDispatch }) => {
     return (
         <div className="filter-type">
             <h3 className="filter-type-heading">Category</h3>
@@ -8,11 +8,11 @@ const CategoryFilter = ({ chessPieces, chessBoard, chessBooks, chessClock, dispa
                 <input type="checkbox" id="chess-pieces" checked={chessPieces}
                     onChange={(event) =>
                         event.target.checked
-                            ? dispatch({
+                            ? filterDispatch({
                                 type: "CHESS_PIECES",
                                 payload: { chessPieces: true }
                             })
-                            : dispatch({
+                            : filterDispatch({
                                 type: "CHESS_PIECES",
                                 payload: { chessPieces: false }
                             })
@@ -25,11 +25,11 @@ const CategoryFilter = ({ chessPieces, chessBoard, chessBooks, chessClock, dispa
                 <input type="checkbox" id="chess-books" checked={chessBooks}
                     onChange={(event) =>
                         event.target.checked
-                            ? dispatch({
+                            ? filterDispatch({
                                 type: "CHESS_BOOKS",
                                 payload: { chessBooks: true }
                             })
-                            : dispatch({
+                            : filterDispatch({
                                 type: "CHESS_BOOKS",
                                 payload: { chessBooks: false }
                             })
@@ -42,11 +42,11 @@ const CategoryFilter = ({ chessPieces, chessBoard, chessBooks, chessClock, dispa
                 <input type="checkbox" id="chess-board" checked={chessBoard}
                     onChange={(event) =>
                         event.target.checked
-                            ? dispatch({
+                            ? filterDispatch({
                                 type: "CHESS_BOARD",
                                 payload: { chessBoard: true }
                             })
-                            : dispatch({
+                            : filterDispatch({
                                 type: "CHESS_BOARD",
                                 payload: { chessBoard: false }
                             })
@@ -59,11 +59,11 @@ const CategoryFilter = ({ chessPieces, chessBoard, chessBooks, chessClock, dispa
                 <input type="checkbox" id="chess-clock" checked={chessClock}
                     onChange={(event) =>
                         event.target.checked
-                            ? dispatch({
+                            ? filterDispatch({
                                 type: "CHESS_CLOCK",
                                 payload: { chessClock: true }
                             })
-                            : dispatch({
+                            : filterDispatch({
                                 type: "CHESS_CLOCK",
                                 payload: { chessClock: false }
                             })
