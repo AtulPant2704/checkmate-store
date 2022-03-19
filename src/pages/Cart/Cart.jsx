@@ -1,5 +1,5 @@
 import "./Cart.css";
-import { pieceImg, bookImg, clockImg } from "../../assets/index";
+import { pieceImg, bookImg, clockImg } from "../../assets";
 import { CartItem } from "./components/CartItem";
 import { CartBill } from "./components/CartBill";
 

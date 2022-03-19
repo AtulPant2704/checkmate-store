@@ -1,7 +1,7 @@
 import "./Home.css";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ProductsCategory } from "./components/ProductsCategory";
-import { boardImg, pieceImg, bookImg, clockImg } from "../../assets/index";
+import { boardImg, pieceImg, bookImg, clockImg } from "../../assets";
 
 const Home = () => {
   return (
