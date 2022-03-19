@@ -25,7 +25,7 @@ const Navbar = () => {
     navigate("/");
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    authDispatch({ type: "LOG_OUT" })
+    authDispatch({ type: "LOGOUT" })
   }
 
   const userHandler = async (type) => {

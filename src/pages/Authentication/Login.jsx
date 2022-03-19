@@ -37,7 +37,7 @@ const Login = () => {
         localStorage.setItem("token", response.data.encodedToken);
         localStorage.setItem("user", JSON.stringify(response.data.foundUser));
 
-        authDispatch({ type: "LOG_IN", payload: { user: response.data.foundUser, token: response.data.encodedToken } })
+        authDispatch({ type: "LOGIN", payload: { user: response.data.foundUser, token: response.data.encodedToken } })
 
         navigate("/");
       }
