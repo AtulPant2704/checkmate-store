@@ -3,3 +3,7 @@ export { sortData } from "./filters/sortData";
 export { priceFilter } from "./filters/priceFilter";
 export { ratingFilter } from "./filters/ratingFilter";
 export { inStockFilter } from "./filters/inStockFilter";
+export { addToCartHandler } from "./cartHandlers/addToCartHandler";
+export { removeFromCartHandler } from "./cartHandlers/removeFromCartHandler";
+export { getCartBill } from "./cartHandlers/getCartBill";
+export { updateCartHandler } from "./cartHandlers/updateCartHandler";
