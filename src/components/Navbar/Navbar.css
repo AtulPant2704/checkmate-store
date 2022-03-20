@@ -1,3 +1,7 @@
+.nav-header .title{
+    border-bottom: none;
+}
+
 .menu-bar{
     cursor: pointer;
 }
