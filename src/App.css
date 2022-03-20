@@ -2,16 +2,19 @@
   --wishlist-hover-color: #f0e8e8;
 }
 
-html {
+#root {
+  height: 100%;
+}
+
+.App{
+  max-height: 100vh;
   height: 100%;
 }
 
 main {
+  min-height: calc(100vh - 230px);
+  height: fit-content;
   width: 100%;
-}
-
-body {
-  height: 100%;
   display: flex;
   flex-direction: column;
 }
