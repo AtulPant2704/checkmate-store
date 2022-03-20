@@ -9,7 +9,7 @@ const ProductCard = ({
   checkCartAction,
   checkCartRouteHandler,
   checkWishlistAction,
-  checkWishlistRouteHandler
+  checkWishlistActionHandler
 }) => {
 
   const ratingArray = [1, 2, 3, 4, 5];
@@ -18,7 +18,7 @@ const ProductCard = ({
     <div className="product-card">
       <div className="img-container">
         <img src={productImg} alt={productAlt} className="img-responsive" />
-        <i className={`${checkWishlistAction(productId) === "Remove" ? "fas" : "far"} fa-heart`} onClick={() => checkWishlistRouteHandler(productId)}></i>
+        <i className={`${checkWishlistAction(productId) === "Remove" ? "fas" : "far"} fa-heart`} onClick={() => checkWishlistActionHandler(productId)}></i>
         {productBadge !== "None" ? <span className="card-badge">{productBadge}</span> : ""}
       </div>
       <div className="card-details">

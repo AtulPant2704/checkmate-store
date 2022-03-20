@@ -52,7 +52,7 @@ const ProductsListing = () => {
     }
   }
 
-  const checkWishlistRouteHandler = (_id) => {
+  const checkWishlistActionHandler = (_id) => {
     if (checkWishlistAction(_id) === "Remove") {
       removeFromWishlistHandler(_id, token, wishlistDispatch);
     }
@@ -106,7 +106,7 @@ const ProductsListing = () => {
                 checkCartAction={checkCartAction}
                 checkCartRouteHandler={checkCartRouteHandler}
                 checkWishlistAction={checkWishlistAction}
-                checkWishlistRouteHandler={checkWishlistRouteHandler}
+                checkWishlistActionHandler={checkWishlistActionHandler}
               />
             ))}
           </div>
