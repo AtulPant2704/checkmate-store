@@ -2,13 +2,15 @@ import "./Navbar.css";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../hooks";
+import { useAuth, useCart } from "../../hooks";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const { authState, authDispatch } = useAuth();
+  const { cartState } = useCart();
   const [menuOpen, setMenuOpen] = useState(false);
   const userName = authState.user;
+  const cart = cartState.cart;
 
   const openMenuBar = () => {
     setMenuOpen(true);
@@ -30,6 +32,10 @@ const Navbar = () => {
 
   const userHandler = async (type) => {
     type === "Login" ? navigate("/login") : logoutHandler();
+  }
+
+  const cartRouteHandler = () => {
+    authState.token ? navigate("/cart") : navigate("/login");
   }
 
   return (
@@ -56,10 +62,10 @@ const Navbar = () => {
             <i className="far fa-heart"></i>
             <span className="count">0</span>
           </Link>
-          <Link className="btn-check" to="/cart">
+          <div className="btn-check" onClick={cartRouteHandler}>
             <i className="fas fa-shopping-cart"></i>
-            <span className="count">0</span>
-          </Link>
+            {cart.length !== 0 ? <span className="count">{cart.length}</span> : null}
+          </div>
         </div>
       </div>
 
