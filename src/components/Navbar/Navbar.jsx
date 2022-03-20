@@ -2,15 +2,17 @@ import "./Navbar.css";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-import { useAuth, useCart } from "../../hooks";
+import { useAuth, useCart, useWishlist } from "../../hooks";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const { authState, authDispatch } = useAuth();
   const { cartState } = useCart();
+  const { wishlistState } = useWishlist();
   const [menuOpen, setMenuOpen] = useState(false);
   const userName = authState.user;
   const cart = cartState.cart;
+  const wishlist = wishlistState.wishlist;
 
   const openMenuBar = () => {
     setMenuOpen(true);
@@ -38,6 +40,10 @@ const Navbar = () => {
     authState.token ? navigate("/cart") : navigate("/login");
   }
 
+  const wishlistRouteHandler = () => {
+    authState.token ? navigate("/wishlist") : navigate("/login");
+  }
+
   return (
     <header>
       <div className="nav-header">
@@ -58,10 +64,10 @@ const Navbar = () => {
             {userName ? <h3>{userName.firstName}</h3> : null}
           </div>
           <button className="btn-login" onClick={() => userHandler(checkStatus(userName))}>{checkStatus(userName)}</button>
-          <Link className="btn-check" to="/wishlist">
+          <div className="btn-check" onClick={wishlistRouteHandler}>
             <i className="far fa-heart"></i>
-            <span className="count">0</span>
-          </Link>
+            {wishlist.length !== 0 ? <span className="count">{wishlist.length}</span> : null}
+          </div>
           <div className="btn-check" onClick={cartRouteHandler}>
             <i className="fas fa-shopping-cart"></i>
             {cart.length !== 0 ? <span className="count">{cart.length}</span> : null}
