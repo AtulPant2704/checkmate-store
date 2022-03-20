@@ -3,8 +3,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { WishlistCard } from "./components/WishlistCard";
 import { useWishlist, useAuth } from "../../hooks";
-import { getWishlistItemsService } from "../../services/wishlistServices/getWishlistItems.service";
-import { removeFromWishlistHandler } from "../../utils";
+import { getWishlistItemsHandler, removeFromWishlistHandler } from "../../utils";
 
 const Wishlist = () => {
   const { wishlistState, wishlistDispatch } = useWishlist();
@@ -12,26 +11,11 @@ const Wishlist = () => {
   const { token } = authState;
   const { wishlist } = wishlistState;
 
-
   const callRemoveFromWishlistHandler = (_id) => {
     removeFromWishlistHandler(_id, token, wishlistDispatch)
   }
 
-  const getWishlistItems = async () => {
-    try {
-      const response = await getWishlistItemsService(token);
-      if (response.status === 200) {
-        wishlistDispatch({ type: "GET_WISHLIST", payload: response.data.wishlist })
-      } else {
-        throw new Error();
-      }
-    }
-    catch (error) {
-      alert(error);
-    }
-  }
-
-  useEffect(() => getWishlistItems(), [])
+  useEffect(() => getWishlistItemsHandler(token, wishlistDispatch), [])
 
   return (
     <main className="empty-cart">
