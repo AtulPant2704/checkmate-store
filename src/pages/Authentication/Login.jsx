@@ -1,9 +1,9 @@
 import "./Authentication.css";
-import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { useAuth } from "../../hooks";
+import { loginService } from "../../services";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -31,7 +31,7 @@ const Login = () => {
   const loginHandler = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post("/api/auth/login", user);
+      const response = await loginService(user);
       if (response.status === 200) {
 
         localStorage.setItem("token", response.data.encodedToken);
