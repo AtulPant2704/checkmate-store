@@ -1,22 +1,52 @@
 import "./ProductsListing.css";
 import { useState, useEffect } from "react";
-import axios from "axios";
+import { useNavigate } from "react-router";
 import { Filters } from "./components/Filters";
 import { ProductCard } from "./components/ProductCard";
-import { useFilter } from "../../hooks";
-import { sortData, categoryFilter, priceFilter, ratingFilter, inStockFilter } from "../../utils"
+import { useFilter, useCart, useAuth } from "../../hooks";
+import { getProductsService } from "../../services";
+import { sortData, categoryFilter, priceFilter, ratingFilter, inStockFilter, addToCartHandler } from "../../utils"
 
 const ProductsListing = () => {
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
+  const { cartState, cartDispatch } = useCart();
+  const { authState } = useAuth();
+  const { token } = authState
+  const { cart } = cartState;
   const { filterState } = useFilter();
+
+  const checkAction = (_id) => {
+    const item = cart.find(item => item._id === _id);
+    return item ? "Go to Cart" : "Add to Cart";
+  }
+
+  const callAddToCartHandler = (_id) => {
+    if (token) {
+      const product = products.find(item => item._id === _id);
+      addToCartHandler(product, cartDispatch, token);
+    }
+    else {
+      navigate("/login")
+    }
+  }
+
+  const checkRouteHandler = (_id) => {
+    return checkAction(_id) === "Add to Cart" ? callAddToCartHandler(_id) : navigate("/cart")
+  }
 
   const loadProducts = async () => {
     try {
-      const response = await axios.get("/api/products");
-      setProducts(response.data.products);
+      const response = await getProductsService();
+      if (response.status === 200) {
+        setProducts(response.data.products);
+      }
+      else {
+        throw new Error();
+      }
     }
     catch (error) {
-      console.log(error);
+      alert(error);
     }
   }
 
@@ -39,13 +69,16 @@ const ProductsListing = () => {
           <div className="product-container">
             {sortedData.map(product => (
               <ProductCard
-                key={product.id}
+                key={product._id}
+                productId={product._id}
                 productImg={product.image}
                 productAlt={product.title}
                 productBadge={product.badge}
                 productTitle={product.title}
                 productPrice={product.price}
                 productRating={product.rating}
+                checkAction={checkAction}
+                checkRouteHandler={checkRouteHandler}
               />
             ))}
           </div>
