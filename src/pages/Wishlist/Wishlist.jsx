@@ -4,12 +4,18 @@ import { Link } from "react-router-dom";
 import { WishlistCard } from "./components/WishlistCard";
 import { useWishlist, useAuth } from "../../hooks";
 import { getWishlistItemsService } from "../../services/wishlistServices/getWishlistItems.service";
+import { removeFromWishlistHandler } from "../../utils";
 
 const Wishlist = () => {
   const { wishlistState, wishlistDispatch } = useWishlist();
   const { authState } = useAuth();
   const { token } = authState;
   const { wishlist } = wishlistState;
+
+
+  const callRemoveFromWishlistHandler = (_id) => {
+    removeFromWishlistHandler(_id, token, wishlistDispatch)
+  }
 
   const getWishlistItems = async () => {
     try {
@@ -37,10 +43,12 @@ const Wishlist = () => {
             {wishlist.map(item => (
               <WishlistCard
                 key={item._id}
+                cardId={item._id}
                 cardImg={item.image}
                 cardAlt={item.title}
                 cardTitle={item.title}
                 cardPrice={item.price}
+                callRemoveFromWishlistHandler={callRemoveFromWishlistHandler}
               />
             ))}
           </section>
