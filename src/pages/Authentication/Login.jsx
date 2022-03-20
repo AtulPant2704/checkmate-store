@@ -4,10 +4,14 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { useAuth } from "../../hooks";
 import { loginService } from "../../services";
+import { useCart, useWishlist } from "../../hooks";
+import { getCartItemsHandler, getWishlistItemsHandler } from "../../utils";
 
 const Login = () => {
   const navigate = useNavigate();
   const { authDispatch } = useAuth();
+  const { cartDispatch } = useCart();
+  const { wishlistDispatch } = useWishlist();
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -36,7 +40,8 @@ const Login = () => {
 
         localStorage.setItem("token", response.data.encodedToken);
         localStorage.setItem("user", JSON.stringify(response.data.foundUser));
-
+        getWishlistItemsHandler(response.data.encodedToken, wishlistDispatch);
+        getCartItemsHandler(response.data.encodedToken, cartDispatch);
         authDispatch({ type: "LOGIN", payload: { user: response.data.foundUser, token: response.data.encodedToken } })
 
         navigate("/");
