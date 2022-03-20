@@ -8,7 +8,7 @@ const CartItem = ({ cartId, cartImg, cartAlt, cartTitle, cartPrice, cartQuantity
         <p className="card-title">{cartTitle}</p>
         <h3 className="card-price">₹ {cartPrice}</h3>
         <div className="quantity-controls">
-          <button className="btn-control decrease-btn" onClick={() => cartQuantity === 1 ? callRemoveFromCartHandler(cartId) : callUpdateCartHandler(cartId, "decrement")}>
+          <button className="btn-control decrease-btn" onClick={() => cartQuantity <= 1 ? callRemoveFromCartHandler(cartId) : callUpdateCartHandler(cartId, "decrement")}>
             <i className={`fas ${cartQuantity === 1 ? "fa-trash-alt" : "fa-minus"}`}></i>
           </button>
 
