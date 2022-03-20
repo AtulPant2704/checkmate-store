@@ -12,6 +12,7 @@ const ProductsListing = () => {
   const [products, setProducts] = useState([]);
   const { cartState, cartDispatch } = useCart();
   const { authState } = useAuth();
+  const { token } = authState
   const { cart } = cartState;
   const { filterState } = useFilter();
 
@@ -20,9 +21,18 @@ const ProductsListing = () => {
     return item ? "Go to Cart" : "Add to Cart";
   }
 
+  const callAddToCartHandler = (_id) => {
+    if (token) {
+      const product = products.find(item => item._id === _id);
+      addToCartHandler(product, cartDispatch, token);
+    }
+    else {
+      navigate("/login")
+    }
+  }
+
   const checkRouteHandler = (_id) => {
-    const product = products.find(item => item._id === _id);
-    return checkAction(_id) === "Add to Cart" ? addToCartHandler(product, cartDispatch, authState.token) : navigate("/cart")
+    return checkAction(_id) === "Add to Cart" ? callAddToCartHandler(_id) : navigate("/cart")
   }
 
   const loadProducts = async () => {
