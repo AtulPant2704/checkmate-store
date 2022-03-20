@@ -7,8 +7,8 @@ import { useAuth, useCart, useWishlist } from "../../hooks";
 const Navbar = () => {
   const navigate = useNavigate();
   const { authState, authDispatch } = useAuth();
-  const { cartState } = useCart();
-  const { wishlistState } = useWishlist();
+  const { cartState, cartDispatch } = useCart();
+  const { wishlistState, wishlistDispatch } = useWishlist();
   const [menuOpen, setMenuOpen] = useState(false);
   const userName = authState.user;
   const cart = cartState.cart;
@@ -27,6 +27,8 @@ const Navbar = () => {
 
   const logoutHandler = () => {
     navigate("/");
+    cartDispatch({ type: "EMPTY_CART" });
+    wishlistDispatch({ type: "EMPTY_WISHLIST" });
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     authDispatch({ type: "LOGOUT" })
