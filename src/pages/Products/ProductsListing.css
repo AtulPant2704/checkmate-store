@@ -99,6 +99,13 @@
   display: none;
 }
 
+.price-rating-container{
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 /* Media Queries */
 @media screen and (max-width: 800px) {
   .filter-container {

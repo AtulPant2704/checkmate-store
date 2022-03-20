@@ -1,10 +1,13 @@
 const ProductCard = ({
+  productId,
   productImg,
   productAlt,
   productBadge,
   productTitle,
   productPrice,
-  productRating
+  productRating,
+  checkAction,
+  checkRouteHandler
 }) => {
 
   const ratingArray = [1, 2, 3, 4, 5];
@@ -18,14 +21,16 @@ const ProductCard = ({
       </div>
       <div className="card-details">
         <p className="card-title">{productTitle}</p>
-        <h3 className="card-price">₹ {productPrice}</h3>
-        <div className="rating-container">
-          {ratingArray.map(item => (
-            <i key={item} className={`${item <= Number(productRating) ? "fas" : "far"} fa-star`} ></i>
-          ))}
+        <div className="price-rating-container">
+          <h3 className="card-price">₹ {productPrice}</h3>
+          <div className="rating-container">
+            {ratingArray.map(item => (
+              <i key={item} className={`${item <= Number(productRating) ? "fas" : "far"} fa-star`} ></i>
+            ))}
+          </div>
         </div>
       </div>
-      <button className="cart-btn ecommerce-btn">Add to Cart</button>
+      <button className="cart-btn ecommerce-btn" onClick={() => checkRouteHandler(productId)}>{checkAction(productId)}</button>
     </div >
   );
 };
