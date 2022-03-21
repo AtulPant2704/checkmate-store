@@ -1,4 +1,5 @@
 import "./ProductsListing.css";
+import "../../loaders.css";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { Filters } from "./components/Filters";
@@ -24,18 +25,18 @@ const ProductsListing = () => {
     return item ? "Go to Cart" : "Add to Cart";
   }
 
-  const callAddToCartHandler = (_id) => {
+  const callAddToCartHandler = (_id, setCartButtonLoader) => {
     if (token) {
       const product = products.find(item => item._id === _id);
-      addToCartHandler(product, cartDispatch, token);
+      addToCartHandler(product, cartDispatch, token, setCartButtonLoader);
     }
     else {
       navigate("/login")
     }
   }
 
-  const checkCartRouteHandler = (_id) => {
-    return checkCartAction(_id) === "Add to Cart" ? callAddToCartHandler(_id) : navigate("/cart")
+  const checkCartRouteHandler = (_id, setCartButtonLoader) => {
+    return checkCartAction(_id) === "Add to Cart" ? callAddToCartHandler(_id, setCartButtonLoader) : navigate("/cart")
   }
 
   const checkWishlistAction = (_id) => {
@@ -91,8 +92,8 @@ const ProductsListing = () => {
           </div>
 
           <div className="product-container">
-            {productsLoader ? <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div> :
-              sortedData.map(product => (
+            {productsLoader ? <div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div> :
+              sortedData.length > 0 ? sortedData.map(product => (
                 <ProductCard
                   key={product._id}
                   productId={product._id}
@@ -107,7 +108,10 @@ const ProductsListing = () => {
                   checkWishlistAction={checkWishlistAction}
                   checkWishlistActionHandler={checkWishlistActionHandler}
                 />
-              ))
+              )) :
+                <div className="empty-products">
+                  <h1 className="empty-msg">No Products Available</h1>
+                </div>
             }
           </div>
         </section>

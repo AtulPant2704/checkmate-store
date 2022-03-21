@@ -11,6 +11,16 @@
   margin: auto;
 }
 
+.product-card .img-container button{
+  position: absolute;
+  top: 0%;
+  right: 0%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  background-color: white;
+  border: none;
+}
+
 .img-container i {
   padding: 5px;
 }
