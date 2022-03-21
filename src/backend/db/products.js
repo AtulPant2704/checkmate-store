@@ -13,7 +13,6 @@ export const products = [
     image: pieceImg,
     price: "5000",
     badge: "Out of Stock",
-    wishlist: false,
     rating: "2",
     categoryName: "chess-pieces"
   },
@@ -23,7 +22,6 @@ export const products = [
     image: bookImg,
     price: "8000",
     badge: "None",
-    wishlist: true,
     rating: "4",
     categoryName: "chess-books"
   },
@@ -33,7 +31,6 @@ export const products = [
     image: clockImg,
     price: "2000",
     badge: "None",
-    wishlist: false,
     rating: "1",
     categoryName: "chess-clock"
   },
@@ -43,7 +40,6 @@ export const products = [
     image: boardImg,
     price: "1000",
     badge: "None",
-    wishlist: false,
     rating: "1",
     categoryName: "chess-board"
   },
@@ -53,7 +49,6 @@ export const products = [
     image: image1,
     price: "1500",
     badge: "None",
-    wishlist: false,
     rating: "5",
     categoryName: "chess-pieces"
   },
@@ -63,7 +58,6 @@ export const products = [
     image: image2,
     price: "2300",
     badge: "None",
-    wishlist: false,
     rating: "2",
     categoryName: "chess-pieces"
   },
@@ -73,7 +67,6 @@ export const products = [
     image: image3,
     price: "5100",
     badge: "Out of Stock",
-    wishlist: false,
     rating: "3",
     categoryName: "chess-books"
   },
@@ -83,7 +76,6 @@ export const products = [
     image: image4,
     price: "4500",
     badge: "None",
-    wishlist: false,
     rating: "2",
     categoryName: "chess-pieces"
   },
@@ -93,7 +85,6 @@ export const products = [
     image: image5,
     price: "3100",
     badge: "None",
-    wishlist: false,
     rating: "4",
     categoryName: "chess-pieces"
   },
@@ -103,7 +94,6 @@ export const products = [
     image: image7,
     price: "9000",
     badge: "None",
-    wishlist: false,
     rating: "3",
     categoryName: "chess-books"
   },
@@ -113,7 +103,6 @@ export const products = [
     image: image8,
     price: "7100",
     badge: "None",
-    wishlist: false,
     rating: "2",
     categoryName: "chess-board"
   },
@@ -123,7 +112,6 @@ export const products = [
     image: image9,
     price: "7000",
     badge: "Out of Stock",
-    wishlist: false,
     rating: "2",
     categoryName: "chess-books"
   },
@@ -133,7 +121,6 @@ export const products = [
     image: image10,
     price: "5900",
     badge: "None",
-    wishlist: false,
     rating: "1",
     categoryName: "chess-books"
   },
@@ -143,7 +130,6 @@ export const products = [
     image: image11,
     price: "8000",
     badge: "None",
-    wishlist: false,
     rating: "4",
     categoryName: "chess-books"
   },
@@ -153,7 +139,6 @@ export const products = [
     image: image12,
     price: "8500",
     badge: "Out of Stock",
-    wishlist: false,
     rating: "3",
     categoryName: "chess-board"
   },

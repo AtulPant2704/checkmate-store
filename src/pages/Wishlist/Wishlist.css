@@ -24,6 +24,22 @@
   border-radius: 0;
 }
 
+.empty-cart{
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-link-products{
+  cursor: pointer;
+  background-color: var(--secondary-color);
+  border-radius: 5px;
+}
+
+.btn-link-products:hover{
+  background-color: var(--secondary-hover-color);
+}
+
 /* Responsive Styling Starts */
 @media only screen and (max-width: 600px) {
   .product-card {

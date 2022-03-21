@@ -3,20 +3,22 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { Filters } from "./components/Filters";
 import { ProductCard } from "./components/ProductCard";
-import { useFilter, useCart, useAuth } from "../../hooks";
+import { useFilter, useCart, useWishlist, useAuth } from "../../hooks";
 import { getProductsService } from "../../services";
-import { sortData, categoryFilter, priceFilter, ratingFilter, inStockFilter, addToCartHandler } from "../../utils"
+import { sortData, categoryFilter, priceFilter, ratingFilter, inStockFilter, addToCartHandler, addToWishlistHandler, removeFromWishlistHandler } from "../../utils"
 
 const ProductsListing = () => {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const { cartState, cartDispatch } = useCart();
+  const { wishlistState, wishlistDispatch } = useWishlist();
   const { authState } = useAuth();
   const { token } = authState
   const { cart } = cartState;
+  const { wishlist } = wishlistState;
   const { filterState } = useFilter();
 
-  const checkAction = (_id) => {
+  const checkCartAction = (_id) => {
     const item = cart.find(item => item._id === _id);
     return item ? "Go to Cart" : "Add to Cart";
   }
@@ -31,8 +33,27 @@ const ProductsListing = () => {
     }
   }
 
-  const checkRouteHandler = (_id) => {
-    return checkAction(_id) === "Add to Cart" ? callAddToCartHandler(_id) : navigate("/cart")
+  const checkCartRouteHandler = (_id) => {
+    return checkCartAction(_id) === "Add to Cart" ? callAddToCartHandler(_id) : navigate("/cart")
+  }
+
+  const checkWishlistAction = (_id) => {
+    const item = wishlist.find(item => item._id === _id);
+    return item ? "Remove" : "Add";
+  }
+
+  const callAddToWishlistHandler = (_id) => {
+    if (token) {
+      const product = products.find(item => item._id === _id);
+      addToWishlistHandler(product, wishlistDispatch, token);
+    }
+    else {
+      navigate("/login")
+    }
+  }
+
+  const checkWishlistActionHandler = (_id) => {
+    return checkWishlistAction(_id) === "Remove" ? removeFromWishlistHandler(_id, token, wishlistDispatch) : callAddToWishlistHandler(_id);
   }
 
   const loadProducts = async () => {
@@ -77,8 +98,10 @@ const ProductsListing = () => {
                 productTitle={product.title}
                 productPrice={product.price}
                 productRating={product.rating}
-                checkAction={checkAction}
-                checkRouteHandler={checkRouteHandler}
+                checkCartAction={checkCartAction}
+                checkCartRouteHandler={checkCartRouteHandler}
+                checkWishlistAction={checkWishlistAction}
+                checkWishlistActionHandler={checkWishlistActionHandler}
               />
             ))}
           </div>

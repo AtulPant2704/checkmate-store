@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { makeServer } from "./server";
 import { BrowserRouter } from "react-router-dom";
-import { AuthProvider, FilterProvider, CartProvider } from "./hooks";
+import { AuthProvider, FilterProvider, CartProvider, WishlistProvider } from "./hooks";
 import App from "./App";
 
 // Call make Server
@@ -13,9 +13,11 @@ ReactDOM.render(
     <BrowserRouter>
       <AuthProvider>
         <CartProvider>
-          <FilterProvider>
-            <App />
-          </FilterProvider>
+          <WishlistProvider>
+            <FilterProvider>
+              <App />
+            </FilterProvider>
+          </WishlistProvider>
         </CartProvider>
       </AuthProvider>
     </BrowserRouter>

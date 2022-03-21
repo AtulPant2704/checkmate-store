@@ -1,13 +1,17 @@
 import "./Authentication.css";
-import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { useAuth } from "../../hooks";
+import { loginService } from "../../services";
+import { useCart, useWishlist } from "../../hooks";
+import { getCartItemsHandler, getWishlistItemsHandler } from "../../utils";
 
 const Login = () => {
   const navigate = useNavigate();
   const { authDispatch } = useAuth();
+  const { cartDispatch } = useCart();
+  const { wishlistDispatch } = useWishlist();
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -31,12 +35,13 @@ const Login = () => {
   const loginHandler = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post("/api/auth/login", user);
+      const response = await loginService(user);
       if (response.status === 200) {
 
         localStorage.setItem("token", response.data.encodedToken);
         localStorage.setItem("user", JSON.stringify(response.data.foundUser));
-
+        getWishlistItemsHandler(response.data.encodedToken, wishlistDispatch);
+        getCartItemsHandler(response.data.encodedToken, cartDispatch);
         authDispatch({ type: "LOGIN", payload: { user: response.data.foundUser, token: response.data.encodedToken } })
 
         navigate("/");

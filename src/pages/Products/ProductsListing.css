@@ -64,6 +64,10 @@
   margin: auto;
 }
 
+.product-card .img-container .card-badge{
+  background-color: var(--danger-color);
+}
+
 .product-card .img-container i {
   color: var(--secondary-color);
   padding: 5px;

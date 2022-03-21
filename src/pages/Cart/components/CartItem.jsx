@@ -1,4 +1,4 @@
-const CartItem = ({ cartId, cartImg, cartAlt, cartTitle, cartPrice, cartQuantity, callRemoveFromCartHandler, callUpdateCartHandler }) => {
+const CartItem = ({ cartId, cartImg, cartAlt, cartTitle, cartPrice, cartQuantity, callRemoveFromCartHandler, callUpdateCartHandler, callMoveToWishlistHandler }) => {
   return (
     <div className="cart-card">
       <div className="img-container">
@@ -18,7 +18,7 @@ const CartItem = ({ cartId, cartImg, cartAlt, cartTitle, cartPrice, cartQuantity
           </button>
         </div>
         <div className="action-btns">
-          <button className="wishlist-btn ecommerce-btn">Move to Wishlist</button>
+          <button className="wishlist-btn ecommerce-btn" onClick={() => callMoveToWishlistHandler(cartId)}>Move to Wishlist</button>
           <button className="wishlist-btn ecommerce-btn cart-remove-btn" onClick={() => callRemoveFromCartHandler(cartId)}>Remove</button>
         </div>
       </div>

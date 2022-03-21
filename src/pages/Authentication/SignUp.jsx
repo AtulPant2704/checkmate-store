@@ -1,9 +1,9 @@
 import "./Authentication.css";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { useState } from "react";
 import { useAuth } from "../../hooks";
+import { signUpService } from "../../services";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -33,7 +33,7 @@ const SignUp = () => {
     event.preventDefault();
     if (checkPasswordHandler()) {
       try {
-        const response = await axios.post("/api/auth/signup", user);
+        const response = await signUpService(user);
         if (response.status === 201) {
 
           localStorage.setItem("token", response.data.encodedToken);
