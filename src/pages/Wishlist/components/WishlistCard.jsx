@@ -3,7 +3,9 @@ const WishlistCard = ({ cardId, cardImg, cardAlt, cardTitle, cardPrice, callRemo
     <div className="product-card">
       <div className="img-container">
         <img src={cardImg} alt={cardAlt} className="img-responsive" />
-        <i className="fas fa-heart" onClick={() => callRemoveFromWishlistHandler(cardId)}></i>
+        <button onClick={() => callRemoveFromWishlistHandler(cardId)}>
+          <i className="fas fa-heart"></i>
+        </button>
       </div>
       <div className="card-details">
         <p className="card-title">{cardTitle}</p>
