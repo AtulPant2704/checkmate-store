@@ -1,10 +1,12 @@
 import { addToCartService } from "../../services";
 
-const addToCartHandler = async (product, cartDispatch, token) => {
+const addToCartHandler = async (product, cartDispatch, token, setCartButtonLoader) => {
     try {
+        setCartButtonLoader(true);
         const response = await addToCartService(product, token);
         if (response.status === 201) {
-            cartDispatch({ type: "ADD_TO_CART", payload: response.data.cart })
+            cartDispatch({ type: "ADD_TO_CART", payload: response.data.cart });
+            setCartButtonLoader(false);
         }
         else {
             throw new Error();
