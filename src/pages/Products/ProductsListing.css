@@ -22,6 +22,16 @@
 }
 
 /* Filter Section Styling */
+.filter-container .filter-toggle-btn{
+  display: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: var(--secondary-color);
+  border: none;
+  background-color: white;
+  padding: 2px 5px;
+}
+
 .filter-clear-heading {
   display: flex;
   justify-content: space-between;
@@ -123,41 +133,37 @@
 }
 
 /* Media Queries */
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 850px) {
   .filter-container {
-    display: none;
-  }
-
-  .filter-mobile-container {
-    display: flex;
-    justify-content: center;
-    margin: auto;
-    position: sticky;
-    bottom: 0;
+    position: fixed;
+    z-index: 2;
+    background-color: white;
+    right: 0;
     left: 0;
+    bottom: 0;
+    padding: 1rem;
     width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-top: solid 1px lightgray;
+    transform: translateY(90%);
+    transition: all 0.5s ease-in-out;
   }
 
-  .filter-mobile-container .btn {
+  .filter-container .filter-toggle-btn{
+    display: block;
+  }
+
+  .active {
+    transform: all 0.5s ease-in-out;
+    transform: translateY(0);
+  }
+
+  .filter-type-container .slider {
     width: 50%;
-    border-radius: 0;
-    font-weight: 600;
-    color: var(--secondary-color);
-    border: 1px solid var(--secondary-color);
+    display: block;
   }
 
-  .filter-mobile-container .btn-filter {
-    border-left: none;
-  }
-
-  .filter-mobile-container .btn-sort {
-    border-right: none;
-  }
-
-  .filter-mobile-container .btn:hover {
-    color: white;
-    background-color: var(--secondary-color);
-  }
 }
 
 @media only screen and (max-width: 600px) {

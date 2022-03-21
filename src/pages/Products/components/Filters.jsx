@@ -5,8 +5,10 @@ import { CategoryFilter } from "./Filters/CategoryFilter";
 import { RatingFilter } from "./Filters/RatingFilter";
 import { InStockFilter } from "./Filters/InStockFilter";
 
-const Filters = () => {
+const Filters = ({ mobileFilter, setMobileFilter }) => {
   const { filterState, filterDispatch } = useFilter();
+
+  const filterToggleHandler = () => setMobileFilter(prev => !prev);
 
   return (
     <div>
@@ -16,6 +18,7 @@ const Filters = () => {
         <button className="text-underline clear-filters-btn btn btn-text-primary gray-text" onClick={() => filterDispatch({ type: "RESET", payload: {} })}>
           Clear
           </button>
+        <button className={`fas filter-toggle-btn ${mobileFilter ? "fa-times" : "fa-angle-up"}`} onClick={filterToggleHandler}></button>
       </div>
 
       <PriceRangeFilter {...filterState} filterDispatch={filterDispatch} />
