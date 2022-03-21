@@ -95,6 +95,13 @@
   font-size: 1rem;
 }
 
+.price-rating-container{
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .ecommerce-btn {
   border-radius: 0;
 }
@@ -103,11 +110,16 @@
   display: none;
 }
 
-.price-rating-container{
-  width: 95%;
+/* Empty Products Styling */
+.empty-products{
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+}
+
+.empty-products .empty-msg{
+  color: var(--secondary-color);
+  font-size: 2rem;
 }
 
 /* Media Queries */

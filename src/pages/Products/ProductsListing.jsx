@@ -93,7 +93,7 @@ const ProductsListing = () => {
 
           <div className="product-container">
             {productsLoader ? <div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div> :
-              sortedData.map(product => (
+              sortedData.length > 0 ? sortedData.map(product => (
                 <ProductCard
                   key={product._id}
                   productId={product._id}
@@ -108,7 +108,10 @@ const ProductsListing = () => {
                   checkWishlistAction={checkWishlistAction}
                   checkWishlistActionHandler={checkWishlistActionHandler}
                 />
-              ))
+              )) :
+                <div className="empty-products">
+                  <h1 className="empty-msg">No Products Available</h1>
+                </div>
             }
           </div>
         </section>
