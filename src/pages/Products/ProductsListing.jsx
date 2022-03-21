@@ -12,6 +12,7 @@ const ProductsListing = () => {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [productsLoader, setProductsLoader] = useState(false);
+  const [mobileFilter, setMobileFilter] = useState(false);
   const { cartState, cartDispatch } = useCart();
   const { wishlistState, wishlistDispatch } = useWishlist();
   const { authState } = useAuth();
@@ -87,8 +88,8 @@ const ProductsListing = () => {
     <div>
       <main>
         <section className="filter-product-container">
-          <div className="filter-container">
-            <Filters />
+          <div className={`filter-container ${mobileFilter ? "active" : ""}`}>
+            <Filters mobileFilter={mobileFilter} setMobileFilter={setMobileFilter} />
           </div>
 
           <div className="product-container">
@@ -116,12 +117,16 @@ const ProductsListing = () => {
           </div>
         </section>
       </main>
-      <div className="filter-mobile-container">
+      {/* <div className="filter-mobile-container">
         <button className="btn btn-outline-primary btn-filter">Filter</button>
-        <button className="btn btn-outline-primary btn-sort">Sort</button>
-      </div>
+        <button><i className={`fas ${mobileFilter ? "fa-times" : "fa-angle-up"}`}></i></button>
+      </div> */}
     </div>
   );
 };
+
+
+
+
 
 export { ProductsListing };
