@@ -23,36 +23,43 @@ const SignUp = () => {
 
   const checkPasswordHandler = () => {
     if (user.password !== user.confirmPassword) {
-      alert("Your confirm password is different then the real password");
+      alert("Your confirm password does not matches the real password");
     } else {
       return true;
     }
   }
 
+  const checkInputFields = () => {
+    return user.email !== "" && user.password !== "" && user.firstName !== "" &&
+      user.lastName !== "" && user.confirmPassword !== ""
+  }
+
   const signUpHandler = async (event) => {
     event.preventDefault();
-    if (checkPasswordHandler()) {
-      try {
-        const response = await signUpService(user);
-        if (response.status === 201) {
-
-          localStorage.setItem("token", response.data.encodedToken);
-          localStorage.setItem("user", JSON.stringify(response.data.createdUser));
-
-          authDispatch({ type: "SIGN_UP", payload: { user: response.data.createdUser, token: response.data.encodedToken } })
-
-          navigate("/");
+    if (checkInputFields()) {
+      if (checkPasswordHandler()) {
+        try {
+          const response = await signUpService(user);
+          switch (response.status) {
+            case 201:
+              localStorage.setItem("token", response.data.encodedToken);
+              localStorage.setItem("user", JSON.stringify(response.data.createdUser));
+              authDispatch({ type: "SIGN_UP", payload: { user: response.data.createdUser, token: response.data.encodedToken } })
+              navigate("/");
+              break;
+            case 422:
+              throw new Error("Email already exists");
+            case 500:
+              throw new Error("Server Error");
+          }
         }
-        else if (response.status === 422) {
-          throw new Error("User already exists");
-        }
-        else if (response.status === 500) {
-          throw new Error("Server Error");
+        catch (error) {
+          alert(error);
         }
       }
-      catch (error) {
-        alert(error);
-      }
+    }
+    else {
+      alert("All the fields need to be entered")
     }
   }
 
