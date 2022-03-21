@@ -53,12 +53,7 @@ const ProductsListing = () => {
   }
 
   const checkWishlistActionHandler = (_id) => {
-    if (checkWishlistAction(_id) === "Remove") {
-      removeFromWishlistHandler(_id, token, wishlistDispatch);
-    }
-    else {
-      callAddToWishlistHandler(_id);
-    }
+    return checkWishlistAction(_id) === "Remove" ? removeFromWishlistHandler(_id, token, wishlistDispatch) : callAddToWishlistHandler(_id);
   }
 
   const loadProducts = async () => {
