@@ -3,12 +3,13 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { CartItem } from "./components/CartItem";
 import { CartBill } from "./components/CartBill";
-import { useCart, useAuth } from "../../hooks";
-import { getCartItemsHandler, removeFromCartHandler, updateCartHandler, getCartBill } from "../../utils";
+import { useCart, useAuth, useWishlist } from "../../hooks";
+import { getCartItemsHandler, removeFromCartHandler, updateCartHandler, getCartBill, moveToWishlistHandler } from "../../utils";
 
 const Cart = () => {
   const { cartState, cartDispatch } = useCart();
   const { authState } = useAuth();
+  const { wishlistDispatch } = useWishlist();
   const { token } = authState;
   const { cart } = cartState;
   const { cartQuantity, itemsPrice, totalPrice } = getCartBill(cart);
@@ -18,7 +19,12 @@ const Cart = () => {
   }
 
   const callRemoveFromCartHandler = (_id) => {
-    removeFromCartHandler(_id, token, cartDispatch)
+    removeFromCartHandler(_id, token, cartDispatch);
+  }
+
+  const callMoveToWishlistHandler = (_id) => {
+    const item = cart.find(item => item._id === _id);
+    moveToWishlistHandler(_id, item, wishlistDispatch, token, cartDispatch);
   }
 
   useEffect(() => getCartItemsHandler(token, cartDispatch), []);
@@ -44,6 +50,7 @@ const Cart = () => {
                   cartQuantity={item.qty}
                   callRemoveFromCartHandler={callRemoveFromCartHandler}
                   callUpdateCartHandler={callUpdateCartHandler}
+                  callMoveToWishlistHandler={callMoveToWishlistHandler}
                 />
               ))}
             </div>

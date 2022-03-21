@@ -8,6 +8,8 @@ export { addToCartHandler } from "./cartHandlers/addToCartHandler";
 export { removeFromCartHandler } from "./cartHandlers/removeFromCartHandler";
 export { getCartBill } from "./cartHandlers/getCartBill";
 export { updateCartHandler } from "./cartHandlers/updateCartHandler";
+export { moveToWishlistHandler } from "./cartHandlers/moveToWishlistHandler";
 export { getWishlistItemsHandler } from "./wishlistHandlers/getWishlistItemsHandler";
 export { addToWishlistHandler } from "./wishlistHandlers/addToWishlistHandler";
-export { removeFromWishlistHandler } from "./wishlistHandlers/removeFromWishlistHandler"
+export { removeFromWishlistHandler } from "./wishlistHandlers/removeFromWishlistHandler";
+export { moveToCartHandler } from "./wishlistHandlers/moveToCartHandler"
