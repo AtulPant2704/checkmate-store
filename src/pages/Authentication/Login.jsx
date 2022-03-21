@@ -34,31 +34,33 @@ const Login = () => {
 
   const loginHandler = async (event) => {
     event.preventDefault();
-    try {
-      const response = await loginService(user);
-      if (response.status === 200) {
 
-        localStorage.setItem("token", response.data.encodedToken);
-        localStorage.setItem("user", JSON.stringify(response.data.foundUser));
-        getWishlistItemsHandler(response.data.encodedToken, wishlistDispatch);
-        getCartItemsHandler(response.data.encodedToken, cartDispatch);
-        authDispatch({ type: "LOGIN", payload: { user: response.data.foundUser, token: response.data.encodedToken } })
-
-        navigate("/");
+    if (user.email !== "" && user.password !== "") {
+      try {
+        const response = await loginService(user);
+        switch (response.status) {
+          case 200:
+            localStorage.setItem("token", response.data.encodedToken);
+            localStorage.setItem("user", JSON.stringify(response.data.foundUser));
+            getWishlistItemsHandler(response.data.encodedToken, wishlistDispatch);
+            getCartItemsHandler(response.data.encodedToken, cartDispatch);
+            authDispatch({ type: "LOGIN", payload: { user: response.data.foundUser, token: response.data.encodedToken } })
+            navigate("/");
+            break;
+          case 404:
+            throw new Error("Email not found");
+          case 401:
+            throw new Error("Wrong Password");
+          case 500:
+            throw new Error("Server Error");
+        }
       }
-      else if (response.status === 404) {
-        throw new Error("Email not found");
-      }
-      else if (response.status === 401) {
-        console.log("wrong");
-        throw new Error("Wrong Password");
-      }
-      else if (response.status === 500) {
-        throw new Error("Server Error");
+      catch (error) {
+        alert(error);
       }
     }
-    catch (error) {
-      alert(error);
+    else {
+      alert("Both of the fields need to be entered");
     }
   }
 
