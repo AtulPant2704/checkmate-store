@@ -14,8 +14,8 @@
     content: " ";
     display: block;
     position: absolute;
-    width: 7px;
-    height: 7px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     background: var(--secondary-color);
     margin: -4px 0 0 -4px;
