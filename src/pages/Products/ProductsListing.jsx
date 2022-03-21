@@ -10,6 +10,7 @@ import { sortData, categoryFilter, priceFilter, ratingFilter, inStockFilter, add
 const ProductsListing = () => {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
+  const [productsLoader, setProductsLoader] = useState(false);
   const { cartState, cartDispatch } = useCart();
   const { wishlistState, wishlistDispatch } = useWishlist();
   const { authState } = useAuth();
@@ -58,9 +59,11 @@ const ProductsListing = () => {
 
   const loadProducts = async () => {
     try {
+      setProductsLoader(true);
       const response = await getProductsService();
       if (response.status === 200) {
         setProducts(response.data.products);
+        setProductsLoader(false);
       }
       else {
         throw new Error();
@@ -88,22 +91,24 @@ const ProductsListing = () => {
           </div>
 
           <div className="product-container">
-            {sortedData.map(product => (
-              <ProductCard
-                key={product._id}
-                productId={product._id}
-                productImg={product.image}
-                productAlt={product.title}
-                productBadge={product.badge}
-                productTitle={product.title}
-                productPrice={product.price}
-                productRating={product.rating}
-                checkCartAction={checkCartAction}
-                checkCartRouteHandler={checkCartRouteHandler}
-                checkWishlistAction={checkWishlistAction}
-                checkWishlistActionHandler={checkWishlistActionHandler}
-              />
-            ))}
+            {productsLoader ? <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div> :
+              sortedData.map(product => (
+                <ProductCard
+                  key={product._id}
+                  productId={product._id}
+                  productImg={product.image}
+                  productAlt={product.title}
+                  productBadge={product.badge}
+                  productTitle={product.title}
+                  productPrice={product.price}
+                  productRating={product.rating}
+                  checkCartAction={checkCartAction}
+                  checkCartRouteHandler={checkCartRouteHandler}
+                  checkWishlistAction={checkWishlistAction}
+                  checkWishlistActionHandler={checkWishlistActionHandler}
+                />
+              ))
+            }
           </div>
         </section>
       </main>
