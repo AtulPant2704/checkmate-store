@@ -2,17 +2,24 @@ import "./Wishlist.css";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { WishlistCard } from "./components/WishlistCard";
-import { useWishlist, useAuth } from "../../hooks";
-import { getWishlistItemsHandler, removeFromWishlistHandler } from "../../utils";
+import { useWishlist, useAuth, useCart } from "../../hooks";
+import { getWishlistItemsHandler, removeFromWishlistHandler, moveToCartHandler } from "../../utils";
 
 const Wishlist = () => {
   const { wishlistState, wishlistDispatch } = useWishlist();
+  const { cartState, cartDispatch } = useCart();
   const { authState } = useAuth();
   const { token } = authState;
   const { wishlist } = wishlistState;
 
   const callRemoveFromWishlistHandler = (_id) => {
-    removeFromWishlistHandler(_id, token, wishlistDispatch)
+    removeFromWishlistHandler(_id, token, wishlistDispatch);
+  }
+
+  const callMoveToCartHandler = (_id) => {
+    const item = wishlist.find(item => item._id === _id);
+    moveToCartHandler(_id, item, token, cartState, cartDispatch);
+    removeFromWishlistHandler(_id, token, wishlistDispatch);
   }
 
   useEffect(() => getWishlistItemsHandler(token, wishlistDispatch), [])
@@ -33,6 +40,7 @@ const Wishlist = () => {
                 cardTitle={item.title}
                 cardPrice={item.price}
                 callRemoveFromWishlistHandler={callRemoveFromWishlistHandler}
+                callMoveToCartHandler={callMoveToCartHandler}
               />
             ))}
           </section>

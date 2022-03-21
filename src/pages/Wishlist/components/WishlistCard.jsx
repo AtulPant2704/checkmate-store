@@ -1,4 +1,4 @@
-const WishlistCard = ({ cardId, cardImg, cardAlt, cardTitle, cardPrice, callRemoveFromWishlistHandler }) => {
+const WishlistCard = ({ cardId, cardImg, cardAlt, cardTitle, cardPrice, callRemoveFromWishlistHandler, callMoveToCartHandler }) => {
   return (
     <div className="product-card">
       <div className="img-container">
@@ -8,8 +8,8 @@ const WishlistCard = ({ cardId, cardImg, cardAlt, cardTitle, cardPrice, callRemo
       <div className="card-details">
         <p className="card-title">{cardTitle}</p>
         <h3 className="card-price">₹ {cardPrice}</h3>
-        <button className="ecommerce-btn">Move to Cart</button>
       </div>
+      <button className="ecommerce-btn" onClick={() => callMoveToCartHandler(cardId)}>Move to Cart</button>
     </div>
   );
 };
