@@ -21,28 +21,24 @@ const Home = () => {
         <h2 className="intro-heading align-center">Featured Categories</h2>
         <div className="category-cards">
           <ProductsCategory
-            cardType={"card-chess-board"}
             cardImg={boardImg}
-            cardAlt={"board-brown-white"}
             cardTitle={"Chess Board"}
+            categoryName={"chess-board"}
           />
           <ProductsCategory
-            cardType={"card-chess-piece"}
             cardImg={pieceImg}
-            cardAlt={"chess-black-brown-pieces"}
             cardTitle={"Chess Pieces"}
+            categoryName={"chess-pieces"}
           />
           <ProductsCategory
-            cardType={"card-chess-book"}
             cardImg={bookImg}
-            cardAlt={"chess-fianchetto-book"}
             cardTitle={"Chess Book"}
+            categoryName={"chess-books"}
           />
           <ProductsCategory
-            cardType={"card-chess-clock"}
             cardImg={clockImg}
-            cardAlt={"chess-clock"}
             cardTitle={"Chess Clock"}
+            categoryName={"chess-clock"}
           />
         </div>
       </section>
