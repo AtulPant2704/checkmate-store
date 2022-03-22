@@ -1,7 +1,8 @@
 import { addToWishlistService } from "../../services";
 
-const addToWishlistHandler = async (product, wishlistDispatch, token) => {
+const addToWishlistHandler = async (product, wishlistDispatch, token,setWishlistDisable) => {
     try {
+        setWishlistDisable(true);
         const response = await addToWishlistService(product, token);
         if (response.status === 201) {
             wishlistDispatch({ type: "ADD_TO_WISHLIST", payload: response.data.wishlist });
@@ -12,6 +13,9 @@ const addToWishlistHandler = async (product, wishlistDispatch, token) => {
     }
     catch (error) {
         alert(error);
+    }
+    finally{
+        setWishlistDisable(false);
     }
 }
 

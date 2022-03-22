@@ -1,4 +1,9 @@
+import {useState} from "react";
+
 const CartItem = ({ cartId, cartImg, cartAlt, cartTitle, cartPrice, cartQuantity, callRemoveFromCartHandler, callUpdateCartHandler, callMoveToWishlistHandler }) => {
+
+  const [wishlistDisable,setWishlistDisable] = useState(false);
+
   return (
     <div className="cart-card">
       <div className="img-container">
@@ -18,7 +23,7 @@ const CartItem = ({ cartId, cartImg, cartAlt, cartTitle, cartPrice, cartQuantity
           </button>
         </div>
         <div className="action-btns">
-          <button className="wishlist-btn ecommerce-btn" onClick={() => callMoveToWishlistHandler(cartId)}>Move to Wishlist</button>
+          <button disabled={wishlistDisable} className="wishlist-btn ecommerce-btn" onClick={() => callMoveToWishlistHandler(cartId,setWishlistDisable)}>Move to Wishlist</button>
           <button className="wishlist-btn ecommerce-btn cart-remove-btn" onClick={() => callRemoveFromCartHandler(cartId)}>Remove</button>
         </div>
       </div>

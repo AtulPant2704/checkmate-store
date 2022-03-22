@@ -45,18 +45,18 @@ const ProductsListing = () => {
     return item ? "Remove" : "Add";
   }
 
-  const callAddToWishlistHandler = (_id) => {
+  const callAddToWishlistHandler = (_id,setWishlistDisable) => {
     if (token) {
       const product = products.find(item => item._id === _id);
-      addToWishlistHandler(product, wishlistDispatch, token);
+      addToWishlistHandler(product, wishlistDispatch, token,setWishlistDisable);
     }
     else {
       navigate("/login")
     }
   }
 
-  const checkWishlistActionHandler = (_id) => {
-    return checkWishlistAction(_id) === "Remove" ? removeFromWishlistHandler(_id, token, wishlistDispatch) : callAddToWishlistHandler(_id);
+  const checkWishlistActionHandler = (_id,setWishlistDisable) => {
+    return checkWishlistAction(_id) === "Remove" ? removeFromWishlistHandler(_id, token, wishlistDispatch) : callAddToWishlistHandler(_id,setWishlistDisable);
   }
 
   const loadProducts = async () => {

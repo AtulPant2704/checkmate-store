@@ -9,9 +9,10 @@ import { getCartItemsHandler, removeFromCartHandler, updateCartHandler, getCartB
 const Cart = () => {
   const { cartState, cartDispatch } = useCart();
   const { authState } = useAuth();
-  const { wishlistDispatch } = useWishlist();
+  const { wishlistState,wishlistDispatch } = useWishlist();
   const { token } = authState;
   const { cart } = cartState;
+  const {wishlist} = wishlistState;
   const { cartQuantity, itemsPrice, totalPrice } = getCartBill(cart);
 
   const callUpdateCartHandler = (_id, actionType) => {
@@ -22,9 +23,9 @@ const Cart = () => {
     removeFromCartHandler(_id, token, cartDispatch);
   }
 
-  const callMoveToWishlistHandler = (_id) => {
+  const callMoveToWishlistHandler = (_id,setWishlistDisable) => {
     const item = cart.find(item => item._id === _id);
-    moveToWishlistHandler(_id, item, wishlistDispatch, token, cartDispatch);
+    moveToWishlistHandler(_id, item, wishlistDispatch, token, cartDispatch,setWishlistDisable,wishlist);
   }
 
   useEffect(() => getCartItemsHandler(token, cartDispatch), []);

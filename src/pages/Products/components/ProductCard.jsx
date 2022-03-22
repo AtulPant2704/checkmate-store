@@ -15,6 +15,7 @@ const ProductCard = ({
 }) => {
 
   const [cartButtonLoader, setCartButtonLoader] = useState(false);
+  const [wishlistDisable,setWishlistDisable] = useState(false);
 
   const ratingArray = [1, 2, 3, 4, 5];
 
@@ -22,7 +23,7 @@ const ProductCard = ({
     <div className="product-card">
       <div className="img-container">
         <img src={productImg} alt={productAlt} className="img-responsive" />
-        <button onClick={() => checkWishlistActionHandler(productId)}>
+        <button disabled={wishlistDisable} onClick={() => checkWishlistActionHandler(productId,setWishlistDisable)}>
           <i className={`${checkWishlistAction(productId) === "Remove" ? "fas" : "far"} fa-heart`}></i>
         </button>
         {productBadge !== "None" ? <span className="card-badge">{productBadge}</span> : ""}
