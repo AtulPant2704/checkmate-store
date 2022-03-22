@@ -6,7 +6,7 @@
   height: 100%;
 }
 
-.App{
+.App {
   max-height: 100vh;
   height: 100%;
 }
@@ -41,4 +41,8 @@ main {
 
 a {
   text-decoration: none;
+}
+
+iframe {
+  pointer-events: none;
 }

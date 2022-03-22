@@ -59,6 +59,8 @@ const ProductsListing = () => {
     return checkWishlistAction(_id) === "Remove" ? removeFromWishlistHandler(_id, token, wishlistDispatch) : callAddToWishlistHandler(_id,setWishlistDisable);
   }
 
+  const openMobileFilterHandler = () => setMobileFilter(true);
+
   const loadProducts = async () => {
     try {
       setProductsLoader(true);
@@ -115,6 +117,13 @@ const ProductsListing = () => {
           }
         </div>
       </section>
+      {!mobileFilter &&  sortedData.length > 0 ? 
+          <div className="filter-mobile-container" 
+            onClick={openMobileFilterHandler}>
+            <button className="filter-open-btn">Filters <i className="fas fa-angle-up"></i></button>
+          </div> 
+        : null
+        }
     </main>
   );
 };

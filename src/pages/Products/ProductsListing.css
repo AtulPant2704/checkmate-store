@@ -22,7 +22,7 @@
 }
 
 /* Filter Section Styling */
-.filter-container .filter-toggle-btn{
+.filter-container .filter-close-btn {
   display: none;
   cursor: pointer;
   font-size: 1.5rem;
@@ -74,7 +74,7 @@
   margin: auto;
 }
 
-.product-card .img-container .card-badge{
+.product-card .img-container .card-badge {
   background-color: var(--danger-color);
 }
 
@@ -88,24 +88,24 @@
   border-radius: 50%;
 }
 
-.product-card .card-details{
+.product-card .card-details {
   margin-left: 0.5rem;
   align-items: flex-start;
 }
 
-.product-card .card-details .card-title{
+.product-card .card-details .card-title {
   text-align: left;
 }
 
-.product-card .rating-container{
+.product-card .rating-container {
   margin: 0;
 }
 
-.product-card .rating-container i{
+.product-card .rating-container i {
   font-size: 1rem;
 }
 
-.price-rating-container{
+.price-rating-container {
   width: 95%;
   display: flex;
   justify-content: space-between;
@@ -121,19 +121,40 @@
 }
 
 /* Empty Products Styling */
-.empty-products{
+.empty-products {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.empty-products .empty-msg{
+.empty-products .empty-msg {
   color: var(--secondary-color);
   font-size: 2rem;
 }
 
 /* Media Queries */
 @media screen and (max-width: 850px) {
+  .filter-mobile-container {
+    display: block;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    position: sticky;
+    transition: all 0.5s ease-in-out;
+  }
+
+  .filter-mobile-container .filter-open-btn {
+    width: 100%;
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+    font-weight: 600;
+    background-color: white;
+    border: none;
+    border-top: 1px solid var(--secondary-color);
+    cursor: pointer;
+    padding: 5px;
+  }
+
   .filter-container {
     position: fixed;
     z-index: 2;
@@ -145,12 +166,11 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
-    border-top: solid 1px lightgray;
-    transform: translateY(90%);
+    transform: translateY(100%);
     transition: all 0.5s ease-in-out;
   }
 
-  .filter-container .filter-toggle-btn{
+  .filter-container .filter-close-btn {
     display: block;
   }
 
@@ -163,7 +183,6 @@
     width: 50%;
     display: block;
   }
-
 }
 
 @media only screen and (max-width: 600px) {
