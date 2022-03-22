@@ -6,7 +6,6 @@ const addToCartHandler = async (product, cartDispatch, token, setCartButtonLoade
         const response = await addToCartService(product, token);
         if (response.status === 201) {
             cartDispatch({ type: "ADD_TO_CART", payload: response.data.cart });
-            setCartButtonLoader(false);
         }
         else {
             throw new Error();
@@ -14,6 +13,9 @@ const addToCartHandler = async (product, cartDispatch, token, setCartButtonLoade
     }
     catch (error) {
         alert(error);
+    }
+    finally{
+        setCartButtonLoader(false);
     }
 }
 
