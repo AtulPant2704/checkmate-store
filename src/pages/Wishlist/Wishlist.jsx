@@ -16,9 +16,9 @@ const Wishlist = () => {
     removeFromWishlistHandler(_id, token, wishlistDispatch);
   }
 
-  const callMoveToCartHandler = (_id) => {
+  const callMoveToCartHandler = (_id,setCartButtonLoader) => {
     const item = wishlist.find(item => item._id === _id);
-    moveToCartHandler(_id, item, token, cartState, cartDispatch);
+    moveToCartHandler(_id, item, token, cartState, cartDispatch,setCartButtonLoader);
     removeFromWishlistHandler(_id, token, wishlistDispatch);
   }
 
