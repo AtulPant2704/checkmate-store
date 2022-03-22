@@ -1,5 +1,5 @@
 const filterReducer = (state, action) => {
-    const { chessPieces, chessBoard, chessBooks, chessClock, ratingValue, inStock, rangeValue } = action.payload;
+    const { ratingValue, inStock, rangeValue } = action.payload;
 
     switch (action.type) {
         case "LOW_TO_HIGH":
@@ -8,17 +8,12 @@ const filterReducer = (state, action) => {
         case "HIGH_TO_LOW":
             return { ...state, sortBy: action.type };
 
-        case "CHESS_PIECES":
-            return { ...state, chessPieces: chessPieces };
-
-        case "CHESS_BOARD":
-            return { ...state, chessBoard: chessBoard };
-
-        case "CHESS_CLOCK":
-            return { ...state, chessClock: chessClock };
-
-        case "CHESS_BOOKS":
-            return { ...state, chessBooks: chessBooks };
+        case "CATEGORY_FILTER":
+            if(!state.category.includes(action.payload.categoryType)){
+                return { ...state, category: [...state.category,action.payload.categoryType] };
+            }
+            const filterCategories = state.category.filter(item => item !== action.payload.categoryType);
+            return { ...state, category: filterCategories }
 
         case "RANGE_FILTER":
             return { ...state, rangeValue: rangeValue };
@@ -32,10 +27,7 @@ const filterReducer = (state, action) => {
         case "RESET":
             return {
                 sortBy: "",
-                chessPieces: false,
-                chessBooks: false,
-                chessBoard: false,
-                chessClock: false,
+                category: [],
                 ratingValue: "",
                 inStock: false,
                 rangeValue: 10000

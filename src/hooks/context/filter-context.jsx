@@ -6,10 +6,7 @@ const FilterContext = createContext(null);
 const FilterProvider = ({ children }) => {
     const [filterState, filterDispatch] = useReducer(filterReducer, {
         sortBy: "",
-        chessPieces: false,
-        chessBooks: false,
-        chessBoard: false,
-        chessClock: false,
+        category:[],
         ratingValue: "",
         inStock: false,
         rangeValue: 10000
