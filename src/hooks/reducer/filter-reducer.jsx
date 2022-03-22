@@ -1,5 +1,5 @@
 const filterReducer = (state, action) => {
-    const { ratingValue, inStock, rangeValue } = action.payload;
+    const { ratingValue, inStock, rangeValue,categoryType } = action.payload;
 
     switch (action.type) {
         case "LOW_TO_HIGH":
@@ -10,9 +10,9 @@ const filterReducer = (state, action) => {
 
         case "CATEGORY_FILTER":
             if(!state.category.includes(action.payload.categoryType)){
-                return { ...state, category: [...state.category,action.payload.categoryType] };
+                return { ...state, category: [...state.category,categoryType] };
             }
-            const filterCategories = state.category.filter(item => item !== action.payload.categoryType);
+            const filterCategories = state.category.filter(item => item !== categoryType);
             return { ...state, category: filterCategories }
 
         case "RANGE_FILTER":

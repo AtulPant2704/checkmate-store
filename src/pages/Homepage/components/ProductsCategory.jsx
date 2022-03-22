@@ -9,7 +9,7 @@ const ProductsCategory = ({ cardImg,  cardTitle, categoryName }) => {
       filterDispatch({ type: "RESET", payload: {} });
       filterDispatch({   
         type: "CATEGORY_FILTER", 
-        payload: {categoryType: categoryName, isChecked: true}
+        payload: {categoryType: categoryName}
       });
       navigate("/products");
     }

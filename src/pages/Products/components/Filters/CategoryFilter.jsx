@@ -9,7 +9,7 @@ const CategoryFilter = ({ category, filterDispatch }) => {
                 checked={category.includes("chess-pieces")}
                 onChange={(event) => filterDispatch(
                     {   type: "CATEGORY_FILTER", 
-                        payload: {categoryType: "chess-pieces", isChecked: event.target.checked}})
+                        payload: {categoryType: "chess-pieces"}})
                     } />
                 <label htmlFor="chess-pieces">Chess Pieces</label>
             </div>
@@ -20,7 +20,7 @@ const CategoryFilter = ({ category, filterDispatch }) => {
                 checked={category.includes("chess-books")}
                 onChange={(event) => filterDispatch(
                     {   type: "CATEGORY_FILTER", 
-                        payload: {categoryType: "chess-books", isChecked: event.target.checked}})
+                        payload: {categoryType: "chess-books"}})
                     }  />
                 <label htmlFor="chess-books">Chess Books</label>
             </div>
@@ -31,7 +31,7 @@ const CategoryFilter = ({ category, filterDispatch }) => {
                 checked={category.includes("chess-board")}
                 onChange={(event) => filterDispatch(
                     {   type: "CATEGORY_FILTER", 
-                        payload: {categoryType: "chess-board", isChecked: event.target.checked}})
+                        payload: {categoryType: "chess-board"}})
                     }  />
                 <label htmlFor="chess-board">Chess Board</label>
             </div>
@@ -42,7 +42,7 @@ const CategoryFilter = ({ category, filterDispatch }) => {
                 checked={category.includes("chess-clock")}
                 onChange={(event) => filterDispatch(
                     {type: "CATEGORY_FILTER", 
-                    payload: {categoryType: "chess-clock", isChecked: event.target.checked}})}
+                    payload: {categoryType: "chess-clock"}})}
                 />
                 <label htmlFor="chess-clock">Chess Clock</label>
             </div>
