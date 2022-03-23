@@ -26,7 +26,7 @@ const ProductCard = ({
         <button disabled={wishlistDisable} onClick={() => checkWishlistActionHandler(productId,setWishlistDisable)}>
           <i className={`${checkWishlistAction(productId) === "Remove" ? "fas" : "far"} fa-heart`}></i>
         </button>
-        {productBadge !== "None" ? <span className="card-badge">{productBadge}</span> : ""}
+        {productBadge === "Out of Stock" ? <span className="card-badge">{productBadge}</span> : ""}
       </div>
       <div className="card-details">
         <p className="card-title">{productTitle}</p>
@@ -39,7 +39,9 @@ const ProductCard = ({
           </div>
         </div>
       </div>
-      <button className="cart-btn ecommerce-btn" disabled={cartButtonLoader} onClick={() => checkCartRouteHandler(productId, setCartButtonLoader)}>{cartButtonLoader ? <div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div> : checkCartAction(productId)}</button>
+      <button className={`ecommerce-btn ${productBadge === "Out of Stock" ? "out-of-stock-btn" : ""}`}  
+          disabled={productBadge === "Out of Stock" ? true : cartButtonLoader} onClick={() => checkCartRouteHandler(productId, setCartButtonLoader)}>{productBadge === "Out of Stock" ? "Out of Stock" : cartButtonLoader ? <div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div> : checkCartAction(productId)}
+      </button>
     </div >
   );
 };

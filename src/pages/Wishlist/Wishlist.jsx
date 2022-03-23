@@ -37,6 +37,7 @@ const Wishlist = () => {
                 cardId={item._id}
                 cardImg={item.image}
                 cardAlt={item.title}
+                cardBadge={item.badge}
                 cardTitle={item.title}
                 cardPrice={item.price}
                 callRemoveFromWishlistHandler={callRemoveFromWishlistHandler}

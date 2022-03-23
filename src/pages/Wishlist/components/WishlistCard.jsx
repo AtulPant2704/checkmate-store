@@ -1,6 +1,6 @@
 import {useState} from "react";
 
-const WishlistCard = ({ cardId, cardImg, cardAlt, cardTitle, cardPrice, callRemoveFromWishlistHandler, callMoveToCartHandler }) => {
+const WishlistCard = ({ cardId, cardImg, cardAlt,cardBadge, cardTitle, cardPrice, callRemoveFromWishlistHandler, callMoveToCartHandler }) => {
   
   const [cartButtonLoader, setCartButtonLoader] = useState(false);
 
@@ -16,7 +16,10 @@ const WishlistCard = ({ cardId, cardImg, cardAlt, cardTitle, cardPrice, callRemo
         <p className="card-title">{cardTitle}</p>
         <h3 className="card-price">₹ {cardPrice}</h3>
       </div>
-      <button className="ecommerce-btn" disabled={cartButtonLoader} onClick={() => callMoveToCartHandler(cardId,setCartButtonLoader)}>Move to Cart</button>
+      <button className={`ecommerce-btn ${cardBadge === "Out of Stock" ?        "out-of-stock-btn" : ""}`} 
+          disabled={cardBadge === "Out of Stock" ? true : cartButtonLoader} 
+          onClick={() => callMoveToCartHandler(cardId,setCartButtonLoader)}>{cardBadge === "Out of Stock" ? "Out of Stock" : "Move to Cart"}
+      </button>
     </div>
   );
 };
