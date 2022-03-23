@@ -21,7 +21,7 @@ export const products = [
     title: "Fianchetto Grunfield",
     image: bookImg,
     price: "8000",
-    badge: "None",
+    badge: "In Stock",
     rating: "4",
     categoryName: "chess-books"
   },
@@ -30,7 +30,7 @@ export const products = [
     title: "DGT 2010 Digital Clock",
     image: clockImg,
     price: "2000",
-    badge: "None",
+    badge: "In Stock",
     rating: "1",
     categoryName: "chess-clock"
   },
@@ -39,7 +39,7 @@ export const products = [
     title: "Wooden Deluxe Board",
     image: boardImg,
     price: "1000",
-    badge: "None",
+    badge: "In Stock",
     rating: "1",
     categoryName: "chess-board"
   },
@@ -48,7 +48,7 @@ export const products = [
     title: "Berlin Minimalist Set",
     image: image1,
     price: "1500",
-    badge: "None",
+    badge: "In Stock",
     rating: "5",
     categoryName: "chess-pieces"
   },
@@ -57,7 +57,7 @@ export const products = [
     title: "Alban Wooden Chess Set",
     image: image2,
     price: "2300",
-    badge: "None",
+    badge: "In Stock",
     rating: "2",
     categoryName: "chess-pieces"
   },
@@ -75,7 +75,7 @@ export const products = [
     title: "Stauton Pattern Camel Set",
     image: image4,
     price: "4500",
-    badge: "None",
+    badge: "In Stock",
     rating: "2",
     categoryName: "chess-pieces"
   },
@@ -84,7 +84,7 @@ export const products = [
     title: "Sikh Empire Chess Set",
     image: image5,
     price: "3100",
-    badge: "None",
+    badge: "In Stock",
     rating: "4",
     categoryName: "chess-pieces"
   },
@@ -93,7 +93,7 @@ export const products = [
     title: "Dark Knight System",
     image: image7,
     price: "9000",
-    badge: "None",
+    badge: "In Stock",
     rating: "3",
     categoryName: "chess-books"
   },
@@ -102,7 +102,7 @@ export const products = [
     title: "Travel Series Chess Board",
     image: image8,
     price: "7100",
-    badge: "None",
+    badge: "In Stock",
     rating: "2",
     categoryName: "chess-board"
   },
@@ -120,7 +120,7 @@ export const products = [
     title: "Offbeat Spanish",
     image: image10,
     price: "5900",
-    badge: "None",
+    badge: "In Stock",
     rating: "1",
     categoryName: "chess-books"
   },
@@ -129,7 +129,7 @@ export const products = [
     title: "Rules of Winning Chess",
     image: image11,
     price: "8000",
-    badge: "None",
+    badge: "In Stock",
     rating: "4",
     categoryName: "chess-books"
   },
