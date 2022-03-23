@@ -23,22 +23,22 @@ const Home = () => {
           <ProductsCategory
             cardImg={boardImg}
             cardTitle={"Chess Board"}
-            categoryName={"chess-board"}
+            categoryName={"board"}
           />
           <ProductsCategory
             cardImg={pieceImg}
             cardTitle={"Chess Pieces"}
-            categoryName={"chess-pieces"}
+            categoryName={"pieces"}
           />
           <ProductsCategory
             cardImg={bookImg}
             cardTitle={"Chess Book"}
-            categoryName={"chess-books"}
+            categoryName={"books"}
           />
           <ProductsCategory
             cardImg={clockImg}
             cardTitle={"Chess Clock"}
-            categoryName={"chess-clock"}
+            categoryName={"clock"}
           />
         </div>
       </section>

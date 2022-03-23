@@ -5,8 +5,7 @@ import { useNavigate } from "react-router";
 import { Filters } from "./components/Filters";
 import { ProductCard } from "./components/ProductCard";
 import { useFilter, useCart, useWishlist, useAuth } from "../../hooks";
-import { getProductsService } from "../../services";
-import { sortData, categoryFilter, priceFilter, ratingFilter, inStockFilter, addToCartHandler, addToWishlistHandler, removeFromWishlistHandler } from "../../utils"
+import { getProductsHandler,sortData, categoryFilter, priceFilter, ratingFilter, inStockFilter, addToCartHandler, addToWishlistHandler, removeFromWishlistHandler } from "../../utils"
 
 const ProductsListing = () => {
   const navigate = useNavigate();
@@ -61,24 +60,7 @@ const ProductsListing = () => {
 
   const openMobileFilterHandler = () => setMobileFilter(true);
 
-  const loadProducts = async () => {
-    try {
-      setProductsLoader(true);
-      const response = await getProductsService();
-      if (response.status === 200) {
-        setProducts(response.data.products);
-        setProductsLoader(false);
-      }
-      else {
-        throw new Error();
-      }
-    }
-    catch (error) {
-      alert(error);
-    }
-  }
-
-  useEffect(() => loadProducts(), [])
+  useEffect(() => getProductsHandler(setProducts,setProductsLoader), []);
 
   const categoryFilteredData = categoryFilter(products, filterState);
   const ratingFilteredData = ratingFilter(categoryFilteredData, filterState);

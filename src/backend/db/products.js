@@ -14,7 +14,7 @@ export const products = [
     price: "5000",
     badge: "Out of Stock",
     rating: "2",
-    categoryName: "chess-pieces"
+    categoryName: "pieces"
   },
   {
     _id: uuid(),
@@ -23,7 +23,7 @@ export const products = [
     price: "8000",
     badge: "In Stock",
     rating: "4",
-    categoryName: "chess-books"
+    categoryName: "books"
   },
   {
     _id: uuid(),
@@ -32,7 +32,7 @@ export const products = [
     price: "2000",
     badge: "In Stock",
     rating: "1",
-    categoryName: "chess-clock"
+    categoryName: "clock"
   },
   {
     _id: uuid(),
@@ -41,7 +41,7 @@ export const products = [
     price: "1000",
     badge: "In Stock",
     rating: "1",
-    categoryName: "chess-board"
+    categoryName: "board"
   },
   {
     _id: uuid(),
@@ -50,7 +50,7 @@ export const products = [
     price: "1500",
     badge: "In Stock",
     rating: "5",
-    categoryName: "chess-pieces"
+    categoryName: "pieces"
   },
   {
     _id: uuid(),
@@ -59,7 +59,7 @@ export const products = [
     price: "2300",
     badge: "In Stock",
     rating: "2",
-    categoryName: "chess-pieces"
+    categoryName: "pieces"
   },
   {
     _id: uuid(),
@@ -68,7 +68,7 @@ export const products = [
     price: "5100",
     badge: "Out of Stock",
     rating: "3",
-    categoryName: "chess-books"
+    categoryName: "books"
   },
   {
     _id: uuid(),
@@ -77,7 +77,7 @@ export const products = [
     price: "4500",
     badge: "In Stock",
     rating: "2",
-    categoryName: "chess-pieces"
+    categoryName: "pieces"
   },
   {
     _id: uuid(),
@@ -86,7 +86,7 @@ export const products = [
     price: "3100",
     badge: "In Stock",
     rating: "4",
-    categoryName: "chess-pieces"
+    categoryName: "pieces"
   },
   {
     _id: uuid(),
@@ -95,7 +95,7 @@ export const products = [
     price: "9000",
     badge: "In Stock",
     rating: "3",
-    categoryName: "chess-books"
+    categoryName: "books"
   },
   {
     _id: uuid(),
@@ -104,7 +104,7 @@ export const products = [
     price: "7100",
     badge: "In Stock",
     rating: "2",
-    categoryName: "chess-board"
+    categoryName: "board"
   },
   {
     _id: uuid(),
@@ -113,7 +113,7 @@ export const products = [
     price: "7000",
     badge: "Out of Stock",
     rating: "2",
-    categoryName: "chess-books"
+    categoryName: "books"
   },
   {
     _id: uuid(),
@@ -122,7 +122,7 @@ export const products = [
     price: "5900",
     badge: "In Stock",
     rating: "1",
-    categoryName: "chess-books"
+    categoryName: "books"
   },
   {
     _id: uuid(),
@@ -131,7 +131,7 @@ export const products = [
     price: "8000",
     badge: "In Stock",
     rating: "4",
-    categoryName: "chess-books"
+    categoryName: "books"
   },
   {
     _id: uuid(),
@@ -140,6 +140,6 @@ export const products = [
     price: "8500",
     badge: "Out of Stock",
     rating: "3",
-    categoryName: "chess-board"
+    categoryName: "board"
   },
 ];
