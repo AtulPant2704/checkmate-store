@@ -116,6 +116,15 @@
   border-radius: 0;
 }
 
+.out-of-stock-btn {
+  opacity: 0.9;
+  cursor: auto;
+}
+
+.out-of-stock-btn:hover {
+  background-color: var(--secondary-color);
+}
+
 .filter-mobile-container {
   display: none;
 }
