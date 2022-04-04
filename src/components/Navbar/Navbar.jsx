@@ -1,6 +1,7 @@
 import "./Navbar.css";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import { useAuth, useCart, useWishlist } from "../../context";
 
@@ -14,29 +15,32 @@ const Navbar = () => {
   const cart = cartState.cart;
   const wishlist = wishlistState.wishlist;
 
-  const openMenuBar = () => {
-    setMenuOpen(true);
-  };
-  const closeMenuBar = () => {
-    setMenuOpen(false);
-  };
+  const openMenuBar = () => setMenuOpen(true);
+
+  const closeMenuBar = () => setMenuOpen(false);
 
   const checkStatus = (userName) => {
     return userName ? `Hi, ${userName.firstName}` : "Login";
   };
 
+  const navigateLogin = () => {
+    navigate("/login");
+    toast.warning("You're not logged in");
+  };
+
   const userHandler = async (type) => {
-    type === "Login" ? navigate("/login") : navigate("/profile");
+    closeMenuBar();
+    type === "Login" ? navigateLogin() : navigate("/profile");
   };
 
   const cartRouteHandler = () => {
     closeMenuBar();
-    authState.token ? navigate("/cart") : navigate("/login");
+    authState.token ? navigate("/cart") : navigateLogin();
   };
 
   const wishlistRouteHandler = () => {
     closeMenuBar();
-    authState.token ? navigate("/wishlist") : navigate("/login");
+    authState.token ? navigate("/wishlist") : navigateLogin();
   };
 
   return (
@@ -115,26 +119,9 @@ const Navbar = () => {
                 Shop Now
               </Link>
             </li>
-            <li>
-              <Link to="/cart" onClick={closeMenuBar}>
-                Orders
-              </Link>
-            </li>
-            <li>
-              <Link to="/wishlist" onClick={closeMenuBar}>
-                Wishlist
-              </Link>
-            </li>
-            <li>
-              <Link to="/login" onClick={closeMenuBar}>
-                Login
-              </Link>
-            </li>
-            <li>
-              <Link to="/signup" onClick={closeMenuBar}>
-                Sign Up
-              </Link>
-            </li>
+            <li onClick={cartRouteHandler}>Cart</li>
+            <li onClick={wishlistRouteHandler}>Wishlist</li>
+            <li onClick={() => userHandler(checkStatus(userName))}>Profile</li>
           </ul>
         </div>
       </div>

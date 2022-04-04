@@ -2,6 +2,7 @@ import "./Authentication.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 import { useAuth, useCart, useWishlist } from "../../context";
 import { loginService } from "../../services";
 import { getCartItemsHandler, getWishlistItemsHandler } from "../../utils";
@@ -37,41 +38,28 @@ const Login = () => {
     if (user.email !== "" && user.password !== "") {
       try {
         const response = await loginService(user);
-        switch (response.status) {
-          case 200:
-            navigate(-1);
-            localStorage.setItem("token", response.data.encodedToken);
-            localStorage.setItem(
-              "user",
-              JSON.stringify(response.data.foundUser)
-            );
-            getWishlistItemsHandler(
-              response.data.encodedToken,
-              wishlistDispatch
-            );
-            getCartItemsHandler(response.data.encodedToken, cartDispatch);
-            authDispatch({
-              type: "LOGIN",
-              payload: {
-                user: response.data.foundUser,
-                token: response.data.encodedToken,
-              },
-            });
-            break;
-          case 404:
-            throw new Error("Email not found");
-          case 401:
-            throw new Error("Wrong Password");
-          case 500:
-            throw new Error("Server Error");
-          default:
-            throw new Error();
+        if (response.status === 200) {
+          navigate(-1);
+          localStorage.setItem("token", response.data.encodedToken);
+          localStorage.setItem("user", JSON.stringify(response.data.foundUser));
+          getWishlistItemsHandler(response.data.encodedToken, wishlistDispatch);
+          getCartItemsHandler(response.data.encodedToken, cartDispatch);
+          authDispatch({
+            type: "LOGIN",
+            payload: {
+              user: response.data.foundUser,
+              token: response.data.encodedToken,
+            },
+          });
+          toast.success("Successfully Logged In");
+        } else {
+          throw new Error("Something went wrong! Please try again later");
         }
       } catch (error) {
-        alert(error);
+        toast.error(error.response.data.errors[0]);
       }
     } else {
-      alert("Both of the fields need to be entered");
+      toast.warning("Both of the fields need to be entered");
     }
   };
 

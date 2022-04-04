@@ -1,4 +1,5 @@
 import "./Authentication.css";
+import { toast } from "react-toastify";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
@@ -23,7 +24,7 @@ const SignUp = () => {
 
   const checkPasswordHandler = () => {
     if (user.password !== user.confirmPassword) {
-      alert("Your confirm password does not matches the real password");
+      toast.error("Your confirm password does not matches the real password");
     } else {
       return true;
     }
@@ -45,33 +46,29 @@ const SignUp = () => {
       if (checkPasswordHandler()) {
         try {
           const response = await signUpService(user);
-          switch (response.status) {
-            case 201:
-              localStorage.setItem("token", response.data.encodedToken);
-              localStorage.setItem(
-                "user",
-                JSON.stringify(response.data.createdUser)
-              );
-              authDispatch({
-                type: "SIGN_UP",
-                payload: {
-                  user: response.data.createdUser,
-                  token: response.data.encodedToken,
-                },
-              });
-              navigate(-1);
-              break;
-            case 422:
-              throw new Error("Email already exists");
-            case 500:
-              throw new Error("Server Error");
+          if (response.status === 201) {
+            navigate(-1);
+            localStorage.setItem("token", response.data.encodedToken);
+            localStorage.setItem(
+              "user",
+              JSON.stringify(response.data.createdUser)
+            );
+            authDispatch({
+              type: "SIGN_UP",
+              payload: {
+                user: response.data.createdUser,
+                token: response.data.encodedToken,
+              },
+            });
+          } else {
+            throw new Error("Something went wrong! Please try again later");
           }
         } catch (error) {
-          alert(error);
+          toast.error(error.response.data.errors[0]);
         }
       }
     } else {
-      alert("All the fields need to be entered");
+      toast.warning("All the fields need to be entered");
     }
   };
 
