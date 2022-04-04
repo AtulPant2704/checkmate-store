@@ -14,5 +14,20 @@ import image10 from "./offbeat-spanish-english.webp";
 import image11 from "./rules-of-winning-chess.webp";
 import image12 from "./travel-chess-board.webp";
 
-
-export { boardImg, pieceImg, bookImg, clockImg, image1, image2, image3, image4, image5, image7, image8, image9, image10, image11, image12 };
+export {
+  boardImg,
+  pieceImg,
+  bookImg,
+  clockImg,
+  image1,
+  image2,
+  image3,
+  image4,
+  image5,
+  image7,
+  image8,
+  image9,
+  image10,
+  image11,
+  image12,
+};

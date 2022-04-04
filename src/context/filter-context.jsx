@@ -4,19 +4,19 @@ import { filterReducer } from "../reducer/filter-reducer";
 const FilterContext = createContext(null);
 
 const FilterProvider = ({ children }) => {
-    const [filterState, filterDispatch] = useReducer(filterReducer, {
-        sortBy: "",
-        category:[],
-        ratingValue: "",
-        inStock: false,
-        rangeValue: 10000
-    });
+  const [filterState, filterDispatch] = useReducer(filterReducer, {
+    sortBy: "",
+    category: [],
+    ratingValue: "",
+    inStock: false,
+    rangeValue: 10000,
+  });
 
-    return (
-        <FilterContext.Provider value={{ filterState, filterDispatch }}>
-            {children}
-        </FilterContext.Provider>
-    );
+  return (
+    <FilterContext.Provider value={{ filterState, filterDispatch }}>
+      {children}
+    </FilterContext.Provider>
+  );
 };
 
 const useFilter = () => useContext(FilterContext);
