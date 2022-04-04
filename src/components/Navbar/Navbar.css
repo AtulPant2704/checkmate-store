@@ -64,6 +64,10 @@
   gap: 0.5rem;
 }
 
+.page-routes li {
+  cursor: pointer;
+}
+
 @media only screen and (max-width: 750px) {
   .title-explore .explore-tab h3 {
     display: none;
