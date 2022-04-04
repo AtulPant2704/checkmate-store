@@ -6,9 +6,9 @@ import { useAuth, useCart, useWishlist } from "../../context";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const { authState, authDispatch } = useAuth();
-  const { cartState, cartDispatch } = useCart();
-  const { wishlistState, wishlistDispatch } = useWishlist();
+  const { authState } = useAuth();
+  const { cartState } = useCart();
+  const { wishlistState } = useWishlist();
   const [menuOpen, setMenuOpen] = useState(false);
   const userName = authState.user;
   const cart = cartState.cart;
@@ -22,38 +22,38 @@ const Navbar = () => {
   };
 
   const checkStatus = (userName) => {
-    return userName ? "Logout" : "Login";
-  };
-
-  const logoutHandler = () => {
-    navigate("/");
-    cartDispatch({ type: "EMPTY_CART" });
-    wishlistDispatch({ type: "EMPTY_WISHLIST" });
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    authDispatch({ type: "LOGOUT" });
+    return userName ? `Hi, ${userName.firstName}` : "Login";
   };
 
   const userHandler = async (type) => {
-    type === "Login" ? navigate("/login") : logoutHandler();
+    type === "Login" ? navigate("/login") : navigate("/profile");
   };
 
   const cartRouteHandler = () => {
+    closeMenuBar();
     authState.token ? navigate("/cart") : navigate("/login");
   };
 
   const wishlistRouteHandler = () => {
+    closeMenuBar();
     authState.token ? navigate("/wishlist") : navigate("/login");
   };
 
   return (
     <header>
       <div className="nav-header">
-        <div className="title">
-          <i className="fas fa-bars menu-bar" onClick={openMenuBar}></i>
-          <Link to="/">
-            <h2 className="nav-title">CheckMate</h2>
-          </Link>
+        <div className="title-explore">
+          <div className="title">
+            <i className="fas fa-bars menu-bar" onClick={openMenuBar}></i>
+            <Link to="/">
+              <h2 className="nav-title">CheckMate</h2>
+            </Link>
+          </div>
+          <div className="explore-tab">
+            <Link to="/products">
+              <h3>Shop Now</h3>
+            </Link>
+          </div>
         </div>
         <div className="search">
           <span className="btn-search">
@@ -62,26 +62,28 @@ const Navbar = () => {
           <input type="text" placeholder="Search" className="input-search" />
         </div>
         <div className="user-controls">
-          <div className="desktop-userName">
-            {userName ? <h3>{userName.firstName}</h3> : null}
+          <div className="user-action">
+            <button
+              className="btn btn-text-primary btn-user"
+              onClick={() => userHandler(checkStatus(userName))}
+            >
+              <i className="fas fa-user"></i>
+            </button>
+            <p>{checkStatus(userName)}</p>
           </div>
-          <button
-            className="btn-login"
-            onClick={() => userHandler(checkStatus(userName))}
-          >
-            {checkStatus(userName)}
-          </button>
           <div className="btn-check" onClick={wishlistRouteHandler}>
             <i className="far fa-heart"></i>
             {wishlist.length !== 0 ? (
               <span className="count">{wishlist.length}</span>
             ) : null}
+            <p>Wishlist</p>
           </div>
           <div className="btn-check" onClick={cartRouteHandler}>
             <i className="fas fa-shopping-cart"></i>
             {cart.length !== 0 ? (
               <span className="count">{cart.length}</span>
             ) : null}
+            <p>Cart</p>
           </div>
         </div>
       </div>

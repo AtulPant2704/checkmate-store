@@ -1,31 +1,67 @@
-.nav-header .title{
-    border-bottom: none;
+.nav-header .title-explore {
+  width: 20rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
 }
 
-.menu-bar{
-    cursor: pointer;
+.title-explore .title {
+  border-bottom: none;
 }
 
-.profile-header .user-profile{
-    display: flex;
-    gap: 0.5rem;
+.title-explore .explore-tab h3 {
+  color: var(--secondary-color);
 }
 
-.user-profile .user-name{
-    align-self: flex-end;
-    font-weight: 700;
+.menu-bar {
+  cursor: pointer;
 }
 
-.btn-check{
-    cursor: pointer;
+.user-controls {
+  align-items: center;
 }
 
-.hamburger-menu-open{
-    position: fixed;
+.user-action {
+  text-align: center;
 }
 
-@media only screen and (max-width: 750px){
-    .desktop-userName{
-        display: none;
-    }
+.user-action .btn-user {
+  cursor: pointer;
+  padding: 0;
+  font-size: 1.3rem;
+}
+
+.btn-user:hover {
+  background-color: initial;
+}
+
+.user-action p {
+  font-size: 1rem;
+  color: var(--secondary-color);
+}
+
+.btn-check {
+  cursor: pointer;
+  text-align: center;
+}
+
+.hamburger-menu-open {
+  position: fixed;
+}
+
+.user-profile {
+  display: flex;
+  gap: 0.5rem;
+}
+
+@media only screen and (max-width: 750px) {
+  .title-explore .explore-tab h3 {
+    display: none;
+  }
+  .user-action {
+    display: none;
+  }
+  .btn-check p {
+    display: none;
+  }
 }

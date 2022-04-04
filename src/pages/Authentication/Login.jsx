@@ -39,6 +39,7 @@ const Login = () => {
         const response = await loginService(user);
         switch (response.status) {
           case 200:
+            navigate(-1);
             localStorage.setItem("token", response.data.encodedToken);
             localStorage.setItem(
               "user",
@@ -56,7 +57,6 @@ const Login = () => {
                 token: response.data.encodedToken,
               },
             });
-            navigate(-1);
             break;
           case 404:
             throw new Error("Email not found");
@@ -64,6 +64,8 @@ const Login = () => {
             throw new Error("Wrong Password");
           case 500:
             throw new Error("Server Error");
+          default:
+            throw new Error();
         }
       } catch (error) {
         alert(error);
