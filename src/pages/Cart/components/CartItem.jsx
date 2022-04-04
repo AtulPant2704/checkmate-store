@@ -1,12 +1,11 @@
 import { useState } from "react";
 
 const CartItem = ({
-  cartId,
-  cartImg,
-  cartAlt,
-  cartTitle,
-  cartPrice,
-  cartQuantity,
+  _id,
+  image,
+  title,
+  price,
+  qty,
   callRemoveFromCartHandler,
   callUpdateCartHandler,
   callMoveToWishlistHandler,
@@ -16,31 +15,27 @@ const CartItem = ({
   return (
     <div className="cart-card">
       <div className="img-container">
-        <img src={cartImg} alt={cartAlt} className="img-responsive" />
+        <img src={image} alt={title} className="img-responsive" />
       </div>
       <div className="card-details">
-        <p className="card-title">{cartTitle}</p>
-        <h3 className="card-price">₹ {cartPrice}</h3>
+        <p className="card-title">{title}</p>
+        <h3 className="card-price">₹ {price}</h3>
         <div className="quantity-controls">
           <button
             className="btn-control decrease-btn"
             onClick={() =>
-              cartQuantity <= 1
-                ? callRemoveFromCartHandler(cartId)
-                : callUpdateCartHandler(cartId, "decrement")
+              qty <= 1
+                ? callRemoveFromCartHandler(_id)
+                : callUpdateCartHandler(_id, "decrement")
             }
           >
-            <i
-              className={`fas ${
-                cartQuantity === 1 ? "fa-trash-alt" : "fa-minus"
-              }`}
-            ></i>
+            <i className={`fas ${qty === 1 ? "fa-trash-alt" : "fa-minus"}`}></i>
           </button>
 
-          <p className="quantity">{cartQuantity}</p>
+          <p className="quantity">{qty}</p>
           <button
             className="btn-control increase-btn"
-            onClick={() => callUpdateCartHandler(cartId, "increment")}
+            onClick={() => callUpdateCartHandler(_id, "increment")}
           >
             <i className="fas fa-plus"></i>
           </button>
@@ -49,15 +44,13 @@ const CartItem = ({
           <button
             disabled={wishlistDisable}
             className="wishlist-btn ecommerce-btn"
-            onClick={() =>
-              callMoveToWishlistHandler(cartId, setWishlistDisable)
-            }
+            onClick={() => callMoveToWishlistHandler(_id, setWishlistDisable)}
           >
             Move to Wishlist
           </button>
           <button
             className="wishlist-btn ecommerce-btn cart-remove-btn"
-            onClick={() => callRemoveFromCartHandler(cartId)}
+            onClick={() => callRemoveFromCartHandler(_id)}
           >
             Remove
           </button>

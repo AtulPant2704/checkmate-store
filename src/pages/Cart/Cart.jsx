@@ -57,12 +57,7 @@ const Cart = () => {
               {cart.map((item) => (
                 <CartItem
                   key={item._id}
-                  cartId={item._id}
-                  cartImg={item.image}
-                  cartAlt={item.title}
-                  cartTitle={item.title}
-                  cartPrice={item.price}
-                  cartQuantity={item.qty}
+                  {...item}
                   callRemoveFromCartHandler={callRemoveFromCartHandler}
                   callUpdateCartHandler={callUpdateCartHandler}
                   callMoveToWishlistHandler={callMoveToWishlistHandler}

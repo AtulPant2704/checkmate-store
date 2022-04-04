@@ -45,6 +45,7 @@ const Wishlist = () => {
             {wishlist.map((item) => (
               <WishlistCard
                 key={item._id}
+                {...item}
                 cardId={item._id}
                 cardImg={item.image}
                 cardAlt={item.title}

@@ -114,13 +114,7 @@ const ProductsListing = () => {
             sortedData.map((product) => (
               <ProductCard
                 key={product._id}
-                productId={product._id}
-                productImg={product.image}
-                productAlt={product.title}
-                productBadge={product.badge}
-                productTitle={product.title}
-                productPrice={product.price}
-                productRating={product.rating}
+                {...product}
                 checkCartAction={checkCartAction}
                 checkCartRouteHandler={checkCartRouteHandler}
                 checkWishlistAction={checkWishlistAction}

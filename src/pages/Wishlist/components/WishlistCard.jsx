@@ -1,12 +1,11 @@
 import { useState } from "react";
 
 const WishlistCard = ({
-  cardId,
-  cardImg,
-  cardAlt,
-  cardBadge,
-  cardTitle,
-  cardPrice,
+  _id,
+  image,
+  badge,
+  title,
+  price,
   callRemoveFromWishlistHandler,
   callMoveToCartHandler,
 }) => {
@@ -15,23 +14,23 @@ const WishlistCard = ({
   return (
     <div className="product-card">
       <div className="img-container">
-        <img src={cardImg} alt={cardAlt} className="img-responsive" />
-        <button onClick={() => callRemoveFromWishlistHandler(cardId)}>
+        <img src={image} alt={title} className="img-responsive" />
+        <button onClick={() => callRemoveFromWishlistHandler(_id)}>
           <i className="fas fa-heart"></i>
         </button>
       </div>
       <div className="card-details">
-        <p className="card-title">{cardTitle}</p>
-        <h3 className="card-price">₹ {cardPrice}</h3>
+        <p className="card-title">{title}</p>
+        <h3 className="card-price">₹ {price}</h3>
       </div>
       <button
         className={`ecommerce-btn ${
-          cardBadge === "Out of Stock" ? "out-of-stock-btn" : ""
+          badge === "Out of Stock" ? "out-of-stock-btn" : ""
         }`}
-        disabled={cardBadge === "Out of Stock" ? true : cartButtonLoader}
-        onClick={() => callMoveToCartHandler(cardId, setCartButtonLoader)}
+        disabled={badge === "Out of Stock" ? true : cartButtonLoader}
+        onClick={() => callMoveToCartHandler(_id, setCartButtonLoader)}
       >
-        {cardBadge === "Out of Stock" ? "Out of Stock" : "Move to Cart"}
+        {badge === "Out of Stock" ? "Out of Stock" : "Move to Cart"}
       </button>
     </div>
   );
