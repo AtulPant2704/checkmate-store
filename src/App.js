@@ -1,7 +1,8 @@
-import Sign from "jsonwebtoken/sign";
 import "./App.css";
+import "react-toastify/dist/ReactToastify.css";
 import Mockman from "mockman-js";
 import { Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import { Navbar, Footer } from "./components/index";
 import {
   Login,
@@ -16,6 +17,18 @@ import {
 function App() {
   return (
     <div className="App">
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        theme="colored"
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
