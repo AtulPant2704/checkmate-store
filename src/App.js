@@ -1,5 +1,5 @@
-import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
+import "./App.css";
 import Mockman from "mockman-js";
 import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";

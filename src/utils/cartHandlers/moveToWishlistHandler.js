@@ -1,4 +1,3 @@
-import { toast } from "react-toastify";
 import { removeFromCartHandler } from "./removeFromCartHandler";
 import { addToWishlistHandler } from "../wishlistHandlers/addToWishlistHandler";
 
@@ -15,7 +14,6 @@ const moveToWishlistHandler = (
   if (!wishlistItem) {
     addToWishlistHandler(product, wishlistDispatch, token, setWishlistDisable);
   }
-  toast.info(`${product.title} moved to Wishlist`);
   removeFromCartHandler(_id, token, cartDispatch);
 };
 
