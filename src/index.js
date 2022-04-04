@@ -2,7 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { makeServer } from "./server";
 import { BrowserRouter } from "react-router-dom";
-import { AuthProvider, FilterProvider, CartProvider, WishlistProvider } from "./hooks";
+import {
+  AuthProvider,
+  FilterProvider,
+  CartProvider,
+  WishlistProvider,
+} from "./context";
 import App from "./App";
 
 // Call make Server

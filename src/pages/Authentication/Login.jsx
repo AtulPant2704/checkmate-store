@@ -2,9 +2,8 @@ import "./Authentication.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
-import { useAuth } from "../../hooks";
+import { useAuth, useCart, useWishlist } from "../../context";
 import { loginService } from "../../services";
-import { useCart, useWishlist } from "../../hooks";
 import { getCartItemsHandler, getWishlistItemsHandler } from "../../utils";
 
 const Login = () => {
@@ -15,22 +14,22 @@ const Login = () => {
   const [user, setUser] = useState({
     email: "",
     password: "",
-  })
+  });
 
   const guestUser = {
     email: "app@gmail.com",
-    password: "app123"
-  }
+    password: "app123",
+  };
 
   const changeHandler = (event) => {
     const { name, value } = event.target;
-    setUser({ ...user, [name]: value })
-  }
+    setUser({ ...user, [name]: value });
+  };
 
   const guestUserHandler = (event) => {
     event.preventDefault();
     setUser(guestUser);
-  }
+  };
 
   const loginHandler = async (event) => {
     event.preventDefault();
@@ -41,11 +40,23 @@ const Login = () => {
         switch (response.status) {
           case 200:
             localStorage.setItem("token", response.data.encodedToken);
-            localStorage.setItem("user", JSON.stringify(response.data.foundUser));
-            getWishlistItemsHandler(response.data.encodedToken, wishlistDispatch);
+            localStorage.setItem(
+              "user",
+              JSON.stringify(response.data.foundUser)
+            );
+            getWishlistItemsHandler(
+              response.data.encodedToken,
+              wishlistDispatch
+            );
             getCartItemsHandler(response.data.encodedToken, cartDispatch);
-            authDispatch({ type: "LOGIN", payload: { user: response.data.foundUser, token: response.data.encodedToken } })
-            navigate("/");
+            authDispatch({
+              type: "LOGIN",
+              payload: {
+                user: response.data.foundUser,
+                token: response.data.encodedToken,
+              },
+            });
+            navigate(-1);
             break;
           case 404:
             throw new Error("Email not found");
@@ -54,15 +65,13 @@ const Login = () => {
           case 500:
             throw new Error("Server Error");
         }
-      }
-      catch (error) {
+      } catch (error) {
         alert(error);
       }
-    }
-    else {
+    } else {
       alert("Both of the fields need to be entered");
     }
-  }
+  };
 
   return (
     <section className="form-section">
@@ -96,9 +105,16 @@ const Login = () => {
           <div className="user-history">
             <input type="checkbox" id="user-save" />
             <label htmlFor="user-save">Remember me</label>
-            <Link to="./Put route to forgot password">Forgot your Password?</Link>
+            <Link to="./Put route to forgot password">
+              Forgot your Password?
+            </Link>
           </div>
-          <button className="btn btn-text-primary text-underline btn-guest" onClick={guestUserHandler}>Add Guest credentials</button>
+          <button
+            className="btn btn-text-primary text-underline btn-guest"
+            onClick={guestUserHandler}
+          >
+            Add Guest credentials
+          </button>
           <button type="submit" className="btn-submit" onClick={loginHandler}>
             Submit
           </button>
