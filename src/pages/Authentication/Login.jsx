@@ -1,11 +1,10 @@
-import "./Authentication.css";
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router";
+import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth, useCart, useWishlist } from "../../context";
 import { loginService } from "../../services";
 import { getCartItemsHandler, getWishlistItemsHandler } from "../../utils";
+import "./Authentication.css";
 
 const Login = () => {
   const navigate = useNavigate();

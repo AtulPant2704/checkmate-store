@@ -1,9 +1,8 @@
-import "./Cart.css";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useCart, useAuth, useWishlist } from "../../context";
 import { CartItem } from "./components/CartItem";
 import { CartBill } from "./components/CartBill";
-import { useCart, useAuth, useWishlist } from "../../context";
 import {
   getCartItemsHandler,
   removeFromCartHandler,
@@ -11,6 +10,7 @@ import {
   getCartBill,
   moveToWishlistHandler,
 } from "../../utils";
+import "./Cart.css";
 
 const Cart = () => {
   const { cartState, cartDispatch } = useCart();

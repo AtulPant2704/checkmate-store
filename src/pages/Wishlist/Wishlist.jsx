@@ -1,13 +1,13 @@
-import "./Wishlist.css";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { WishlistCard } from "./components/WishlistCard";
 import { useWishlist, useAuth, useCart } from "../../context";
+import { WishlistCard } from "./components/WishlistCard";
 import {
   getWishlistItemsHandler,
   removeFromWishlistHandler,
   moveToCartHandler,
 } from "../../utils";
+import "./Wishlist.css";
 
 const Wishlist = () => {
   const { wishlistState, wishlistDispatch } = useWishlist();

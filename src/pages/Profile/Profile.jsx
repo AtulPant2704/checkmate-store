@@ -1,7 +1,7 @@
-import "./Profile.css";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useAuth, useCart, useWishlist } from "../../context";
+import "./Profile.css";
 
 const Profile = () => {
   const navigate = useNavigate();

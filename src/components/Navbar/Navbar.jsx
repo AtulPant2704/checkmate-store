@@ -1,9 +1,8 @@
-import "./Navbar.css";
 import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
 import { useAuth, useCart, useWishlist } from "../../context";
+import "./Navbar.css";
 
 const Navbar = () => {
   const navigate = useNavigate();
