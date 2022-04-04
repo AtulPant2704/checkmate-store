@@ -59,7 +59,7 @@ const Login = () => {
         toast.error(error.response.data.errors[0]);
       }
     } else {
-      toast.warning("Both of the fields need to be entered");
+      toast.warning("Both the fields need to be entered");
     }
   };
 
