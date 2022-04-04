@@ -71,14 +71,17 @@ const Navbar = () => {
             </button>
             <p>{checkStatus(userName)}</p>
           </div>
-          <div className="btn-check" onClick={wishlistRouteHandler}>
+          <div
+            className="btn-check btn-wishlist"
+            onClick={wishlistRouteHandler}
+          >
             <i className="far fa-heart"></i>
             {wishlist.length !== 0 ? (
               <span className="count">{wishlist.length}</span>
             ) : null}
             <p>Wishlist</p>
           </div>
-          <div className="btn-check" onClick={cartRouteHandler}>
+          <div className="btn-check btn-cart" onClick={cartRouteHandler}>
             <i className="fas fa-shopping-cart"></i>
             {cart.length !== 0 ? (
               <span className="count">{cart.length}</span>

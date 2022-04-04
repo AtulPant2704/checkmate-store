@@ -45,6 +45,16 @@
   text-align: center;
 }
 
+.btn-wishlist .count {
+  top: -17%;
+  right: 12%;
+}
+
+.btn-cart .count {
+  top: -19%;
+  right: -29%;
+}
+
 .hamburger-menu-open {
   position: fixed;
 }
@@ -60,6 +70,10 @@
   }
   .user-action {
     display: none;
+  }
+  .btn-check .count {
+    top: -30%;
+    right: -30%;
   }
   .btn-check p {
     display: none;
