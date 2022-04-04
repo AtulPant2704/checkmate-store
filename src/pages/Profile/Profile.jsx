@@ -1,4 +1,5 @@
 import "./Profile.css";
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useAuth, useCart, useWishlist } from "../../context";
 
@@ -15,6 +16,7 @@ const Profile = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     authDispatch({ type: "LOGOUT" });
+    toast.success("Successfully Logged Out");
   };
 
   return (

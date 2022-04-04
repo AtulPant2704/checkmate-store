@@ -2,6 +2,7 @@ import "./ProductsListing.css";
 import "../../loaders.css";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 import { Filters } from "./components/Filters";
 import { ProductCard } from "./components/ProductCard";
 import { useFilter, useCart, useWishlist, useAuth } from "../../context";
@@ -41,6 +42,7 @@ const ProductsListing = () => {
       addToCartHandler(product, cartDispatch, token, setCartButtonLoader);
     } else {
       navigate("/login");
+      toast.warning("You're not logged in");
     }
   };
 
@@ -66,6 +68,7 @@ const ProductsListing = () => {
       );
     } else {
       navigate("/login");
+      toast.warning("You're not logged in");
     }
   };
 

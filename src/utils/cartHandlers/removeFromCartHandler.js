@@ -1,18 +1,18 @@
+import { toast } from "react-toastify";
 import { removeFromCartService } from "../../services";
 
 const removeFromCartHandler = async (_id, token, cartDispatch) => {
-    try {
-        const response = await removeFromCartService(_id, token);
-        if (response.status === 200) {
-            cartDispatch({ type: "REMOVE_FROM_CART", payload: response.data.cart });
-        }
-        else {
-            throw new Error();
-        }
+  try {
+    const response = await removeFromCartService(_id, token);
+    if (response.status === 200) {
+      cartDispatch({ type: "REMOVE_FROM_CART", payload: response.data.cart });
+      toast.info("Removed from cart");
+    } else {
+      throw new Error();
     }
-    catch (error) {
-        alert(error);
-    }
-}
+  } catch (error) {
+    toast.error(error.response.data.errors[0]);
+  }
+};
 
 export { removeFromCartHandler };
