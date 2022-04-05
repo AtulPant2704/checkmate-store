@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useCart, useAuth, useWishlist } from "../../context";
 import {
@@ -8,12 +8,13 @@ import {
   getCartBill,
   moveToWishlistHandler,
 } from "../../utils";
-import { Navbar, Footer } from "../../components";
+import { Navbar, Footer, Loader } from "../../components";
 import { CartItem } from "./components/CartItem";
 import { CartBill } from "./components/CartBill";
 import "./Cart.css";
 
 const Cart = () => {
+  const [cartLoader, setCartLoader] = useState(false);
   const {
     cartState: { cart },
     cartDispatch,
@@ -48,7 +49,12 @@ const Cart = () => {
     );
   };
 
-  useEffect(() => getCartItemsHandler(token, cartDispatch), []);
+  const getCartItems = () => {
+    getCartItemsHandler(token, cartDispatch, setCartLoader);
+    window.scrollTo(0, 0);
+  };
+
+  useEffect(() => getCartItems(), []);
 
   return (
     <>
@@ -56,33 +62,39 @@ const Cart = () => {
       <main className="empty-cart">
         {cart.length !== 0 ? (
           <>
-            <h2 className="align-center page-title">
-              My Cart ({cart.length !== 0 ? <span>{cart.length}</span> : null})
-            </h2>
+            {cartLoader ? (
+              <Loader />
+            ) : (
+              <>
+                <h2 className="align-center page-title">
+                  My Cart (
+                  {cart.length !== 0 ? <span>{cart.length}</span> : null})
+                </h2>
+                <section className="cart-bill-container">
+                  <div className="cart-container">
+                    {cart.map((item) => (
+                      <CartItem
+                        key={item._id}
+                        {...item}
+                        callRemoveFromCartHandler={callRemoveFromCartHandler}
+                        callUpdateCartHandler={callUpdateCartHandler}
+                        callMoveToWishlistHandler={callMoveToWishlistHandler}
+                      />
+                    ))}
+                  </div>
 
-            <section className="cart-bill-container">
-              <div className="cart-container">
-                {cart.map((item) => (
-                  <CartItem
-                    key={item._id}
-                    {...item}
-                    callRemoveFromCartHandler={callRemoveFromCartHandler}
-                    callUpdateCartHandler={callUpdateCartHandler}
-                    callMoveToWishlistHandler={callMoveToWishlistHandler}
-                  />
-                ))}
-              </div>
-
-              <div className="bill-container">
-                <CartBill
-                  cartItem={cartQuantity}
-                  itemPrice={itemsPrice}
-                  cartDiscount={500}
-                  cartDelivery={"FREE"}
-                  cartAmount={totalPrice}
-                />
-              </div>
-            </section>
+                  <div className="bill-container">
+                    <CartBill
+                      cartItem={cartQuantity}
+                      itemPrice={itemsPrice}
+                      cartDiscount={500}
+                      cartDelivery={"FREE"}
+                      cartAmount={totalPrice}
+                    />
+                  </div>
+                </section>
+              </>
+            )}
           </>
         ) : (
           <>
