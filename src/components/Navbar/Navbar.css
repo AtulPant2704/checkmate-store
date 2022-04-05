@@ -68,9 +68,13 @@
   cursor: pointer;
 }
 
-@media only screen and (max-width: 910px) {
+@media only screen and (max-width: 920px) {
   .nav-header {
     padding: 1rem 1rem 0 0;
+  }
+
+  .nav-header .title-explore {
+    width: 14rem;
   }
 
   .menu-bar {

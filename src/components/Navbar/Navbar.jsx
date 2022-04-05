@@ -96,7 +96,7 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
             className="btn-check btn-wishlist"
             onClick={wishlistRouteHandler}
           >
-            <i className="far fa-heart"></i>
+            <i className="fas fa-heart"></i>
             {wishlist.length !== 0 ? (
               <span className="count">{wishlist.length}</span>
             ) : null}
