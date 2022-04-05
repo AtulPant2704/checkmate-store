@@ -16,7 +16,7 @@ import {
   removeFromWishlistHandler,
   searchHandler,
 } from "../../utils";
-import { Navbar, Footer } from "../../components";
+import { Navbar, Footer, Loader } from "../../components";
 import "./ProductsListing.css";
 import "./loaders.css";
 
@@ -116,16 +116,7 @@ const ProductsListing = () => {
 
           <div className="product-container">
             {productsLoader ? (
-              <div className="lds-roller">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-              </div>
+              <Loader />
             ) : searchedData.length > 0 ? (
               searchedData.map((product) => (
                 <ProductCard

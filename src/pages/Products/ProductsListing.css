@@ -18,7 +18,6 @@
   display: grid;
   grid-gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-  margin: auto;
 }
 
 /* Filter Section Styling */
@@ -70,8 +69,9 @@
 }
 
 /* Product Section Styling */
-.product-card {
-  margin: auto;
+.product-container .product-card {
+  margin: 0;
+  height: fit-content;
 }
 
 .product-card .img-container .card-badge {
@@ -142,7 +142,15 @@
 }
 
 /* Media Queries */
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 920px) {
+  .product-container {
+    margin: auto;
+  }
+
+  .product-card {
+    margin: auto;
+  }
+
   .filter-mobile-container {
     display: block;
     bottom: 0;
