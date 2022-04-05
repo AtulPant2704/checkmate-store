@@ -10,7 +10,7 @@ const getProductsHandler = async (setProducts, setProductsLoader) => {
       throw new Error();
     }
   } catch (error) {
-    alert(error);
+    console.error(error);
   } finally {
     setProductsLoader(false);
   }

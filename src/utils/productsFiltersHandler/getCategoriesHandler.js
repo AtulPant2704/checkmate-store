@@ -9,7 +9,7 @@ const getCategoriesHandler = async (setServerCategories) => {
       throw new Error();
     }
   } catch (error) {
-    alert(error);
+    console.error(error);
   }
 };
 
