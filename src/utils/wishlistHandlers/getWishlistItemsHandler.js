@@ -13,7 +13,7 @@ const getWishlistItemsHandler = async (token, wishlistDispatch) => {
         throw new Error();
       }
     } catch (error) {
-      alert(error);
+      console.error(error);
     }
   }
 };

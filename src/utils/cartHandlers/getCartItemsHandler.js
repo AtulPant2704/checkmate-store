@@ -10,7 +10,7 @@ const getCartItemsHandler = async (token, cartDispatch) => {
         throw new Error();
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 };
