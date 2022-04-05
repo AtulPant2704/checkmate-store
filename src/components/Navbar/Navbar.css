@@ -68,17 +68,52 @@
   cursor: pointer;
 }
 
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 910px) {
+  .nav-header {
+    padding: 1rem 1rem 0 0;
+  }
+
+  .menu-bar {
+    padding-left: 1rem;
+    display: block;
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+  }
+
+  .title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .search {
+    padding-left: 1rem;
+    order: 1;
+    width: 100%;
+    border: none;
+  }
+
+  .input-search {
+    margin-left: 0.5rem;
+  }
+
+  .btn-login {
+    display: none;
+  }
+
   .title-explore .explore-tab h3 {
     display: none;
   }
+
   .user-action {
     display: none;
   }
+
   .btn-check .count {
     top: -30%;
     right: -30%;
   }
+
   .btn-check p {
     display: none;
   }
