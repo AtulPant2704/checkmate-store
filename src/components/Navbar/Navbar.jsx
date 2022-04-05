@@ -1,15 +1,17 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useAuth, useCart, useWishlist } from "../../context";
+import { useAuth, useCart, useWishlist, useFilter } from "../../context";
 import "./Navbar.css";
 
-const Navbar = () => {
+const Navbar = ({ searchQuery, setSearchQuery }) => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [menuOpen, setMenuOpen] = useState(false);
   const { authState } = useAuth();
   const { cartState } = useCart();
   const { wishlistState } = useWishlist();
-  const [menuOpen, setMenuOpen] = useState(false);
+  const { filterDispatch } = useFilter();
   const userName = authState.user;
   const cart = cartState.cart;
   const wishlist = wishlistState.wishlist;
@@ -42,6 +44,11 @@ const Navbar = () => {
     authState.token ? navigate("/wishlist") : navigateLogin();
   };
 
+  const searchProducts = (event) => {
+    filterDispatch({ type: "RESET", payload: {} });
+    setSearchQuery(event.target.value);
+  };
+
   return (
     <header>
       <div className="nav-header">
@@ -58,12 +65,20 @@ const Navbar = () => {
             </Link>
           </div>
         </div>
-        <div className="search">
-          <span className="btn-search">
-            <i className="fas fa-search"></i>
-          </span>
-          <input type="text" placeholder="Search" className="input-search" />
-        </div>
+        {location.pathname === "/products" ? (
+          <div className="search">
+            <span className="btn-search">
+              <i className="fas fa-search"></i>
+            </span>
+            <input
+              type="text"
+              placeholder="Search"
+              className="input-search"
+              value={searchQuery}
+              onChange={searchProducts}
+            />
+          </div>
+        ) : null}
         <div className="user-controls">
           <div className="user-action">
             <button

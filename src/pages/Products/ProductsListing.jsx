@@ -14,7 +14,9 @@ import {
   addToCartHandler,
   addToWishlistHandler,
   removeFromWishlistHandler,
+  searchHandler,
 } from "../../utils";
+import { Navbar, Footer } from "../../components";
 import "./ProductsListing.css";
 import "./loaders.css";
 
@@ -23,6 +25,7 @@ const ProductsListing = () => {
   const [products, setProducts] = useState([]);
   const [productsLoader, setProductsLoader] = useState(false);
   const [mobileFilter, setMobileFilter] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const { cartState, cartDispatch } = useCart();
   const { wishlistState, wishlistDispatch } = useWishlist();
   const { authState } = useAuth();
@@ -87,58 +90,63 @@ const ProductsListing = () => {
   const inStockFilteredData = inStockFilter(ratingFilteredData, filterState);
   const priceFilteredData = priceFilter(inStockFilteredData, filterState);
   const sortedData = sortData(priceFilteredData, filterState);
+  const searchedData = searchHandler(sortedData, searchQuery);
 
   return (
-    <main>
-      <section className="filter-product-container">
-        <div className={`filter-container ${mobileFilter ? "active" : ""}`}>
-          <Filters
-            mobileFilter={mobileFilter}
-            setMobileFilter={setMobileFilter}
-          />
-        </div>
+    <>
+      <Navbar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      <main>
+        <section className="filter-product-container">
+          <div className={`filter-container ${mobileFilter ? "active" : ""}`}>
+            <Filters
+              mobileFilter={mobileFilter}
+              setMobileFilter={setMobileFilter}
+            />
+          </div>
 
-        <div className="product-container">
-          {productsLoader ? (
-            <div className="lds-roller">
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
-          ) : sortedData.length > 0 ? (
-            sortedData.map((product) => (
-              <ProductCard
-                key={product._id}
-                {...product}
-                checkCartAction={checkCartAction}
-                checkCartRouteHandler={checkCartRouteHandler}
-                checkWishlistAction={checkWishlistAction}
-                checkWishlistActionHandler={checkWishlistActionHandler}
-              />
-            ))
-          ) : (
-            <div className="empty-products">
-              <h1 className="empty-msg">No Products Available</h1>
-            </div>
-          )}
-        </div>
-      </section>
-      {!mobileFilter && sortedData.length > 0 ? (
-        <div
-          className="filter-mobile-container"
-          onClick={openMobileFilterHandler}
-        >
-          <button className="filter-open-btn">
-            Filters <i className="fas fa-angle-up"></i>
-          </button>
-        </div>
-      ) : null}
-    </main>
+          <div className="product-container">
+            {productsLoader ? (
+              <div className="lds-roller">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+            ) : searchedData.length > 0 ? (
+              searchedData.map((product) => (
+                <ProductCard
+                  key={product._id}
+                  {...product}
+                  checkCartAction={checkCartAction}
+                  checkCartRouteHandler={checkCartRouteHandler}
+                  checkWishlistAction={checkWishlistAction}
+                  checkWishlistActionHandler={checkWishlistActionHandler}
+                />
+              ))
+            ) : (
+              <div className="empty-products">
+                <h1 className="empty-msg">No Products Available</h1>
+              </div>
+            )}
+          </div>
+        </section>
+        {!mobileFilter && sortedData.length > 0 ? (
+          <div
+            className="filter-mobile-container"
+            onClick={openMobileFilterHandler}
+          >
+            <button className="filter-open-btn">
+              Filters <i className="fas fa-angle-up"></i>
+            </button>
+          </div>
+        ) : null}
+      </main>
+      <Footer />
+    </>
   );
 };
 
