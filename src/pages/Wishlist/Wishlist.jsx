@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useWishlist, useAuth, useCart } from "../../context";
 import {
@@ -6,11 +6,12 @@ import {
   removeFromWishlistHandler,
   moveToCartHandler,
 } from "../../utils";
-import { Navbar, Footer } from "../../components";
+import { Navbar, Footer, Loader } from "../../components";
 import { WishlistCard } from "./components/WishlistCard";
 import "./Wishlist.css";
 
 const Wishlist = () => {
+  const [wishlistLoader, setWishlistLoader] = useState(false);
   const {
     authState: { token },
   } = useAuth();
@@ -37,7 +38,12 @@ const Wishlist = () => {
     removeFromWishlistHandler(_id, token, wishlistDispatch);
   };
 
-  useEffect(() => getWishlistItemsHandler(token, wishlistDispatch), []);
+  const getWishlistItems = () => {
+    getWishlistItemsHandler(token, wishlistDispatch, setWishlistLoader);
+    window.scrollTo(0, 0);
+  };
+
+  useEffect(() => getWishlistItems(), []);
 
   return (
     <>
@@ -45,24 +51,26 @@ const Wishlist = () => {
       <main className="empty-cart">
         {wishlist.length !== 0 ? (
           <>
-            <h2 className="align-center page-title">My Wishlist</h2>
+            {wishlistLoader ? (
+              <Loader />
+            ) : (
+              <>
+                <h2 className="align-center page-title">My Wishlist</h2>
 
-            <section className="wishlist-container">
-              {wishlist.map((item) => (
-                <WishlistCard
-                  key={item._id}
-                  {...item}
-                  cardId={item._id}
-                  cardImg={item.image}
-                  cardAlt={item.title}
-                  cardBadge={item.badge}
-                  cardTitle={item.title}
-                  cardPrice={item.price}
-                  callRemoveFromWishlistHandler={callRemoveFromWishlistHandler}
-                  callMoveToCartHandler={callMoveToCartHandler}
-                />
-              ))}
-            </section>
+                <section className="wishlist-container">
+                  {wishlist.map((item) => (
+                    <WishlistCard
+                      key={item._id}
+                      {...item}
+                      callRemoveFromWishlistHandler={
+                        callRemoveFromWishlistHandler
+                      }
+                      callMoveToCartHandler={callMoveToCartHandler}
+                    />
+                  ))}
+                </section>
+              </>
+            )}
           </>
         ) : (
           <>
