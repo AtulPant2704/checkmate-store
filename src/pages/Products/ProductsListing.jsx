@@ -88,7 +88,12 @@ const ProductsListing = () => {
 
   const openMobileFilterHandler = () => setMobileFilter(true);
 
-  useEffect(() => getProductsHandler(setProducts, setProductsLoader), []);
+  const getProducts = () => {
+    getProductsHandler(setProducts, setProductsLoader);
+    window.scrollTo(0, 0);
+  };
+
+  useEffect(() => getProducts(), []);
 
   const categoryFilteredData = categoryFilter(products, filterState);
   const ratingFilteredData = ratingFilter(categoryFilteredData, filterState);
