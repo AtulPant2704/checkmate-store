@@ -34,7 +34,7 @@
   font-size: 0.8rem;
 }
 
-.form-wrapper .btn-guest{
+.form-wrapper .btn-guest {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -44,10 +44,10 @@
   font-size: 1.1rem;
 }
 
-.form-wrapper .btn-guest:hover{
+.form-wrapper .btn-guest:hover {
   background-color: initial;
 }
 
-.form-wrapper .btn-submit{
+.form-wrapper .btn-submit {
   margin: 0.5rem 0;
 }
