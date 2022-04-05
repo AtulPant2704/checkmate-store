@@ -11,11 +11,14 @@ import { WishlistCard } from "./components/WishlistCard";
 import "./Wishlist.css";
 
 const Wishlist = () => {
-  const { wishlistState, wishlistDispatch } = useWishlist();
+  const {
+    authState: { token },
+  } = useAuth();
+  const {
+    wishlistState: { wishlist },
+    wishlistDispatch,
+  } = useWishlist();
   const { cartState, cartDispatch } = useCart();
-  const { authState } = useAuth();
-  const { token } = authState;
-  const { wishlist } = wishlistState;
 
   const callRemoveFromWishlistHandler = (_id) => {
     removeFromWishlistHandler(_id, token, wishlistDispatch);

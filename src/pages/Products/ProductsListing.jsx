@@ -26,12 +26,17 @@ const ProductsListing = () => {
   const [productsLoader, setProductsLoader] = useState(false);
   const [mobileFilter, setMobileFilter] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const { cartState, cartDispatch } = useCart();
-  const { wishlistState, wishlistDispatch } = useWishlist();
-  const { authState } = useAuth();
-  const { token } = authState;
-  const { cart } = cartState;
-  const { wishlist } = wishlistState;
+  const {
+    authState: { token },
+  } = useAuth();
+  const {
+    cartState: { cart },
+    cartDispatch,
+  } = useCart();
+  const {
+    wishlistState: { wishlist },
+    wishlistDispatch,
+  } = useWishlist();
   const { filterState } = useFilter();
 
   const checkCartAction = (_id) => {

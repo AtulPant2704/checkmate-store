@@ -14,12 +14,17 @@ import { CartBill } from "./components/CartBill";
 import "./Cart.css";
 
 const Cart = () => {
-  const { cartState, cartDispatch } = useCart();
-  const { authState } = useAuth();
-  const { wishlistState, wishlistDispatch } = useWishlist();
-  const { token } = authState;
-  const { cart } = cartState;
-  const { wishlist } = wishlistState;
+  const {
+    cartState: { cart },
+    cartDispatch,
+  } = useCart();
+  const {
+    authState: { token },
+  } = useAuth();
+  const {
+    wishlistState: { wishlist },
+    wishlistDispatch,
+  } = useWishlist();
   const { cartQuantity, itemsPrice, totalPrice } = getCartBill(cart);
 
   const callUpdateCartHandler = (_id, actionType) => {

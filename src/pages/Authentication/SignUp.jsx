@@ -8,7 +8,6 @@ import "./Authentication.css";
 
 const SignUp = () => {
   const navigate = useNavigate();
-  const { authDispatch } = useAuth();
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -16,6 +15,7 @@ const SignUp = () => {
     lastName: "",
     confirmPassword: "",
   });
+  const { authDispatch } = useAuth();
 
   const changeHandler = (event) => {
     const { name, value } = event.target;
