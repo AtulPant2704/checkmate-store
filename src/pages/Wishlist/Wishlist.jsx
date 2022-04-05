@@ -1,12 +1,13 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useWishlist, useAuth, useCart } from "../../context";
-import { WishlistCard } from "./components/WishlistCard";
 import {
   getWishlistItemsHandler,
   removeFromWishlistHandler,
   moveToCartHandler,
 } from "../../utils";
+import { Navbar, Footer } from "../../components";
+import { WishlistCard } from "./components/WishlistCard";
 import "./Wishlist.css";
 
 const Wishlist = () => {
@@ -36,39 +37,43 @@ const Wishlist = () => {
   useEffect(() => getWishlistItemsHandler(token, wishlistDispatch), []);
 
   return (
-    <main className="empty-cart">
-      {wishlist.length !== 0 ? (
-        <>
-          <h2 className="align-center page-title">My Wishlist</h2>
+    <>
+      <Navbar />
+      <main className="empty-cart">
+        {wishlist.length !== 0 ? (
+          <>
+            <h2 className="align-center page-title">My Wishlist</h2>
 
-          <section className="wishlist-container">
-            {wishlist.map((item) => (
-              <WishlistCard
-                key={item._id}
-                {...item}
-                cardId={item._id}
-                cardImg={item.image}
-                cardAlt={item.title}
-                cardBadge={item.badge}
-                cardTitle={item.title}
-                cardPrice={item.price}
-                callRemoveFromWishlistHandler={callRemoveFromWishlistHandler}
-                callMoveToCartHandler={callMoveToCartHandler}
-              />
-            ))}
-          </section>
-        </>
-      ) : (
-        <>
-          <h2>Your Wishlist is empty</h2>
-          <Link to="/products">
-            <button className="btn btn-solid-primary btn-link-products">
-              Start Exploring
-            </button>
-          </Link>
-        </>
-      )}
-    </main>
+            <section className="wishlist-container">
+              {wishlist.map((item) => (
+                <WishlistCard
+                  key={item._id}
+                  {...item}
+                  cardId={item._id}
+                  cardImg={item.image}
+                  cardAlt={item.title}
+                  cardBadge={item.badge}
+                  cardTitle={item.title}
+                  cardPrice={item.price}
+                  callRemoveFromWishlistHandler={callRemoveFromWishlistHandler}
+                  callMoveToCartHandler={callMoveToCartHandler}
+                />
+              ))}
+            </section>
+          </>
+        ) : (
+          <>
+            <h2>Your Wishlist is empty</h2>
+            <Link to="/products">
+              <button className="btn btn-solid-primary btn-link-products">
+                Start Exploring
+              </button>
+            </Link>
+          </>
+        )}
+      </main>
+      <Footer />
+    </>
   );
 };
 

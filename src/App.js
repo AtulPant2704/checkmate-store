@@ -3,7 +3,6 @@ import "./App.css";
 import Mockman from "mockman-js";
 import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import { Navbar, Footer } from "./components/index";
 import {
   Login,
   SignUp,
@@ -29,7 +28,6 @@ function App() {
         draggable
         pauseOnHover
       />
-      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -40,7 +38,6 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/mock" element={<Mockman />} />
       </Routes>
-      <Footer />
     </div>
   );
 }
