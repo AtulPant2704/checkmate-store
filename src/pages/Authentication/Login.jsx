@@ -9,17 +9,17 @@ import "./Authentication.css";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { authDispatch } = useAuth();
-  const { cartDispatch } = useCart();
-  const { wishlistDispatch } = useWishlist();
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
+  const { authDispatch } = useAuth();
+  const { cartDispatch } = useCart();
+  const { wishlistDispatch } = useWishlist();
 
   const guestUser = {
-    email: "app@gmail.com",
-    password: "app123",
+    email: "test@gmail.com",
+    password: "test123",
   };
 
   const changeHandler = (event) => {
