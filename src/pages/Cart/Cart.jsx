@@ -10,7 +10,7 @@ import {
 } from "../../utils";
 import { Navbar, Footer, Loader } from "../../components";
 import { CartItem } from "./components/CartItem";
-import { CartBill } from "./components/CartBill";
+import { CartSummary } from "./components/CartSummary";
 import { CouponModal } from "./components/CouponModa/CouponModal";
 import "./Cart.css";
 
@@ -100,7 +100,7 @@ const Cart = () => {
                   </div>
 
                   <div className="bill-container">
-                    <CartBill
+                    <CartSummary
                       cartItem={cartQuantity}
                       itemPrice={itemsPrice}
                       cartDiscount={500}
