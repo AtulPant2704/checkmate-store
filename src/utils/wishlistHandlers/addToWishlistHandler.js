@@ -15,7 +15,7 @@ const addToWishlistHandler = async (
         type: "ADD_TO_WISHLIST",
         payload: response.data.wishlist,
       });
-      toast.info(`${product.title} added to Wishlist`);
+      toast.success(`${product.title} added to Wishlist`);
     } else {
       throw new Error();
     }

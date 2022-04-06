@@ -6,7 +6,7 @@ const removeFromCartHandler = async (_id, token, cartDispatch, from = "") => {
     const response = await removeFromCartService(_id, token);
     if (response.status === 200) {
       cartDispatch({ type: "REMOVE_FROM_CART", payload: response.data.cart });
-      !from && toast.info("Removed from cart");
+      !from ? toast.info("Removed from cart") : null;
     } else {
       throw new Error();
     }
