@@ -48,6 +48,7 @@ const Cart = () => {
 
   const callMoveToWishlistHandler = (_id, setWishlistDisable) => {
     const item = cart.find((item) => item._id === _id);
+    setCouponType("");
     moveToWishlistHandler(
       _id,
       item,
