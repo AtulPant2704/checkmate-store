@@ -19,10 +19,31 @@
   margin: 0.5rem auto;
 }
 
+.apply-coupon-btn {
+  width: 100%;
+  padding: 5px;
+  background-color: transparent;
+  text-align: left;
+  border: 1px solid var(--secondary-color);
+  color: var(--secondary-color);
+  font-size: 1rem;
+  margin: 5px 0;
+  cursor: pointer;
+}
+
+.apply-coupon-btn i {
+  margin-right: 5px;
+}
+
 .card-details .action-btns {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+.cart-savings {
+  color: var(--success-color);
+  font-weight: 700;
 }
 
 .empty-cart {

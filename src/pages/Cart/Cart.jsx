@@ -11,10 +11,13 @@ import {
 import { Navbar, Footer, Loader } from "../../components";
 import { CartItem } from "./components/CartItem";
 import { CartBill } from "./components/CartBill";
+import { CouponModal } from "./components/CouponModa/CouponModal";
 import "./Cart.css";
 
 const Cart = () => {
   const [cartLoader, setCartLoader] = useState(false);
+  const [couponModalOpen, setCouponModalOpen] = useState(false);
+  const [couponType, setCouponType] = useState("");
   const {
     cartState: { cart },
     cartDispatch,
@@ -26,13 +29,18 @@ const Cart = () => {
     wishlistState: { wishlist },
     wishlistDispatch,
   } = useWishlist();
-  const { cartQuantity, itemsPrice, totalPrice } = getCartBill(cart);
+  const { cartQuantity, itemsPrice, totalPrice } = getCartBill(
+    cart,
+    couponType
+  );
 
   const callUpdateCartHandler = (_id, actionType) => {
+    setCouponType("");
     updateCartHandler(_id, actionType, token, cartDispatch);
   };
 
   const callRemoveFromCartHandler = (_id) => {
+    setCouponType("");
     removeFromCartHandler(_id, token, cartDispatch);
   };
 
@@ -58,6 +66,14 @@ const Cart = () => {
 
   return (
     <>
+      {couponModalOpen ? (
+        <CouponModal
+          setCouponModalOpen={setCouponModalOpen}
+          totalPrice={totalPrice}
+          couponType={couponType}
+          setCouponType={setCouponType}
+        />
+      ) : null}
       <Navbar />
       <main className="empty-cart">
         {cart.length !== 0 ? (
@@ -90,6 +106,7 @@ const Cart = () => {
                       cartDiscount={500}
                       cartDelivery={"FREE"}
                       cartAmount={totalPrice}
+                      setCouponModalOpen={setCouponModalOpen}
                     />
                   </div>
                 </section>
