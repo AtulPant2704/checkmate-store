@@ -35,7 +35,9 @@ const Cart = () => {
   );
 
   const callUpdateCartHandler = (_id, actionType) => {
-    setCouponType("");
+    if (actionType === "decrement") {
+      setCouponType("");
+    }
     updateCartHandler(_id, actionType, token, cartDispatch);
   };
 
