@@ -46,7 +46,3 @@ main {
 a {
   text-decoration: none;
 }
-
-iframe {
-  pointer-events: none;
-}

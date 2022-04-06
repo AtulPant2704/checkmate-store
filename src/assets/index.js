@@ -1,3 +1,4 @@
+import brandName from "./apple-touch-icon.png";
 import boardImg from "./board-brown-white(reduced).webp";
 import pieceImg from "./chess-black-brown-pieces(reduced).webp";
 import bookImg from "./chess-fianchetto-book(reduced).webp";
@@ -15,6 +16,7 @@ import image11 from "./rules-of-winning-chess.webp";
 import image12 from "./travel-chess-board.webp";
 
 export {
+  brandName,
   boardImg,
   pieceImg,
   bookImg,

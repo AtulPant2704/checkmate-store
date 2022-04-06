@@ -34,7 +34,7 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
 
   const userHandler = async (type) => {
     closeMenuBar();
-    type === "Login" ? navigateLogin() : navigate("/profile");
+    type === "Login" ? navigate("/login") : navigate("/profile");
   };
 
   const cartRouteHandler = () => {

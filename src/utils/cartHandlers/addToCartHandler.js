@@ -12,7 +12,7 @@ const addToCartHandler = async (
     const response = await addToCartService(product, token);
     if (response.status === 201) {
       cartDispatch({ type: "ADD_TO_CART", payload: response.data.cart });
-      toast.info(`${product.title} added to Cart`);
+      toast.success(`${product.title} added to Cart`);
     } else {
       throw new Error();
     }

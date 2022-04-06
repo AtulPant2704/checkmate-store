@@ -10,11 +10,14 @@ import {
 } from "../../utils";
 import { Navbar, Footer, Loader } from "../../components";
 import { CartItem } from "./components/CartItem";
-import { CartBill } from "./components/CartBill";
+import { CartSummary } from "./components/CartSummary";
+import { CouponModal } from "./components/CouponModa/CouponModal";
 import "./Cart.css";
 
 const Cart = () => {
   const [cartLoader, setCartLoader] = useState(false);
+  const [couponModalOpen, setCouponModalOpen] = useState(false);
+  const [couponType, setCouponType] = useState("");
   const {
     cartState: { cart },
     cartDispatch,
@@ -26,18 +29,26 @@ const Cart = () => {
     wishlistState: { wishlist },
     wishlistDispatch,
   } = useWishlist();
-  const { cartQuantity, itemsPrice, totalPrice } = getCartBill(cart);
+  const { cartQuantity, itemsPrice, totalPrice } = getCartBill(
+    cart,
+    couponType
+  );
 
   const callUpdateCartHandler = (_id, actionType) => {
+    if (actionType === "decrement") {
+      setCouponType("");
+    }
     updateCartHandler(_id, actionType, token, cartDispatch);
   };
 
   const callRemoveFromCartHandler = (_id) => {
+    setCouponType("");
     removeFromCartHandler(_id, token, cartDispatch);
   };
 
   const callMoveToWishlistHandler = (_id, setWishlistDisable) => {
     const item = cart.find((item) => item._id === _id);
+    setCouponType("");
     moveToWishlistHandler(
       _id,
       item,
@@ -58,6 +69,14 @@ const Cart = () => {
 
   return (
     <>
+      {couponModalOpen ? (
+        <CouponModal
+          setCouponModalOpen={setCouponModalOpen}
+          totalPrice={totalPrice}
+          couponType={couponType}
+          setCouponType={setCouponType}
+        />
+      ) : null}
       <Navbar />
       <main className="empty-cart">
         {cart.length !== 0 ? (
@@ -84,12 +103,13 @@ const Cart = () => {
                   </div>
 
                   <div className="bill-container">
-                    <CartBill
+                    <CartSummary
                       cartItem={cartQuantity}
                       itemPrice={itemsPrice}
                       cartDiscount={500}
                       cartDelivery={"FREE"}
                       cartAmount={totalPrice}
+                      setCouponModalOpen={setCouponModalOpen}
                     />
                   </div>
                 </section>
