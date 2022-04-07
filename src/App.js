@@ -1,8 +1,8 @@
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
-import Mockman from "mockman-js";
 import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import { RequiresAuth } from "./RequiresAuth";
 import {
   Login,
   SignUp,
@@ -31,14 +31,34 @@ function App() {
       />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/products" element={<ProductsListing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/wishlist" element={<Wishlist />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/products" element={<ProductsListing />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route
+          path="/wishlist"
+          element={
+            <RequiresAuth>
+              <Wishlist />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/cart"
+          element={
+            <RequiresAuth>
+              <Cart />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <RequiresAuth>
+              <Profile />
+            </RequiresAuth>
+          }
+        />
         <Route path="*" element={<Error404 />} />
-        <Route path="/mock" element={<Mockman />} />
       </Routes>
     </div>
   );
