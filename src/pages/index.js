@@ -5,3 +5,4 @@ export { Home } from "./Homepage/Home";
 export { ProductsListing } from "./Products/ProductsListing";
 export { Wishlist } from "./Wishlist/Wishlist";
 export { Profile } from "./Profile/Profile";
+export { Error404 } from "./Error404/Error404";

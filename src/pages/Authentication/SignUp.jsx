@@ -47,7 +47,7 @@ const SignUp = () => {
         try {
           const response = await signUpService(user);
           if (response.status === 201) {
-            navigate(-1);
+            navigate(-2);
             localStorage.setItem("token", response.data.encodedToken);
             localStorage.setItem(
               "user",
@@ -60,6 +60,7 @@ const SignUp = () => {
                 token: response.data.encodedToken,
               },
             });
+            toast.success("Successfully Signed up");
           } else {
             throw new Error("Something went wrong! Please try again later");
           }

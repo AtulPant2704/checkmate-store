@@ -27,24 +27,12 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
     return user ? `Hi, ${user.firstName}` : "Login";
   };
 
-  const navigateLogin = () => {
-    navigate("/login");
-    toast.warning("You're not logged in");
-  };
-
-  const userHandler = async (type) => {
+  const routeHandler = (path) => {
     closeMenuBar();
-    type === "Login" ? navigate("/login") : navigate("/profile");
-  };
-
-  const cartRouteHandler = () => {
-    closeMenuBar();
-    token ? navigate("/cart") : navigateLogin();
-  };
-
-  const wishlistRouteHandler = () => {
-    closeMenuBar();
-    token ? navigate("/wishlist") : navigateLogin();
+    navigate(path);
+    if (!token) {
+      toast.warning("You're not logged in");
+    }
   };
 
   const searchProducts = (event) => {
@@ -86,7 +74,7 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
           <div className="user-action">
             <button
               className="btn btn-text-primary btn-user"
-              onClick={() => userHandler(checkStatus(user))}
+              onClick={() => routeHandler("/profile")}
             >
               <i className="fas fa-user"></i>
             </button>
@@ -94,7 +82,7 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
           </div>
           <div
             className="btn-check btn-wishlist"
-            onClick={wishlistRouteHandler}
+            onClick={() => routeHandler("/wishlist")}
           >
             <i className="fas fa-heart"></i>
             {wishlist.length !== 0 ? (
@@ -102,7 +90,10 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
             ) : null}
             <p>Wishlist</p>
           </div>
-          <div className="btn-check btn-cart" onClick={cartRouteHandler}>
+          <div
+            className="btn-check btn-cart"
+            onClick={() => routeHandler("/cart")}
+          >
             <i className="fas fa-shopping-cart"></i>
             {cart.length !== 0 ? (
               <span className="count">{cart.length}</span>
@@ -134,9 +125,9 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
                 Shop Now
               </Link>
             </li>
-            <li onClick={cartRouteHandler}>Cart</li>
-            <li onClick={wishlistRouteHandler}>Wishlist</li>
-            <li onClick={() => userHandler(checkStatus(user))}>Profile</li>
+            <li onClick={() => routeHandler("/cart")}>Cart</li>
+            <li onClick={() => routeHandler("/wishlist")}>Wishlist</li>
+            <li onClick={() => routeHandler("/profile")}>Profile</li>
           </ul>
         </div>
       </div>
