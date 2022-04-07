@@ -11,6 +11,7 @@ import {
   Cart,
   ProductsListing,
   Profile,
+  Error404,
 } from "./pages/index";
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/products" element={<ProductsListing />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="*" element={<Error404 />} />
         <Route path="/mock" element={<Mockman />} />
       </Routes>
     </div>
