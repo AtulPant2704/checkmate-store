@@ -51,7 +51,7 @@ const Login = () => {
               token: response.data.encodedToken,
             },
           });
-          navigate(location?.state?.from?.pathname || "/", { replace: true });
+          navigate(location?.state?.from?.pathname || -1, { replace: true });
           toast.success("Successfully Logged In");
         } else {
           throw new Error("Something went wrong! Please try again later");
