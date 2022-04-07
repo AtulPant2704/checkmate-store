@@ -14,6 +14,7 @@ import image9 from "./multiple-choice-chess-2.webp";
 import image10 from "./offbeat-spanish-english.webp";
 import image11 from "./rules-of-winning-chess.webp";
 import image12 from "./travel-chess-board.webp";
+import image404 from "./404-error.webp";
 
 export {
   brandName,
@@ -32,4 +33,5 @@ export {
   image10,
   image11,
   image12,
+  image404,
 };
