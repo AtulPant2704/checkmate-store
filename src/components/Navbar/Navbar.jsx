@@ -27,6 +27,10 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
     return user ? `Hi, ${user.firstName}` : "Login";
   };
 
+  const userHandler = async (type) => {
+    type === "Login" ? navigate("/login") : navigate("/profile");
+  };
+
   const routeHandler = (path) => {
     closeMenuBar();
     navigate(path);
@@ -74,7 +78,7 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
           <div className="user-action">
             <button
               className="btn btn-text-primary btn-user"
-              onClick={() => routeHandler("/profile")}
+              onClick={() => userHandler(checkStatus(user))}
             >
               <i className="fas fa-user"></i>
             </button>
