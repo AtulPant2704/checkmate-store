@@ -21,11 +21,13 @@ const Wishlist = () => {
   } = useWishlist();
   const { cartState, cartDispatch } = useCart();
 
-  const callRemoveFromWishlistHandler = (_id) => {
-    removeFromWishlistHandler(_id, token, wishlistDispatch);
+  const callRemoveFromWishlistHandler = (e, _id, setWishlistButtonLoader) => {
+    e.stopPropagation();
+    removeFromWishlistHandler(_id, token, wishlistDispatch, setWishlistButtonLoader);
   };
 
-  const callMoveToCartHandler = (_id, setCartButtonLoader) => {
+  const callMoveToCartHandler = (e, _id, setCartButtonLoader, setWishlistButtonLoader) => {
+    e.stopPropagation();
     const item = wishlist.find((item) => item._id === _id);
     moveToCartHandler(
       _id,
@@ -35,7 +37,7 @@ const Wishlist = () => {
       cartDispatch,
       setCartButtonLoader
     );
-    removeFromWishlistHandler(_id, token, wishlistDispatch, setWishlistLoader);
+    removeFromWishlistHandler(_id, token, wishlistDispatch, setWishlistButtonLoader);
   };
 
   const getWishlistItems = () => {
