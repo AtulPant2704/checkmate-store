@@ -64,8 +64,6 @@ const SingleProductPage = () => {
             : callAddToWishlistHandler(_id, setWishlistDisable);
     };
 
-    console.log(product);
-
     useEffect(() => getSingleProductHandler(productId, setProduct, setLoader), [])
 
     return (
