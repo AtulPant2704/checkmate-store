@@ -1,6 +1,7 @@
 export { loginService } from "./authServices/login.service";
 export { signUpService } from "./authServices/signUp.service";
 export { getProductsService } from "./productServices/getProducts.service";
+export { getSingleProductService } from "./productServices/getSingleProduct.service";
 export { getCategoriesService } from "./productServices/getCategories.service";
 export { getCartItemsService } from "./cartServices/getCartItems.service";
 export { addToCartService } from "./cartServices/addToCart.service";
