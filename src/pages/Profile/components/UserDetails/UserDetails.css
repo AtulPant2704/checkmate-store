@@ -1,0 +1,34 @@
+.user-page {
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.user-details .detail {
+    padding: 0.5rem;
+}
+
+.user-page .user-info {
+    display: flex;
+    padding: 4px 0;
+    font-size: 1.1rem;
+}
+
+.user-info h4{
+    width: 4rem;
+}
+
+.user-page .user-settings {
+    margin-top: 0.5rem;
+}
+  
+.btn-logout {
+    margin-top: 0.5rem;
+    border-radius: 5px;
+    background-color: var(--secondary-color);
+}
+  
+.btn-logout:hover {
+    background-color: var(--secondary-hover-color);
+}

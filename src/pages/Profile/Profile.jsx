@@ -1,37 +1,38 @@
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
-import { useAuth, useCart, useWishlist } from "../../context";
+import { useState } from "react";
 import { Navbar, Footer } from "../../components";
+import { UserDetails } from "./components/UserDetails/UserDetails"
+import { Address } from "./components/Address/Address";
+import { Orders } from "./components/Orders/Orders";
 import "./Profile.css";
 
 const Profile = () => {
-  const navigate = useNavigate();
-  const { authDispatch } = useAuth();
-  const { cartDispatch } = useCart();
-  const { wishlistDispatch } = useWishlist();
-
-  const logoutHandler = () => {
-    navigate("/");
-    cartDispatch({ type: "EMPTY_CART" });
-    wishlistDispatch({ type: "EMPTY_WISHLIST" });
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    authDispatch({ type: "LOGOUT" });
-    toast.success("Successfully Logged Out");
-  };
+  const [activeTab, setActiveTab] = useState("profile");
 
   return (
     <>
       <Navbar />
       <main>
-        <div className="logout-page">
-          <button
-            className="btn btn-solid-primary btn-logout"
-            onClick={logoutHandler}
-          >
-            Logout
-          </button>
-        </div>
+        <h1 className="profile-page-title align-center">Account</h1>
+        <section className="profile-page">
+          <div className="profile-tabs">
+            <button
+              className={`tab profile-tab ${activeTab === "profile" ? "tab-active" : ""}`}
+              onClick={() => setActiveTab("profile")}>
+              Profile
+            </button>
+            <button
+              className={`tab address-tab ${activeTab === "address" ? "tab-active" : ""}`}
+              onClick={() => setActiveTab("address")}>
+              My Address
+            </button>
+            <button
+              className={`tab order-tab ${activeTab === "order" ? "tab-active" : ""}`}
+              onClick={() => setActiveTab("order")}>
+              My Orders
+            </button>
+          </div>
+          {activeTab === "profile" ? <UserDetails /> : activeTab === "address" ? <Address /> : <Orders />}
+        </section>
       </main>
       <Footer />
     </>

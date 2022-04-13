@@ -76,13 +76,13 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
         ) : null}
         <div className="user-controls">
           <div className="user-action">
-            <button
+            <div
               className="btn btn-text-primary btn-user"
               onClick={() => userHandler(checkStatus(user))}
             >
               <i className="fas fa-user"></i>
-            </button>
-            <p>{checkStatus(user)}</p>
+              <p>{checkStatus(user)}</p>
+            </div>
           </div>
           <div
             className="btn-check btn-wishlist"
