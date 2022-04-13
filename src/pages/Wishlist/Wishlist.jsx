@@ -21,11 +21,13 @@ const Wishlist = () => {
   } = useWishlist();
   const { cartState, cartDispatch } = useCart();
 
-  const callRemoveFromWishlistHandler = (_id) => {
-    removeFromWishlistHandler(_id, token, wishlistDispatch);
+  const callRemoveFromWishlistHandler = (e, _id, setWishlistButtonDisable) => {
+    e.stopPropagation();
+    removeFromWishlistHandler(_id, token, wishlistDispatch, setWishlistButtonDisable);
   };
 
-  const callMoveToCartHandler = (_id, setCartButtonLoader) => {
+  const callMoveToCartHandler = (e, _id, setCartButtonLoader, setWishlistButtonDisable) => {
+    e.stopPropagation();
     const item = wishlist.find((item) => item._id === _id);
     moveToCartHandler(
       _id,
@@ -35,7 +37,7 @@ const Wishlist = () => {
       cartDispatch,
       setCartButtonLoader
     );
-    removeFromWishlistHandler(_id, token, wishlistDispatch);
+    removeFromWishlistHandler(_id, token, wishlistDispatch, setWishlistButtonDisable);
   };
 
   const getWishlistItems = () => {
@@ -54,34 +56,34 @@ const Wishlist = () => {
             {wishlistLoader ? (
               <Loader />
             ) : (
-              <>
-                <h2 className="align-center page-title">My Wishlist</h2>
+                <>
+                  <h2 className="align-center page-title">My Wishlist</h2>
 
-                <section className="wishlist-container">
-                  {wishlist.map((item) => (
-                    <WishlistCard
-                      key={item._id}
-                      {...item}
-                      callRemoveFromWishlistHandler={
-                        callRemoveFromWishlistHandler
-                      }
-                      callMoveToCartHandler={callMoveToCartHandler}
-                    />
-                  ))}
-                </section>
-              </>
-            )}
+                  <section className="wishlist-container">
+                    {wishlist.map((item) => (
+                      <WishlistCard
+                        key={item._id}
+                        {...item}
+                        callRemoveFromWishlistHandler={
+                          callRemoveFromWishlistHandler
+                        }
+                        callMoveToCartHandler={callMoveToCartHandler}
+                      />
+                    ))}
+                  </section>
+                </>
+              )}
           </>
         ) : (
-          <>
-            <h2>Your Wishlist is empty</h2>
-            <Link to="/products">
-              <button className="btn btn-solid-primary btn-link-products">
-                Start Exploring
+            <>
+              <h2>Your Wishlist is empty</h2>
+              <Link to="/products">
+                <button className="btn btn-solid-primary btn-link-products">
+                  Start Exploring
               </button>
-            </Link>
-          </>
-        )}
+              </Link>
+            </>
+          )}
       </main>
       <Footer />
     </>

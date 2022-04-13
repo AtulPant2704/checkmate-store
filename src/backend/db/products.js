@@ -14,6 +14,7 @@ export const products = [
     price: "5000",
     badge: "Out of Stock",
     rating: "2",
+    reviewers: "20",
     categoryName: "pieces"
   },
   {
@@ -23,6 +24,7 @@ export const products = [
     price: "8000",
     badge: "In Stock",
     rating: "4",
+    reviewers: "40",
     categoryName: "books"
   },
   {
@@ -32,6 +34,7 @@ export const products = [
     price: "2000",
     badge: "In Stock",
     rating: "1",
+    reviewers: "35",
     categoryName: "clock"
   },
   {
@@ -41,6 +44,7 @@ export const products = [
     price: "1000",
     badge: "In Stock",
     rating: "1",
+    reviewers: "15",
     categoryName: "board"
   },
   {
@@ -50,6 +54,7 @@ export const products = [
     price: "1500",
     badge: "In Stock",
     rating: "5",
+    reviewers: "48",
     categoryName: "pieces"
   },
   {
@@ -59,6 +64,7 @@ export const products = [
     price: "2300",
     badge: "In Stock",
     rating: "2",
+    reviewers: "23",
     categoryName: "pieces"
   },
   {
@@ -68,6 +74,7 @@ export const products = [
     price: "5100",
     badge: "Out of Stock",
     rating: "3",
+    reviewers: "19",
     categoryName: "books"
   },
   {
@@ -77,6 +84,7 @@ export const products = [
     price: "4500",
     badge: "In Stock",
     rating: "2",
+    reviewers: "57",
     categoryName: "pieces"
   },
   {
@@ -86,6 +94,7 @@ export const products = [
     price: "3100",
     badge: "In Stock",
     rating: "4",
+    reviewers: "59",
     categoryName: "pieces"
   },
   {
@@ -95,6 +104,7 @@ export const products = [
     price: "9000",
     badge: "In Stock",
     rating: "3",
+    reviewers: "74",
     categoryName: "books"
   },
   {
@@ -104,6 +114,7 @@ export const products = [
     price: "7100",
     badge: "In Stock",
     rating: "2",
+    reviewers: "33",
     categoryName: "board"
   },
   {
@@ -113,6 +124,7 @@ export const products = [
     price: "7000",
     badge: "Out of Stock",
     rating: "2",
+    reviewers: "47",
     categoryName: "books"
   },
   {
@@ -122,6 +134,7 @@ export const products = [
     price: "5900",
     badge: "In Stock",
     rating: "1",
+    reviewers: "51",
     categoryName: "books"
   },
   {
@@ -131,6 +144,7 @@ export const products = [
     price: "8000",
     badge: "In Stock",
     rating: "4",
+    reviewers: "22",
     categoryName: "books"
   },
   {
@@ -140,6 +154,7 @@ export const products = [
     price: "8500",
     badge: "Out of Stock",
     rating: "3",
+    reviewers: "27",
     categoryName: "board"
   },
 ];

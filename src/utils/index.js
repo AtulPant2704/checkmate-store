@@ -1,4 +1,5 @@
 export { getProductsHandler } from "./productsFiltersHandler/getProductsHandler";
+export { getSingleProductHandler } from "./productsFiltersHandler/getSingleProductHandler";
 export { getCategoriesHandler } from "./productsFiltersHandler/getCategoriesHandler";
 export { searchHandler } from "./productsFiltersHandler/searchHandler";
 export { categoryFilter } from "./filters/categoryFilter";

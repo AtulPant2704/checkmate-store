@@ -11,6 +11,10 @@
   margin: 0 auto;
 }
 
+.cart-card .img-container {
+  cursor: pointer;
+}
+
 .cart-card .quantity-controls {
   width: fit-content;
 }

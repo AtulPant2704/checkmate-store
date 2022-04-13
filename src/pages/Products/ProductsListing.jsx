@@ -40,7 +40,7 @@ const ProductsListing = () => {
   const { filterState } = useFilter();
 
   const checkCartAction = (_id) => {
-    const item = cart.find((item) => item._id === _id);
+    const item = cart.some((item) => item._id === _id);
     return item ? "Go to Cart" : "Add to Cart";
   };
 
@@ -54,16 +54,14 @@ const ProductsListing = () => {
     }
   };
 
-  const checkCartRouteHandler = (_id, setCartButtonLoader) => {
+  const checkCartRouteHandler = (e, _id, setCartButtonLoader) => {
+    e.stopPropagation();
     return checkCartAction(_id) === "Add to Cart"
       ? callAddToCartHandler(_id, setCartButtonLoader)
       : navigate("/cart");
   };
 
-  const checkWishlistAction = (_id) => {
-    const item = wishlist.find((item) => item._id === _id);
-    return item ? "Remove" : "Add";
-  };
+  const checkWishlistAction = (_id) => wishlist.some((item) => item._id === _id);
 
   const callAddToWishlistHandler = (_id, setWishlistDisable) => {
     if (token) {
@@ -80,9 +78,10 @@ const ProductsListing = () => {
     }
   };
 
-  const checkWishlistActionHandler = (_id, setWishlistDisable) => {
-    return checkWishlistAction(_id) === "Remove"
-      ? removeFromWishlistHandler(_id, token, wishlistDispatch)
+  const checkWishlistActionHandler = (e, _id, setWishlistDisable) => {
+    e.stopPropagation();
+    return checkWishlistAction(_id)
+      ? removeFromWishlistHandler(_id, token, wishlistDispatch, setWishlistDisable)
       : callAddToWishlistHandler(_id, setWishlistDisable);
   };
 
@@ -129,10 +128,10 @@ const ProductsListing = () => {
                 />
               ))
             ) : (
-              <div className="empty-products">
-                <h1 className="empty-msg">No Products Available</h1>
-              </div>
-            )}
+                  <div className="empty-products">
+                    <h1 className="empty-msg">No Products Available</h1>
+                  </div>
+                )}
           </div>
         </section>
         {!mobileFilter && sortedData.length > 0 ? (
