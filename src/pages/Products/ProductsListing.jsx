@@ -54,7 +54,8 @@ const ProductsListing = () => {
     }
   };
 
-  const checkCartRouteHandler = (_id, setCartButtonLoader) => {
+  const checkCartRouteHandler = (e, _id, setCartButtonLoader) => {
+    e.stopPropagation();
     return checkCartAction(_id) === "Add to Cart"
       ? callAddToCartHandler(_id, setCartButtonLoader)
       : navigate("/cart");
@@ -80,9 +81,10 @@ const ProductsListing = () => {
     }
   };
 
-  const checkWishlistActionHandler = (_id, setWishlistDisable) => {
+  const checkWishlistActionHandler = (e, _id, setWishlistDisable) => {
+    e.stopPropagation();
     return checkWishlistAction(_id) === "Remove"
-      ? removeFromWishlistHandler(_id, token, wishlistDispatch)
+      ? removeFromWishlistHandler(_id, token, wishlistDispatch, setWishlistDisable)
       : callAddToWishlistHandler(_id, setWishlistDisable);
   };
 
@@ -129,10 +131,10 @@ const ProductsListing = () => {
                 />
               ))
             ) : (
-              <div className="empty-products">
-                <h1 className="empty-msg">No Products Available</h1>
-              </div>
-            )}
+                  <div className="empty-products">
+                    <h1 className="empty-msg">No Products Available</h1>
+                  </div>
+                )}
           </div>
         </section>
         {!mobileFilter && sortedData.length > 0 ? (
