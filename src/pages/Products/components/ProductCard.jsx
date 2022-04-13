@@ -29,7 +29,7 @@ const ProductCard = ({
         >
           <i
             className={`${
-              checkWishlistAction(_id) === "Remove" ? "fas" : "far"
+              checkWishlistAction(_id) ? "fas" : "far"
               } fa-heart`}
           ></i>
         </button>

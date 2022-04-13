@@ -40,7 +40,7 @@ const ProductsListing = () => {
   const { filterState } = useFilter();
 
   const checkCartAction = (_id) => {
-    const item = cart.find((item) => item._id === _id);
+    const item = cart.some((item) => item._id === _id);
     return item ? "Go to Cart" : "Add to Cart";
   };
 
@@ -61,10 +61,7 @@ const ProductsListing = () => {
       : navigate("/cart");
   };
 
-  const checkWishlistAction = (_id) => {
-    const item = wishlist.find((item) => item._id === _id);
-    return item ? "Remove" : "Add";
-  };
+  const checkWishlistAction = (_id) => wishlist.some((item) => item._id === _id);
 
   const callAddToWishlistHandler = (_id, setWishlistDisable) => {
     if (token) {
@@ -83,7 +80,7 @@ const ProductsListing = () => {
 
   const checkWishlistActionHandler = (e, _id, setWishlistDisable) => {
     e.stopPropagation();
-    return checkWishlistAction(_id) === "Remove"
+    return checkWishlistAction(_id)
       ? removeFromWishlistHandler(_id, token, wishlistDispatch, setWishlistDisable)
       : callAddToWishlistHandler(_id, setWishlistDisable);
   };

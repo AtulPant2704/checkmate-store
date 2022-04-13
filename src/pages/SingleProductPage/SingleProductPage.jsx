@@ -39,10 +39,7 @@ const SingleProductPage = () => {
             : navigate("/cart");
     };
 
-    const checkWishlistAction = (_id) => {
-        const item = wishlist.some((item) => item._id === _id);
-        return item ? "Remove" : "Add";
-    };
+    const checkWishlistAction = (_id) => wishlist.some((item) => item._id === _id);
 
     const callAddToWishlistHandler = (_id, setWishlistDisable) => {
         if (token) {
@@ -59,7 +56,7 @@ const SingleProductPage = () => {
     };
 
     const checkWishlistActionHandler = (_id, setWishlistDisable) => {
-        return checkWishlistAction(_id) === "Remove"
+        return checkWishlistAction(_id)
             ? removeFromWishlistHandler(_id, token, wishlistDispatch, setWishlistDisable)
             : callAddToWishlistHandler(_id, setWishlistDisable);
     };
@@ -122,7 +119,7 @@ const SingleProductPage = () => {
                                         className="btn btn-outline-primary action-btn wishlist-action-btn"
                                         disabled={wishlistDisable}
                                         onClick={() => checkWishlistActionHandler(product._id, setWishlistDisable)}>
-                                        {checkWishlistAction(product._id) === "Remove" ? "Added to Wishlist" : "Add to Wishlist"}
+                                        {checkWishlistAction(product._id) ? "Added to Wishlist" : "Add to Wishlist"}
                                     </button>
                                 </div>
                             </div>
