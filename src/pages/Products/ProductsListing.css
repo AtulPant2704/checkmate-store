@@ -74,6 +74,10 @@
   height: fit-content;
 }
 
+.product-card .img-container {
+  cursor: pointer;
+}
+
 .product-card .img-container .card-badge {
   background-color: var(--danger-color);
 }
