@@ -12,9 +12,11 @@ import {
   ProductsListing,
   Profile,
   Error404,
+  SingleProductPage
 } from "./pages/index";
 
 function App() {
+
   return (
     <div className="App">
       <ToastContainer
@@ -32,6 +34,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<ProductsListing />} />
+        <Route path="/products/:productId" element={<SingleProductPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route
