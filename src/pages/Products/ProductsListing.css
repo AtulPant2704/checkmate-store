@@ -107,6 +107,7 @@
 
 .product-card .rating-container i {
   font-size: 1rem;
+  color: var(--warning-color);
 }
 
 .price-rating-container {

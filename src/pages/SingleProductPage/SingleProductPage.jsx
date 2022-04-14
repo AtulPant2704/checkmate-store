@@ -80,7 +80,13 @@ const SingleProductPage = () => {
                                         {ratingArray.map((item) => (
                                             <i
                                                 key={item}
-                                                className={`${item <= Number(product.rating) ? "fas" : "far"} fa-star`}
+                                                className={`${
+                                                    item <= Number(product.rating)
+                                                        ? 'fas fa-star'
+                                                        : item === Math.ceil(Number(product.rating))
+                                                            ? 'fas fa-star-half-stroke'
+                                                            : 'far fa-star'
+                                                    }`}
                                             ></i>
                                         ))}
                                         <span className="gray-text">({product.reviewers} reviews)</span>
