@@ -2,14 +2,17 @@ import { useState } from "react";
 import { Navbar, Footer } from "../../components";
 import { UserDetails } from "./components/UserDetails/UserDetails"
 import { Address } from "./components/Address/Address";
+import { AddressModal } from "./components/Address/AddressModal";
 import { Orders } from "./components/Orders/Orders";
 import "./Profile.css";
 
 const Profile = () => {
   const [activeTab, setActiveTab] = useState("profile");
+  const [showAddressModal, setShowAddressModal] = useState(false);
 
   return (
     <>
+      {showAddressModal ? <AddressModal showAddressModal={showAddressModal} setShowAddressModal={setShowAddressModal} /> : null}
       <Navbar />
       <main>
         <h1 className="profile-page-title align-center">Account</h1>
@@ -31,7 +34,7 @@ const Profile = () => {
               My Orders
             </button>
           </div>
-          {activeTab === "profile" ? <UserDetails /> : activeTab === "address" ? <Address /> : <Orders />}
+          {activeTab === "profile" ? <UserDetails /> : activeTab === "address" ? <Address setShowAddressModal={setShowAddressModal} /> : <Orders />}
         </section>
       </main>
       <Footer />
