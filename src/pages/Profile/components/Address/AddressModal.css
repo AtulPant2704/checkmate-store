@@ -1,0 +1,100 @@
+.address-backdrop {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    z-index: 1;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.address-modal {
+    width: 50%;
+    position: fixed;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.address-form {
+    width: 80%;
+}
+
+.address-form .form-heading {
+    font-size: 1.5rem;
+    text-align: left;
+    margin: 0;
+}
+
+.address-form form {
+    margin: 1rem 0;
+}
+
+.address-form input {
+    width: 100%;
+    padding: 4px 8px;
+    margin: 0.5rem 0;
+}
+
+.form-action-btns {
+    display: inline-flex;
+    gap: 0.5rem;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.form-action-btns .action-btn {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.save-btn {
+    background-color: var(--secondary-color);
+    margin: 0;
+}
+
+.save-btn:hover {
+    background-color: var(--secondary-hover-color);
+}
+
+.form-action-btns .btn-outline-primary {
+    color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+    background-color: white;
+}
+
+.form-action-btns .btn-outline-primary:hover {
+    color: white;
+    background-color: var(--secondary-color);
+}
+
+@media screen and (max-width: 900px) {
+    .address-form {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 670px) {
+    .address-modal {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .address-modal {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .address-modal {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .address-modal {
+        width: 90%;
+    }
+}
