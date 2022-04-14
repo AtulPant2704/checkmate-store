@@ -13,7 +13,7 @@ export const products = [
     image: pieceImg,
     price: "5000",
     badge: "Out of Stock",
-    rating: "2",
+    rating: "2.5",
     reviewers: "20",
     categoryName: "pieces"
   },
@@ -33,7 +33,7 @@ export const products = [
     image: clockImg,
     price: "2000",
     badge: "In Stock",
-    rating: "1",
+    rating: "1.5",
     reviewers: "35",
     categoryName: "clock"
   },
@@ -73,7 +73,7 @@ export const products = [
     image: image3,
     price: "5100",
     badge: "Out of Stock",
-    rating: "3",
+    rating: "3.5",
     reviewers: "19",
     categoryName: "books"
   },
@@ -93,7 +93,7 @@ export const products = [
     image: image5,
     price: "3100",
     badge: "In Stock",
-    rating: "4",
+    rating: "4.5",
     reviewers: "59",
     categoryName: "pieces"
   },
@@ -123,7 +123,7 @@ export const products = [
     image: image9,
     price: "7000",
     badge: "Out of Stock",
-    rating: "2",
+    rating: "2.5",
     reviewers: "47",
     categoryName: "books"
   },
@@ -133,7 +133,7 @@ export const products = [
     image: image10,
     price: "5900",
     badge: "In Stock",
-    rating: "1",
+    rating: "1.5",
     reviewers: "51",
     categoryName: "books"
   },
