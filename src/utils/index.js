@@ -17,3 +17,5 @@ export { getWishlistItemsHandler } from "./wishlistHandlers/getWishlistItemsHand
 export { addToWishlistHandler } from "./wishlistHandlers/addToWishlistHandler";
 export { removeFromWishlistHandler } from "./wishlistHandlers/removeFromWishlistHandler";
 export { moveToCartHandler } from "./wishlistHandlers/moveToCartHandler";
+export { addNewAddressHandler } from "./addressHandlers/addNewAddressHandler";
+

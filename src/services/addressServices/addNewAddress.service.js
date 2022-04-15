@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const addAddressService = (address, token) => {
+const addNewAddressService = (address, token) => {
     return axios.post(
         "/api/user/address",
         { address },
@@ -8,4 +8,4 @@ const addAddressService = (address, token) => {
     );
 };
 
-export { addAddressService };
+export { addNewAddressService };

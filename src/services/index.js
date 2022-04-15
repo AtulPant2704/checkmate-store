@@ -11,7 +11,7 @@ export { getWishlistItemsService } from "./wishlistServices/getWishlistItems.ser
 export { addToWishlistService } from "./wishlistServices/addToWishlist.service";
 export { removeFromWishlistService } from "./wishlistServices/removeFromWishlist.service";
 export { getAddressService } from "./addressServices/getAddress.sevice";
-export { addAddressService } from "./addressServices/addAddress.service";
+export { addNewAddressService } from "./addressServices/addNewAddress.service";
 export { updateAddressService } from "./addressServices/updateAddress.service";
 export { removeAddressService } from "./addressServices/removeAddress.service";
 
