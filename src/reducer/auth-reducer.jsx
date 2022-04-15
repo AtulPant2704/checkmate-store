@@ -25,7 +25,6 @@ const authReducer = (state, action) => {
         ...state,
         user: action.payload.user,
         token: action.payload.token,
-        addresses: action.payload.addresses
       };
     case "GET_ADDRESS":
       return {
