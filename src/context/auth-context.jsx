@@ -15,7 +15,7 @@ const AuthProvider = ({ children }) => {
   if (!authState.token) {
     const token = localStorage.getItem("token");
     const user = JSON.parse(localStorage.getItem("user"));
-    authDispatch({ type: "CHECK_USER", payload: { user, token } });
+    token && user ? authDispatch({ type: "CHECK_USER", payload: { user, token } }) : null;
   }
 
   return (
