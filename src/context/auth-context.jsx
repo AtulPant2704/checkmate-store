@@ -1,6 +1,5 @@
 import { createContext, useContext, useReducer, useEffect } from "react";
 import { authReducer } from "../reducer/auth-reducer";
-import { getAddressService } from "../services";
 
 const initialState = {
   user: "",
@@ -11,16 +10,13 @@ const initialState = {
 const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
-  const [authState, authDispatch] = useReducer(authReducer, initialState);
+  const [authState, authDispatch] = useReducer(authReducer, initialState)
 
-  const checkUser = async () => {
+  if (!authState.token) {
     const token = localStorage.getItem("token");
     const user = JSON.parse(localStorage.getItem("user"));
-    const response = token ? await getAddressService(token) : [];
-    authDispatch({ type: "CHECK_USER", payload: { user, token, addresses: response?.data?.address || [] } });
-  };
-
-  useEffect(() => checkUser(), []);
+    authDispatch({ type: "CHECK_USER", payload: { user, token } });
+  }
 
   return (
     <AuthContext.Provider value={{ authState, authDispatch }}>
