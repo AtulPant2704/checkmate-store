@@ -33,20 +33,29 @@ const AddressModal = ({ editAddress, setEditAddress, showAddressModal, setShowAd
         setAddress({ ...address, [name]: value });
     };
 
+    const checkInputs = () => {
+        address.name && address.street && address.city && address.state && address.country && address.zipCode && address.mobile;
+    }
+
     const callAddNewAddressHandler = () => {
-        if (token) {
-            if (editAddress) {
-                updateAddressHandler(address, token, authDispatch);
-                setEditAddress(null);
+        if (checkInputs()) {
+            if (token) {
+                if (editAddress) {
+                    updateAddressHandler(address, token, authDispatch);
+                    setEditAddress(null);
+                }
+                else {
+                    addNewAddressHandler(address, authDispatch, token);
+                }
+                setShowAddressModal(false);
             }
             else {
-                addNewAddressHandler(address, authDispatch, token);
+                navigate("/login");
+                toast.warning("You're not logged in");
             }
-            setShowAddressModal(false);
         }
         else {
-            navigate("/login");
-            toast.warning("You're not logged in");
+            toast.warning("All the fields need to be entered")
         }
     }
 
