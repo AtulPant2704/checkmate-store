@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth } from "../../../../context";
-import { addNewAddressHandler } from "../../../../utils";
+import { addNewAddressHandler, updateAddressHandler } from "../../../../utils";
 import "./AddressModal.css";
 
-const AddressModal = ({ showAddressModal, setShowAddressModal }) => {
+const AddressModal = ({ editAddress, setEditAddress, showAddressModal, setShowAddressModal }) => {
     const navigate = useNavigate();
     const [address, setAddress] = useState({
         name: "",
@@ -35,7 +35,13 @@ const AddressModal = ({ showAddressModal, setShowAddressModal }) => {
 
     const callAddNewAddressHandler = () => {
         if (token) {
-            addNewAddressHandler(address, authDispatch, token);
+            if (editAddress) {
+                updateAddressHandler(address, token, authDispatch);
+                setEditAddress("");
+            }
+            else {
+                addNewAddressHandler(address, authDispatch, token);
+            }
             setShowAddressModal(false);
         }
         else {
@@ -43,6 +49,14 @@ const AddressModal = ({ showAddressModal, setShowAddressModal }) => {
             toast.warning("You're not logged in");
         }
     }
+
+    const checkEditAddress = () => {
+        if (editAddress) {
+            setAddress(editAddress);
+        }
+    }
+
+    useEffect(() => checkEditAddress(), []);
 
     return (
         <>

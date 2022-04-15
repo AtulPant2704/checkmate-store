@@ -27,11 +27,26 @@ const authReducer = (state, action) => {
         token: action.payload.token,
         addresses: action.payload.addresses
       };
+    case "GET_ADDRESS":
+      return {
+        ...state,
+        addresses: action.payload
+      };
     case "ADD_NEW_ADDRESS":
       return {
         ...state,
         addresses: action.payload
       };
+    case "REMOVE_ADDRESS":
+      return {
+        ...state,
+        addresses: action.payload
+      }
+    case "UPDATE_ADDRESS":
+      return {
+        ...state,
+        addresses: action.payload
+      }
     default:
       return state;
   }

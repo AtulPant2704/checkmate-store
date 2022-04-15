@@ -9,10 +9,11 @@ import "./Profile.css";
 const Profile = () => {
   const [activeTab, setActiveTab] = useState("profile");
   const [showAddressModal, setShowAddressModal] = useState(false);
+  const [editAddress, setEditAddress] = useState("");
 
   return (
     <>
-      {showAddressModal ? <AddressModal showAddressModal={showAddressModal} setShowAddressModal={setShowAddressModal} /> : null}
+      {showAddressModal ? <AddressModal editAddress={editAddress} setEditAddress={setEditAddress} showAddressModal={showAddressModal} setShowAddressModal={setShowAddressModal} /> : null}
       <Navbar />
       <main>
         <h1 className="profile-page-title align-center">Account</h1>
@@ -34,7 +35,7 @@ const Profile = () => {
               My Orders
             </button>
           </div>
-          {activeTab === "profile" ? <UserDetails /> : activeTab === "address" ? <Address setShowAddressModal={setShowAddressModal} /> : <Orders />}
+          {activeTab === "profile" ? <UserDetails /> : activeTab === "address" ? <Address setEditAddress={setEditAddress} setShowAddressModal={setShowAddressModal} /> : <Orders />}
         </section>
       </main>
       <Footer />
