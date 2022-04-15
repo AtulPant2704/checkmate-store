@@ -9,7 +9,7 @@ import "./Profile.css";
 const Profile = () => {
   const [activeTab, setActiveTab] = useState("profile");
   const [showAddressModal, setShowAddressModal] = useState(false);
-  const [editAddress, setEditAddress] = useState("");
+  const [editAddress, setEditAddress] = useState(null);
 
   return (
     <>

@@ -37,7 +37,7 @@ const AddressModal = ({ editAddress, setEditAddress, showAddressModal, setShowAd
         if (token) {
             if (editAddress) {
                 updateAddressHandler(address, token, authDispatch);
-                setEditAddress("");
+                setEditAddress(null);
             }
             else {
                 addNewAddressHandler(address, authDispatch, token);

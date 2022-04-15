@@ -11,6 +11,11 @@ const Address = ({ setShowAddressModal, setEditAddress }) => {
         setShowAddressModal(true);
     }
 
+    const addNewAddress = () => {
+        setEditAddress(null);
+        setShowAddressModal(true);
+    }
+
     useEffect(() => getAddressesHandler(token, authDispatch), []);
 
     return (
@@ -40,7 +45,7 @@ const Address = ({ setShowAddressModal, setEditAddress }) => {
                     ))}
                     <button
                         className="btn btn-text-primary new-address-btn"
-                        onClick={() => setShowAddressModal(true)}>
+                        onClick={addNewAddress}>
                         <i class="fa-solid fa-plus"></i> Add New Address
                 </button>
                 </div>
