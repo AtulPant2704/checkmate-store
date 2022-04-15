@@ -49,6 +49,7 @@ const Login = () => {
             payload: {
               user: response.data.foundUser,
               token: response.data.encodedToken,
+              addresses: response.data.foundUser.address
             },
           });
           navigate(location?.state?.from?.pathname || -1, { replace: true });
