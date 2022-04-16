@@ -34,11 +34,12 @@ const AddressModal = ({ editAddress, setEditAddress, showAddressModal, setShowAd
     };
 
     const checkInputs = () => {
-        address.name && address.street && address.city && address.state && address.country && address.zipCode && address.mobile;
+        return address.name && address.street && address.city && address.state && address.country && address.zipCode && address.mobile;
     }
 
     const callAddNewAddressHandler = () => {
         if (checkInputs()) {
+            console.log("here");
             if (token) {
                 if (editAddress) {
                     updateAddressHandler(address, token, authDispatch);
