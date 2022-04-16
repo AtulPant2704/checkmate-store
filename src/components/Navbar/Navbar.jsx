@@ -131,7 +131,7 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
             </li>
             <li onClick={() => routeHandler("/cart")}>Cart</li>
             <li onClick={() => routeHandler("/wishlist")}>Wishlist</li>
-            <li onClick={() => routeHandler("/profile")}>Profile</li>
+            <li onClick={() => userHandler(checkStatus(user))}>{token ? "Profile" : "Login"}</li>
           </ul>
         </div>
       </div>
