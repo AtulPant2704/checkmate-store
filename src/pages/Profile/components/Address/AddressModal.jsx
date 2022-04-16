@@ -117,7 +117,7 @@ const AddressModal = ({ editAddress, setEditAddress, showAddressModal, setShowAd
                                     required
                                 />
                                 <input
-                                    type="text"
+                                    type="number"
                                     name="zipCode"
                                     value={address.zipCode}
                                     onChange={changeHandler}
