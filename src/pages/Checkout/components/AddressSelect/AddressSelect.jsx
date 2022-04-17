@@ -1,18 +1,12 @@
-import { useEffect } from "react";
-import { useAuth } from "../../../../context";
-import { getAddressesHandler } from "../../../../utils";
 import "./AddressSelect.css";
 
-const AddressSelect = () => {
-    const { authState: { token, addresses }, authDispatch } = useAuth();
-
-    useEffect(() => getAddressesHandler(token, authDispatch), []);
+const AddressSelect = ({ addresses, setSelectedAddres }) => {
 
     return (
         <section className="address-section">
             {addresses.map(item => (
                 <div className="address" key={item._id}>
-                    <input type="radio" name="address" id={item._id}></input>
+                    <input type="radio" name="address" id={item._id} onChange={() => setSelectedAddres(item)}></input>
                     <label htmlFor={item._id}>
                         <h3>{item.name}</h3>
                         <p>{item.street} {item.city}, {item.state}, {item.country}, {item.zipCode}</p>
