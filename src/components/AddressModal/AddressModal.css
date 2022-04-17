@@ -50,7 +50,7 @@
     font-size: 1rem;
 }
 
-.save-btn {
+.form-action-btns .save-btn {
     background-color: var(--secondary-color);
     margin: 0;
 }

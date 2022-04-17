@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { Navbar, Footer } from "../../components";
+import { Navbar, Footer, AddressModal } from "../../components";
 import { UserDetails } from "./components/UserDetails/UserDetails"
 import { Address } from "./components/Address/Address";
-import { AddressModal } from "./components/Address/AddressModal";
 import { Orders } from "./components/Orders/Orders";
 import "./Profile.css";
 
