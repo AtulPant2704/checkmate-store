@@ -1,0 +1,13 @@
+.page-title {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 1.8rem;
+}
+
+.bill-address-container {
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-start;
+    gap: 5rem;
+  }
