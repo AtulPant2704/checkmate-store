@@ -60,7 +60,7 @@ const CartBill = ({ selectedAddress, itemsPrice, totalPrice }) => {
                     cart.map((item) =>
                         removeFromCartHandler(item._id, token, cartDispatch, "empty")
                     );
-                    navigate("/profile");
+                    navigate("/profile/orders");
                     toast.success("Order Placed Successfully");
                 },
             };

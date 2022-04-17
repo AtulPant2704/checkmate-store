@@ -12,7 +12,9 @@ import {
   ProductsListing,
   Profile,
   Error404,
-  SingleProductPage
+  SingleProductPage,
+  Orders,
+  Address
 } from "./pages/index";
 
 function App() {
@@ -60,7 +62,10 @@ function App() {
               <Profile />
             </RequiresAuth>
           }
-        />
+        >
+          <Route path="orders" element={<Orders />} />
+          <Route path="address" element={<Address />} />
+        </Route>
         <Route path="*" element={<Error404 />} />
       </Routes>
     </div>
