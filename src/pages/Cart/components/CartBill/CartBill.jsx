@@ -1,8 +1,73 @@
-import { useCart } from "../../../../context";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useAuth, useCart } from "../../../../context";
+import { removeFromCartHandler } from "../../../../utils";
+import { brandName } from "../../../../assets";
 import "./CartBill.css";
 
 const CartBill = ({ selectedAddress, itemsPrice, totalPrice }) => {
-    const { cartState: { cart } } = useCart();
+    const navigate = useNavigate();
+    const {
+        cartState: { cart },
+        cartDispatch,
+    } = useCart();
+    const {
+        authState: { user, token },
+    } = useAuth();
+
+    const checkAddress = () => selectedAddress ? proceedToPay() : toast.warning("Please Select the Address");
+
+    const proceedToPay = async () => {
+        const response = await loadSdk();
+        if (response) {
+            const options = {
+                key: "rzp_test_5XcBERcG2QQhg2",
+                key_id: "rzp_test_5XcBERcG2QQhg2",
+                key_secret: "NoFPHQhwxAcw4fOuZSzC6ucl",
+                amount: totalPrice * 100,
+                currency: "INR",
+                name: "CheckMate Store",
+                description: "Thank you for shopping with us",
+                image: brandName,
+                callback_url: "https://eneqd3r9zrjok.x.pipedream.net/",
+                prefill: {
+                    name: user.firstName,
+                    email: user.email,
+                    contact: "9999999999",
+                },
+                notes: { address: "Razorpay Corporate Office" },
+                theme: { color: "#202528" },
+                handler: function (response) {
+                    cart.map((item) =>
+                        removeFromCartHandler(item._id, token, cartDispatch, "empty")
+                    );
+                    navigate("/products");
+                    toast.success("Order Placed Successfully");
+                },
+            };
+            const rzp1 = new window.Razorpay(options);
+            rzp1.open();
+            rzp1.on("payment.failed", function (response) {
+                toast.error("Something went wrong", response.error.code);
+            });
+        } else {
+            toast.error("Something went wrong");
+        }
+    };
+
+    const loadSdk = async () => {
+        return new Promise((resolve) => {
+            const script = document.createElement("script");
+            script.src = "https://checkout.razorpay.com/v1/checkout.js";
+            script.onload = () => {
+                resolve(true);
+            };
+            script.onerror = () => {
+                resolve(false);
+            };
+            document.body.appendChild(script);
+        });
+    };
 
     return (
         <section className="cart-bill-container checkout-bill">
@@ -32,7 +97,7 @@ const CartBill = ({ selectedAddress, itemsPrice, totalPrice }) => {
                         </div>
                         <div className="items-price">
                             <p className="item-type">Total Discount</p>
-                            <p className="item-type-price">₹ {totalPrice - itemsPrice}</p>
+                            <p className="item-type-price">₹ {itemsPrice - totalPrice}</p>
                         </div>
                         <div className="items-price">
                             <p className="item-type">Delivery</p>
@@ -54,7 +119,7 @@ const CartBill = ({ selectedAddress, itemsPrice, totalPrice }) => {
                         </div>
                     </div>
                     : null}
-                <button className="order-btn ecommerce-btn">PROCEED TO PAY</button>
+                <button className="order-btn ecommerce-btn" onClick={checkAddress}>PROCEED TO PAY</button>
             </div>
         </section>
     )
