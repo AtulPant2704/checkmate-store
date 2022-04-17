@@ -1,5 +1,5 @@
 .checkout-bill {
-    margin: 0;
+    margin: 0 auto;
 }
 
 .checkout-bill .bill-card {
@@ -17,4 +17,8 @@
     font-size: 1.1rem;
     border-top: 1px solid var(--secondary-color);
     border-bottom: 1px solid var(--secondary-color);
+}
+
+.checkout-bill .address-title {
+    margin-top: 0.5rem;
 }
