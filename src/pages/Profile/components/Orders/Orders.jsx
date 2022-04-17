@@ -1,9 +1,11 @@
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../../context";
 import { getOrdersHandler } from "../../../../utils";
 import "./Orders.css"
 
 const Orders = () => {
+    const navigate = useNavigate();
     const { authState: { token, orders }, authDispatch } = useAuth();
 
     useEffect(() => getOrdersHandler(token, authDispatch), []);
@@ -19,7 +21,7 @@ const Orders = () => {
                             <p className="order-id">Order Id:- #{order._id}</p>
                             {order.orderedProducts.map(product => (
                                 <div className="order-card" key={product._id}>
-                                    <div className="img-container">
+                                    <div className="img-container" onClick={() => navigate(`/products/${product._id}`)}>
                                         <img src={product.image} alt={product.title} className="img-responsive" />
                                     </div>
                                     <div className="card-details">

@@ -30,6 +30,7 @@
     height: 50px;
     margin: 10px 0;
     object-fit: contain;
+    cursor: pointer;
 }
 
 .order-container .img-container img{
