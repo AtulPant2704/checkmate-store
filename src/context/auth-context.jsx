@@ -4,7 +4,8 @@ import { authReducer } from "../reducer/auth-reducer";
 const initialState = {
   user: "",
   token: "",
-  addresses: []
+  addresses: [],
+  orders: []
 };
 
 const AuthContext = createContext(null);

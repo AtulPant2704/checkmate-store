@@ -18,7 +18,8 @@ const authReducer = (state, action) => {
         ...state,
         token: null,
         user: null,
-        addresses: []
+        addresses: [],
+        orders: []
       };
     case "CHECK_USER":
       return {
@@ -45,6 +46,16 @@ const authReducer = (state, action) => {
       return {
         ...state,
         addresses: action.payload
+      }
+    case "ADD_NEW_ORDER":
+      return {
+        ...state,
+        orders: action.payload
+      }
+    case "GET_ORDERS":
+      return {
+        ...state,
+        orders: action.payload
       }
     default:
       return state;
