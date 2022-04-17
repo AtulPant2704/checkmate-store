@@ -1,6 +1,6 @@
 import "./AddressSelect.css";
 
-const AddressSelect = ({ addresses, setSelectedAddres }) => {
+const AddressSelect = ({ addresses, setSelectedAddres, setShowAddressModal }) => {
 
     return (
         <section className="address-section">
@@ -14,7 +14,11 @@ const AddressSelect = ({ addresses, setSelectedAddres }) => {
                     </label>
                 </div>
             ))}
-            <button className="btn btn-text-primary new-address-btn"><i className="fa-solid fa-plus"></i> Add New Address</button>
+            <button
+                className="btn btn-text-primary new-address-btn"
+                onClick={() => setShowAddressModal(true)}>
+                <i className="fa-solid fa-plus"></i> Add New Address
+            </button>
         </section>
     )
 };

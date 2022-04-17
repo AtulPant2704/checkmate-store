@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { useCart, useAuth, useWishlist } from "../../context";
 import {
   getCartItemsHandler,
@@ -22,7 +22,8 @@ const Cart = () => {
   const [couponModalOpen, setCouponModalOpen] = useState(false);
   const [couponType, setCouponType] = useState("");
   const [checkout, setCheckout] = useState(false);
-  const [selectedAddress, setSelectedAddres] = useState(null)
+  const [selectedAddress, setSelectedAddres] = useState(null);
+  const [showAddressModal, setShowAddressModal] = useState(false);
   const {
     cartState: { cart },
     cartDispatch,
@@ -84,6 +85,7 @@ const Cart = () => {
           setCouponType={setCouponType}
         />
       ) : null}
+      {showAddressModal ? <AddressModal showAddressModal={showAddressModal} setShowAddressModal={setShowAddressModal} /> : null}
       <Navbar />
       {!checkout ?
         <main className="empty-cart">
@@ -140,8 +142,16 @@ const Cart = () => {
         <main>
           <h1 className="page-title">Checkout</h1>
           <section className="bill-address-container">
-            <AddressSelect addresses={addresses} setSelectedAddres={setSelectedAddres} />
-            <CartBill selectedAddress={selectedAddress} itemsPrice={itemsPrice} totalPrice={totalPrice} />
+            <AddressSelect
+              addresses={addresses}
+              setSelectedAddres={setSelectedAddres}
+              setShowAddressModal={setShowAddressModal}
+            />
+            <CartBill
+              selectedAddress={selectedAddress}
+              itemsPrice={itemsPrice}
+              totalPrice={totalPrice}
+            />
           </section>
         </main>}
       <Footer />

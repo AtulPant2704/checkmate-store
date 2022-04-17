@@ -55,7 +55,7 @@
     margin: 0;
 }
 
-.save-btn:hover {
+.form-action-btns .save-btn:hover {
     background-color: var(--secondary-hover-color);
 }
 

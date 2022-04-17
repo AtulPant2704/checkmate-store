@@ -73,8 +73,8 @@ const AddressModal = ({ editAddress, setEditAddress, showAddressModal, setShowAd
                 <section>
                     <div className="address-backdrop" onClick={() => setShowAddressModal(false)}></div>
                     <div className="address-modal">
-                        <div class="form-wrapper address-form">
-                            <h2 class="form-heading">Add New Address</h2>
+                        <div className="form-wrapper address-form">
+                            <h2 className="form-heading">Add New Address</h2>
                             <form>
                                 <input
                                     type="text"
