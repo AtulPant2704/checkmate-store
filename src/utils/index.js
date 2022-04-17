@@ -21,5 +21,7 @@ export { getAddressesHandler } from "./addressHandlers/getAddressesHandler";
 export { addNewAddressHandler } from "./addressHandlers/addNewAddressHandler";
 export { removeAddressHandler } from "./addressHandlers/removeAddressHandler";
 export { updateAddressHandler } from "./addressHandlers/updateAddressHandler";
+export { getOrdersHandler } from "./orderHandlers/getOrdersHandler";
+export { addNewOrderHandler } from "./orderHandlers/addNewOrderHandler"
 
 
