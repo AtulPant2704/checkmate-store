@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth, useCart } from "../../../../context";
-import { removeFromCartHandler } from "../../../../utils";
+import { removeFromCartHandler, addNewOrderHandler } from "../../../../utils";
 import { brandName } from "../../../../assets";
 import "./CartBill.css";
 
@@ -13,9 +13,26 @@ const CartBill = ({ selectedAddress, itemsPrice, totalPrice }) => {
     } = useCart();
     const {
         authState: { user, token },
+        authDispatch
     } = useAuth();
 
     const checkAddress = () => selectedAddress ? proceedToPay() : toast.warning("Please Select the Address");
+
+    const getOrderObj = () => {
+        const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const today = new Date();
+        const newDate = weekday[today.getDay()] + " " + month[(today.getMonth())] + " " + String(today.getDate()) + " " + String(today.getFullYear());
+        const order = {
+            orderedProducts: cart,
+            totalPrice: totalPrice,
+            itemsPrice: itemsPrice,
+            discountedPrice: itemsPrice - totalPrice,
+            deliveryAddress: selectedAddress,
+            date: newDate
+        }
+        return order;
+    }
 
     const proceedToPay = async () => {
         const response = await loadSdk();
@@ -38,6 +55,8 @@ const CartBill = ({ selectedAddress, itemsPrice, totalPrice }) => {
                 notes: { address: "Razorpay Corporate Office" },
                 theme: { color: "#202528" },
                 handler: function (response) {
+                    const order = getOrderObj();
+                    addNewOrderHandler(order, authDispatch, token);
                     cart.map((item) =>
                         removeFromCartHandler(item._id, token, cartDispatch, "empty")
                     );
