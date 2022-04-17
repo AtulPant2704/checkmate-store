@@ -33,6 +33,12 @@
     color: white;
 }
 
+@media screen and (max-width: 1020px){
+    .profile-page {
+        width: 50%;
+    }
+}
+
 
 @media screen and (max-width: 920px){
     .profile-page {

@@ -8,18 +8,17 @@ const Orders = () => {
 
     useEffect(() => getOrdersHandler(token, authDispatch), []);
 
-    console.log(orders);
     return (
         <>
             {
                 orders.length > 0 ? orders.map(order => (
                     <section className="cart-bill-container order-container" key={order._id}>
                         <div className="bill-card">
-                            <h2 className="card-title">Order Confirmed</h2>
-                            <p className="order-date">{order.date}</p>
+                            <h2 className="card-title order-card-title">Order Confirmed</h2>
+                            <p className="order-date gray-text">{order.date}</p>
                             <p className="order-id">Order Id:- #{order._id}</p>
                             {order.orderedProducts.map(product => (
-                                <div className="cart-card" key={product._id}>
+                                <div className="order-card" key={product._id}>
                                     <div className="img-container">
                                         <img src={product.image} alt={product.title} className="img-responsive" />
                                     </div>
@@ -32,14 +31,14 @@ const Orders = () => {
                             ))}
                             <div className="items-container delivery-address">
                                 <div className="items">
-                                    <h3 className="align-left">Delivery Address</h3>
+                                    <h3 className="align-left">Delivery Address:</h3>
                                     <h3 className="address-title">{order.deliveryAddress.name}</h3>
                                     <p>{order.deliveryAddress.street}, {order.deliveryAddress.city}, {order.deliveryAddress.state}, {order.deliveryAddress.country}, {order.deliveryAddress.zipCode}</p>
                                     <p>Mobile: {order.deliveryAddress.mobile}</p>
                                 </div>
                             </div>
-                            <div className="items-container">
-                                <h3 className="align-left">Price Details</h3>
+                            <div className="items-container bill-container">
+                                <h3 className="align-left">Price Details:</h3>
                                 <div className="items-price">
                                     <p className="item-type">Total MRP</p>
                                     <p className="item-type-price">₹ {order.itemsPrice}</p>
