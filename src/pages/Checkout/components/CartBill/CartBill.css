@@ -1,0 +1,20 @@
+.checkout-bill {
+    margin: 0;
+}
+
+.checkout-bill .bill-card {
+    margin: 0.5rem auto;
+}
+
+.checkout-bill .card-title {
+    font-size: 1.3rem;
+    font-weight: 800;
+    border-bottom: none;
+}
+
+.checkout-bill .card-div-title{
+    font-weight: 600;
+    font-size: 1.1rem;
+    border-top: 1px solid var(--secondary-color);
+    border-bottom: 1px solid var(--secondary-color);
+}
