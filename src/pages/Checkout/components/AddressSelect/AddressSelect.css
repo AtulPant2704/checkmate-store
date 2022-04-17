@@ -1,0 +1,12 @@
+.address-section .address {
+    border: 1px solid var(--secondary-color);
+    padding: 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.address input {
+    top: 5px;
+}
+

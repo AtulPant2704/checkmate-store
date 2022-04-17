@@ -46,7 +46,7 @@ const Address = ({ setShowAddressModal, setEditAddress }) => {
                     <button
                         className="btn btn-text-primary new-address-btn"
                         onClick={addNewAddress}>
-                        <i class="fa-solid fa-plus"></i> Add New Address
+                        <i className="fa-solid fa-plus"></i> Add New Address
                 </button>
                 </div>
                 : null}
