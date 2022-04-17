@@ -14,5 +14,7 @@ export { getAddressService } from "./addressServices/getAddress.sevice";
 export { addNewAddressService } from "./addressServices/addNewAddress.service";
 export { updateAddressService } from "./addressServices/updateAddress.service";
 export { removeAddressService } from "./addressServices/removeAddress.service";
+export { getOrdersService } from "./orderServices/getOrders.service";
+export { addNewOrderService } from "./orderServices/addNewOrder.service";
 
 
