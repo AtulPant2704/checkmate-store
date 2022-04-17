@@ -12,6 +12,7 @@ const CartSummary = ({
   cartDelivery,
   cartAmount,
   setCouponModalOpen,
+  setCheckout
 }) => {
   const navigate = useNavigate();
   const {
@@ -102,7 +103,7 @@ const CartSummary = ({
         <p className="item-type-price total-price-value">₹ {cartAmount}</p>
       </div>
       <p className="cart-savings">You saved ₹ {itemPrice - cartAmount}</p>
-      <button className="order-btn ecommerce-btn" onClick={placeOrder}>
+      <button className="order-btn ecommerce-btn" onClick={() => setCheckout(true)}>
         PLACE ORDER
       </button>
     </div>

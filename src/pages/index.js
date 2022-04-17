@@ -7,4 +7,3 @@ export { Wishlist } from "./Wishlist/Wishlist";
 export { Profile } from "./Profile/Profile";
 export { Error404 } from "./Error404/Error404";
 export { SingleProductPage } from "./SingleProductPage/SingleProductPage"
-export { Checkout } from "./Checkout/Checkout";

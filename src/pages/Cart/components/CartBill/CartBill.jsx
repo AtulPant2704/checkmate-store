@@ -1,7 +1,8 @@
+import { useCart } from "../../../../context";
 import "./CartBill.css";
 
-const CartBill = ({ selectedAddress }) => {
-    console.log(selectedAddress);
+const CartBill = ({ selectedAddress, itemsPrice, totalPrice }) => {
+    const { cartState: { cart } } = useCart();
 
     return (
         <section className="cart-bill-container checkout-bill">
@@ -14,20 +15,24 @@ const CartBill = ({ selectedAddress }) => {
                             <p className="item-type">Item</p>
                             <p className="item-type-price">Price</p>
                         </div>
-                        <div className="items-price">
-                            <p className="item-type">Apple (2 item)</p>
-                            <p className="item-type-price">₹ 5000</p>
-                        </div>
-                        <div className="items-price">
-                            <p className="item-type">Mango (2 item)</p>
-                            <p className="item-type-price">₹ 5000</p>
-                        </div>
+                        {cart.map(item => (
+                            <div className="items-price" key={item._id}>
+                                <p className="item-type">{item.title}
+                                    <span>({item.qty} x ₹ {item.price})</span>
+                                </p>
+                                <p className="item-type-price">₹ {item.qty * item.price}</p>
+                            </div>
+                        ))}
                     </div>
                     <div className="items">
                         <h3 className="align-center card-div-title">Billing</h3>
                         <div className="items-price">
-                            <p className="item-type">Discount</p>
-                            <p className="item-type-price">₹ 500</p>
+                            <p className="item-type">Total MRP</p>
+                            <p className="item-type-price">₹ {itemsPrice}</p>
+                        </div>
+                        <div className="items-price">
+                            <p className="item-type">Total Discount</p>
+                            <p className="item-type-price">₹ {totalPrice - itemsPrice}</p>
                         </div>
                         <div className="items-price">
                             <p className="item-type">Delivery</p>
@@ -37,7 +42,7 @@ const CartBill = ({ selectedAddress }) => {
                 </div>
                 <div className="items-price total-price-container">
                     <p className="item-type total-price">Total Amount</p>
-                    <p className="item-type-price total-price-value">₹ 4500</p>
+                    <p className="item-type-price total-price-value">₹ {totalPrice}</p>
                 </div>
                 {selectedAddress ?
                     <div className="items-container">
@@ -49,7 +54,7 @@ const CartBill = ({ selectedAddress }) => {
                         </div>
                     </div>
                     : null}
-                <button className="order-btn ecommerce-btn">PLACE ORDER</button>
+                <button className="order-btn ecommerce-btn">PROCEED TO PAY</button>
             </div>
         </section>
     )

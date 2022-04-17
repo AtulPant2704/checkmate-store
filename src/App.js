@@ -12,8 +12,7 @@ import {
   ProductsListing,
   Profile,
   Error404,
-  SingleProductPage,
-  Checkout
+  SingleProductPage
 } from "./pages/index";
 
 function App() {
@@ -59,14 +58,6 @@ function App() {
           element={
             <RequiresAuth>
               <Profile />
-            </RequiresAuth>
-          }
-        />
-        <Route
-          path="/checkout"
-          element={
-            <RequiresAuth>
-              <Checkout />
             </RequiresAuth>
           }
         />
