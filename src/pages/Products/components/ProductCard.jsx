@@ -31,6 +31,7 @@ const ProductCard = ({
             className={`${
               checkWishlistAction(_id) ? "fas" : "far"
               } fa-heart`}
+            onClick={wishlistDisable ? (e) => e.stopPropagation() : null}
           ></i>
         </button>
         {badge === "Out of Stock" ? (
