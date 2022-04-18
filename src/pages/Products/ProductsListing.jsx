@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { Filters } from "./components/Filters";
-import { ProductCard } from "./components/ProductCard";
 import { useFilter, useCart, useWishlist, useAuth } from "../../context";
 import {
   getProductsHandler,
@@ -17,13 +15,18 @@ import {
   searchHandler,
 } from "../../utils";
 import { Navbar, Footer, Loader } from "../../components";
+import { Filters } from "./components/Filters";
+import { ProductCard } from "./components/ProductCard";
+import { Pagination } from "./components/Pagination";
 import "./ProductsListing.css";
 import "./loaders.css";
 
 const ProductsListing = () => {
   const navigate = useNavigate();
-  const [products, setProducts] = useState([]);
   const [productsLoader, setProductsLoader] = useState(false);
+  const [products, setProducts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage, setProductsPerPage] = useState(5);
   const [mobileFilter, setMobileFilter] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const {
@@ -101,6 +104,10 @@ const ProductsListing = () => {
   const sortedData = sortData(priceFilteredData, filterState);
   const searchedData = searchHandler(sortedData, searchQuery);
 
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = searchedData.slice(indexOfFirstProduct, indexOfLastProduct);
+
   return (
     <>
       <Navbar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
@@ -116,18 +123,26 @@ const ProductsListing = () => {
           <div className="product-container">
             {productsLoader ? (
               <Loader />
-            ) : searchedData.length > 0 ? (
-              searchedData.map((product) => (
-                <ProductCard
-                  key={product._id}
-                  {...product}
-                  checkCartAction={checkCartAction}
-                  checkCartRouteHandler={checkCartRouteHandler}
-                  checkWishlistAction={checkWishlistAction}
-                  checkWishlistActionHandler={checkWishlistActionHandler}
-                />
-              ))
-            ) : (
+            ) : searchedData.length > 0 ?
+                <>
+                  {currentProducts.map((product) => (
+                    <ProductCard
+                      key={product._id}
+                      {...product}
+                      checkCartAction={checkCartAction}
+                      checkCartRouteHandler={checkCartRouteHandler}
+                      checkWishlistAction={checkWishlistAction}
+                      checkWishlistActionHandler={checkWishlistActionHandler}
+                    />
+                  ))}
+                  <Pagination
+                    products={searchedData}
+                    productsPerPage={productsPerPage}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                    currentProducts={currentProducts}
+                  />
+                </> : (
                   <div className="empty-products">
                     <h1 className="empty-msg">No Products Available</h1>
                   </div>
