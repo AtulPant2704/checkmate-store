@@ -100,7 +100,7 @@ const Login = () => {
               />
             </div>
             <div className="user-history">
-              <input type="checkbox" id="user-save" checked={saveUser} onChange={(e) => e.target.checked ? setSaveUser(true) : null} />
+              <input type="checkbox" id="user-save" checked={saveUser} onChange={(e) => e.target.checked ? setSaveUser(true) : setSaveUser(false)} />
               <label htmlFor="user-save">Remember me</label>
             </div>
             <button

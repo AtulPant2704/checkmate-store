@@ -142,7 +142,7 @@ const SignUp = () => {
               />
             </div>
             <div className="user-history">
-              <input type="checkbox" id="user-request" checked={saveUser} onChange={(e) => e.target.checked ? setSaveUser(true) : null} />
+              <input type="checkbox" id="user-request" checked={saveUser} onChange={(e) => e.target.checked ? setSaveUser(true) : setSaveUser(false)} />
               <label htmlFor="user-request">
                 I accept all Terms & Conditions
               </label>
