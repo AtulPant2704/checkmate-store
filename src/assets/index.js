@@ -14,6 +14,16 @@ import image9 from "./multiple-choice-chess-2.webp";
 import image10 from "./offbeat-spanish-english.webp";
 import image11 from "./rules-of-winning-chess.webp";
 import image12 from "./travel-chess-board.webp";
+import image13 from "./apaches-series.webp";
+import image14 from "./berlin-green.webp";
+import image15 from "./berliner-series.webp";
+import image16 from "./chess-brilliancy.webp";
+import image17 from "./easy-guide-to-chess.webp";
+import image18 from "./excabiular-series.webp";
+import image19 from "./marshall-attack.webp";
+import image20 from "./midnight-series.webp";
+import image21 from "./ponziani-taylor.webp";
+import image22 from "./torre-attack.webp";
 import image404 from "./404-error.webp";
 
 export {
@@ -33,5 +43,15 @@ export {
   image10,
   image11,
   image12,
+  image13,
+  image14,
+  image15,
+  image16,
+  image17,
+  image18,
+  image19,
+  image20,
+  image21,
+  image22,
   image404,
 };
