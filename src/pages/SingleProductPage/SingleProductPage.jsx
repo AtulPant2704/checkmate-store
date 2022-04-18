@@ -96,20 +96,20 @@ const SingleProductPage = () => {
                                 </div>
                                 <ul className="product-labels">
                                     <li className="label">
-                                        <i class="fas fa-truck flip-image"></i>
+                                        <i className="fas fa-truck flip-image"></i>
                                         <span>Fast delivery available</span>
                                     </li>
                                     <li className="label">
-                                        <i class="fas fa-check-square"></i>
+                                        <i className="fas fa-check-square"></i>
                                         <span>Price displayed is inclusive of GST</span>
                                     </li>
                                     {product.badge === "Out of Stock" ?
                                         <li className="label">
-                                            <i class="far fa-calendar-times"></i>
+                                            <i className="far fa-calendar-times"></i>
                                             <span>Out of stock</span>
                                         </li> :
                                         <li className="label">
-                                            <i class="far fa-calendar-check"></i>
+                                            <i className="far fa-calendar-check"></i>
                                             <span>Currently in stock</span>
                                         </li>}
                                 </ul>

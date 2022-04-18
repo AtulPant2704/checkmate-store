@@ -1,13 +1,12 @@
 import { useState } from "react";
-import { Navbar, Footer } from "../../components";
+import { Outlet, useNavigate, useLocation } from "react-router-dom";
+import { Navbar, Footer, AddressModal } from "../../components";
 import { UserDetails } from "./components/UserDetails/UserDetails"
-import { Address } from "./components/Address/Address";
-import { AddressModal } from "./components/Address/AddressModal";
-import { Orders } from "./components/Orders/Orders";
 import "./Profile.css";
 
 const Profile = () => {
-  const [activeTab, setActiveTab] = useState("profile");
+  const navigate = useNavigate();
+  const location = useLocation();
   const [showAddressModal, setShowAddressModal] = useState(false);
   const [editAddress, setEditAddress] = useState(null);
 
@@ -20,22 +19,23 @@ const Profile = () => {
         <section className="profile-page">
           <div className="profile-tabs">
             <button
-              className={`tab profile-tab ${activeTab === "profile" ? "tab-active" : ""}`}
-              onClick={() => setActiveTab("profile")}>
+              className={`tab profile-tab ${location.pathname === "/profile" ? "tab-active" : ""}`}
+              onClick={() => navigate("/profile")}>
               Profile
             </button>
             <button
-              className={`tab address-tab ${activeTab === "address" ? "tab-active" : ""}`}
-              onClick={() => setActiveTab("address")}>
+              className={`tab address-tab ${location.pathname === "/profile/address" ? "tab-active" : ""}`}
+              onClick={() => navigate("address")}>
               My Address
             </button>
             <button
-              className={`tab order-tab ${activeTab === "order" ? "tab-active" : ""}`}
-              onClick={() => setActiveTab("order")}>
+              className={`tab order-tab ${location.pathname === "/profile/orders" ? "tab-active" : ""}`}
+              onClick={() => navigate("orders")}>
               My Orders
             </button>
           </div>
-          {activeTab === "profile" ? <UserDetails /> : activeTab === "address" ? <Address setEditAddress={setEditAddress} setShowAddressModal={setShowAddressModal} /> : <Orders />}
+          {location.pathname === "/profile" ? <UserDetails /> : null}
+          <Outlet />
         </section>
       </main>
       <Footer />

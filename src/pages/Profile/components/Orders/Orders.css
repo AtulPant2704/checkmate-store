@@ -1,0 +1,78 @@
+.order-container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.order-container .bill-card {
+    width: 100%;
+    margin: 1rem auto;
+}
+
+.order-container .card-title {
+    border-bottom: 0;
+}
+
+.order-container .order-card-title {
+    color: var(--success-color);
+    margin: 0;
+}
+
+.order-container .order-card{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin: 0.5rem 0;
+}
+
+.order-container .img-container{
+    width: 100px;
+    height: 50px;
+    margin: 10px 0;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+.order-container .img-container img{
+    width: 100px;
+    height: 50px;
+}
+
+.order-container .card-details {
+    padding: 0;
+}
+
+.order-container .card-details {
+    font-size: 0.8rem;
+}
+
+.order-container .card-details .card-title {
+    font-size: 1rem;
+    margin: 0;
+}
+
+.order-container .card-details .card-price {
+    font-size: 1rem;
+    margin: 0;
+}
+
+.order-container .delivery-address {
+    border-top: 1px solid var(--row-color);
+    border-bottom: 1px solid var(--row-color);
+    padding: 1rem 0;
+}
+
+.order-container .delivery-address .address-title {
+    margin-top: 5px;
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+.order-container .bill-container .items-price {
+    padding: 2px 0;
+}
+
+.order-container .total-price-container{
+    border: 0;
+    font-weight: 700;
+}

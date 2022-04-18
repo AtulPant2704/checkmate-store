@@ -19,7 +19,7 @@ const WishlistCard = ({
       <div className="img-container">
         <img src={image} alt={title} className="img-responsive" />
         <button disabled={wishlistButtonDisable} onClick={(e) => callRemoveFromWishlistHandler(e, _id, setWishlistButtonDisable)}>
-          <i className="fas fa-heart"></i>
+          <i className="fas fa-heart" onClick={wishlistButtonDisable ? (e) => e.stopPropagation() : null}></i>
         </button>
       </div>
       <div className="card-details">
