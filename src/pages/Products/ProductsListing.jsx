@@ -26,7 +26,7 @@ const ProductsListing = () => {
   const [productsLoader, setProductsLoader] = useState(false);
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [productsPerPage, setProductsPerPage] = useState(5);
+  const [productsPerPage, setProductsPerPage] = useState(9);
   const [mobileFilter, setMobileFilter] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const {
