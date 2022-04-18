@@ -25,9 +25,9 @@ const CartBill = ({ selectedAddress, itemsPrice, totalPrice }) => {
         const newDate = weekday[today.getDay()] + " " + month[(today.getMonth())] + " " + String(today.getDate()) + " " + String(today.getFullYear());
         const order = {
             orderedProducts: cart,
-            totalPrice: totalPrice,
+            totalPrice: totalPrice.toFixed(2),
             itemsPrice: itemsPrice,
-            discountedPrice: itemsPrice - totalPrice,
+            discountedPrice: (itemsPrice - totalPrice).toFixed(2),
             deliveryAddress: selectedAddress,
             date: newDate
         }
