@@ -1,6 +1,7 @@
 .order-container {
     width: 80%;
     margin: 0 auto;
+    border-bottom: 1px solid var(--secondary-color);
 }
 
 .order-container .bill-card {

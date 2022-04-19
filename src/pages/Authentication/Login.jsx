@@ -14,6 +14,7 @@ const Login = () => {
     email: "",
     password: "",
   });
+  const [saveUser, setSaveUser] = useState(false);
   const { authDispatch } = useAuth();
   const { cartDispatch } = useCart();
   const { wishlistDispatch } = useWishlist();
@@ -40,8 +41,10 @@ const Login = () => {
       try {
         const response = await loginService(user);
         if (response.status === 200) {
-          localStorage.setItem("token", response.data.encodedToken);
-          localStorage.setItem("user", JSON.stringify(response.data.foundUser));
+          if (saveUser) {
+            localStorage.setItem("token", response.data.encodedToken);
+            localStorage.setItem("user", JSON.stringify(response.data.foundUser));
+          }
           getWishlistItemsHandler(response.data.encodedToken, wishlistDispatch);
           getCartItemsHandler(response.data.encodedToken, cartDispatch);
           authDispatch({
@@ -71,7 +74,7 @@ const Login = () => {
       <section className="form-section">
         <div className="form-wrapper">
           <h2 className="form-heading">Login</h2>
-          <form action="" method="post">
+          <form action="" method="post" className="login">
             <div className="form-email">
               <label htmlFor="email">Email address</label>
               <input
@@ -97,11 +100,8 @@ const Login = () => {
               />
             </div>
             <div className="user-history">
-              <input type="checkbox" id="user-save" />
+              <input type="checkbox" id="user-save" checked={saveUser} onChange={(e) => e.target.checked ? setSaveUser(true) : setSaveUser(false)} />
               <label htmlFor="user-save">Remember me</label>
-              <Link to="./Put route to forgot password">
-                Forgot your Password?
-              </Link>
             </div>
             <button
               className="btn btn-text-primary text-underline btn-guest"
