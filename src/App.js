@@ -15,7 +15,8 @@ import {
   Orders,
   Address
 } from "./pages/index";
-import { AddressModal } from "./components"
+import { AddressModal } from "./components";
+import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
 function App() {
