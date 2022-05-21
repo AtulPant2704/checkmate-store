@@ -15,7 +15,6 @@ const SignUp = () => {
     lastName: "",
     confirmPassword: "",
   });
-  const [saveUser, setSaveUser] = useState(false)
   const { authDispatch } = useAuth();
 
   const changeHandler = (event) => {
@@ -49,13 +48,6 @@ const SignUp = () => {
           const response = await signUpService(user);
           if (response.status === 201) {
             navigate(-2);
-            if (saveUser) {
-              localStorage.setItem("token", response.data.encodedToken);
-              localStorage.setItem(
-                "user",
-                JSON.stringify(response.data.createdUser)
-              );
-            }
             authDispatch({
               type: "SIGN_UP",
               payload: {
@@ -140,12 +132,6 @@ const SignUp = () => {
                 required
                 onChange={changeHandler}
               />
-            </div>
-            <div className="user-history">
-              <input type="checkbox" id="user-request" checked={saveUser} onChange={(e) => e.target.checked ? setSaveUser(true) : setSaveUser(false)} />
-              <label htmlFor="user-request">
-                I accept all Terms & Conditions
-              </label>
             </div>
             <button
               type="submit"
