@@ -121,7 +121,6 @@ const Cart = () => {
                       <CartSummary
                         cartItem={cartQuantity}
                         itemPrice={itemsPrice}
-                        cartDiscount={500}
                         cartDelivery={"FREE"}
                         cartAmount={totalPrice}
                         setCouponModalOpen={setCouponModalOpen}

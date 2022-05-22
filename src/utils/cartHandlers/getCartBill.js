@@ -4,7 +4,7 @@ const getCartBill = (cart, couponType = "") => {
     (acc, curr) => acc + Number(curr.price * curr.qty),
     0
   );
-  let totalPrice = itemsPrice - 500;
+  let totalPrice = itemsPrice;
   if (couponType) {
     totalPrice = totalPrice * (1 - Number(couponType) / 100);
   }

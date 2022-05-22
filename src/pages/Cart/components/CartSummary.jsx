@@ -1,13 +1,11 @@
 const CartSummary = ({
   cartItem,
   itemPrice,
-  cartDiscount,
   cartDelivery,
   cartAmount,
   setCouponModalOpen,
-  setCheckout
+  setCheckout,
 }) => {
-
   return (
     <div className="bill-card">
       <h2 className="card-title">PRICE DETAILS</h2>
@@ -23,10 +21,6 @@ const CartSummary = ({
           <p className="item-type-price">₹ {itemPrice}</p>
         </div>
         <div className="items-price">
-          <p className="item-type">Discount</p>
-          <p className="item-type-price">₹ {cartDiscount}</p>
-        </div>
-        <div className="items-price">
           <p className="item-type">Delivery</p>
           <p className="item-type-price">{cartDelivery}</p>
         </div>
@@ -35,8 +29,13 @@ const CartSummary = ({
         <p className="item-type total-price">Total Amount</p>
         <p className="item-type-price total-price-value">₹ {cartAmount}</p>
       </div>
-      <p className="cart-savings">You saved ₹ {itemPrice - cartAmount}</p>
-      <button className="order-btn ecommerce-btn" onClick={() => setCheckout(true)}>
+      {itemPrice - cartAmount > 0 ? (
+        <p className="cart-savings">You saved ₹ {itemPrice - cartAmount}</p>
+      ) : null}
+      <button
+        className="order-btn ecommerce-btn"
+        onClick={() => setCheckout(true)}
+      >
         PLACE ORDER
       </button>
     </div>
