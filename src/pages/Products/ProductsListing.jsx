@@ -64,7 +64,8 @@ const ProductsListing = () => {
       : navigate("/cart");
   };
 
-  const checkWishlistAction = (_id) => wishlist.some((item) => item._id === _id);
+  const checkWishlistAction = (_id) =>
+    wishlist.some((item) => item._id === _id);
 
   const callAddToWishlistHandler = (_id, setWishlistDisable) => {
     if (token) {
@@ -84,7 +85,12 @@ const ProductsListing = () => {
   const checkWishlistActionHandler = (e, _id, setWishlistDisable) => {
     e.stopPropagation();
     return checkWishlistAction(_id)
-      ? removeFromWishlistHandler(_id, token, wishlistDispatch, setWishlistDisable)
+      ? removeFromWishlistHandler(
+          _id,
+          token,
+          wishlistDispatch,
+          setWishlistDisable
+        )
       : callAddToWishlistHandler(_id, setWishlistDisable);
   };
 
@@ -106,7 +112,10 @@ const ProductsListing = () => {
 
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = searchedData.slice(indexOfFirstProduct, indexOfLastProduct);
+  const currentProducts = searchedData.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
 
   return (
     <>
@@ -120,10 +129,19 @@ const ProductsListing = () => {
             />
           </div>
 
-          <div className="product-container">
-            {productsLoader ? (
-              <Loader />
-            ) : searchedData.length > 0 ?
+          <div className="products-section">
+            <div className="products-count">
+              <h2>
+                Featured Products
+                <span className="gray-text">
+                  (showing {searchedData.length} products)
+                </span>
+              </h2>
+            </div>
+            <div className="product-container">
+              {productsLoader ? (
+                <Loader />
+              ) : searchedData.length > 0 ? (
                 <>
                   {currentProducts.map((product) => (
                     <ProductCard
@@ -142,11 +160,13 @@ const ProductsListing = () => {
                     setCurrentPage={setCurrentPage}
                     currentProducts={currentProducts}
                   />
-                </> : (
-                  <div className="empty-products">
-                    <h1 className="empty-msg">No Products Available</h1>
-                  </div>
-                )}
+                </>
+              ) : (
+                <div className="empty-products">
+                  <h1 className="empty-msg">No Products Available</h1>
+                </div>
+              )}
+            </div>
           </div>
         </section>
         {!mobileFilter && sortedData.length > 0 ? (
