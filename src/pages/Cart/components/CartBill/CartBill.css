@@ -1,0 +1,29 @@
+.cart-bill-container.checkout-bill {
+    margin: 0 auto;
+}
+
+.checkout-bill .bill-card {
+    width: 100%;
+    margin: 0.5rem auto;
+}
+
+.checkout-bill .card-title {
+    font-size: 1.3rem;
+    font-weight: 800;
+    border-bottom: none;
+}
+
+.checkout-bill .card-div-title{
+    font-weight: 600;
+    font-size: 1.1rem;
+    border-top: 1px solid var(--secondary-color);
+    border-bottom: 1px solid var(--secondary-color);
+}
+
+.checkout-bill .address-title {
+    margin-top: 0.5rem;
+}
+
+.checkout-bill .items-price span {
+    display: block;
+}

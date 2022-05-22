@@ -1,37 +1,42 @@
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
-import { useAuth, useCart, useWishlist } from "../../context";
-import { Navbar, Footer } from "../../components";
+import { useState } from "react";
+import { Outlet, useNavigate, useLocation } from "react-router-dom";
+import { Navbar, Footer, AddressModal } from "../../components";
+import { UserDetails } from "./components/UserDetails/UserDetails"
 import "./Profile.css";
 
 const Profile = () => {
   const navigate = useNavigate();
-  const { authDispatch } = useAuth();
-  const { cartDispatch } = useCart();
-  const { wishlistDispatch } = useWishlist();
-
-  const logoutHandler = () => {
-    navigate("/");
-    cartDispatch({ type: "EMPTY_CART" });
-    wishlistDispatch({ type: "EMPTY_WISHLIST" });
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    authDispatch({ type: "LOGOUT" });
-    toast.success("Successfully Logged Out");
-  };
+  const location = useLocation();
+  const [showAddressModal, setShowAddressModal] = useState(false);
+  const [editAddress, setEditAddress] = useState(null);
 
   return (
     <>
+      {showAddressModal ? <AddressModal editAddress={editAddress} setEditAddress={setEditAddress} showAddressModal={showAddressModal} setShowAddressModal={setShowAddressModal} /> : null}
       <Navbar />
       <main>
-        <div className="logout-page">
-          <button
-            className="btn btn-solid-primary btn-logout"
-            onClick={logoutHandler}
-          >
-            Logout
-          </button>
-        </div>
+        <h1 className="profile-page-title align-center">Account</h1>
+        <section className="profile-page">
+          <div className="profile-tabs">
+            <button
+              className={`tab profile-tab ${location.pathname === "/profile" ? "tab-active" : ""}`}
+              onClick={() => navigate("/profile")}>
+              Profile
+            </button>
+            <button
+              className={`tab address-tab ${location.pathname === "/profile/address" ? "tab-active" : ""}`}
+              onClick={() => navigate("address")}>
+              My Address
+            </button>
+            <button
+              className={`tab order-tab ${location.pathname === "/profile/orders" ? "tab-active" : ""}`}
+              onClick={() => navigate("orders")}>
+              My Orders
+            </button>
+          </div>
+          {location.pathname === "/profile" ? <UserDetails /> : null}
+          <Outlet />
+        </section>
       </main>
       <Footer />
     </>

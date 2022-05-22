@@ -76,13 +76,13 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
         ) : null}
         <div className="user-controls">
           <div className="user-action">
-            <button
+            <div
               className="btn btn-text-primary btn-user"
               onClick={() => userHandler(checkStatus(user))}
             >
               <i className="fas fa-user"></i>
-            </button>
-            <p>{checkStatus(user)}</p>
+              <p>{checkStatus(user)}</p>
+            </div>
           </div>
           <div
             className="btn-check btn-wishlist"
@@ -131,7 +131,7 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
             </li>
             <li onClick={() => routeHandler("/cart")}>Cart</li>
             <li onClick={() => routeHandler("/wishlist")}>Wishlist</li>
-            <li onClick={() => routeHandler("/profile")}>Profile</li>
+            <li onClick={() => userHandler(checkStatus(user))}>{token ? "Profile" : "Login"}</li>
           </ul>
         </div>
       </div>

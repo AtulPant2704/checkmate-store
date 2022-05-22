@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({
   _id,
@@ -14,28 +15,30 @@ const ProductCard = ({
 }) => {
   const [cartButtonLoader, setCartButtonLoader] = useState(false);
   const [wishlistDisable, setWishlistDisable] = useState(false);
+  const navigate = useNavigate();
 
   const ratingArray = [1, 2, 3, 4, 5];
 
   return (
-    <div className="product-card">
+    <div className="product-card" onClick={() => navigate(`/products/${_id}`)}>
       <div className="img-container">
         <img src={image} alt={title} className="img-responsive" />
         <button
           disabled={wishlistDisable}
-          onClick={() => checkWishlistActionHandler(_id, setWishlistDisable)}
+          onClick={(e) => checkWishlistActionHandler(e, _id, setWishlistDisable)}
         >
           <i
             className={`${
-              checkWishlistAction(_id) === "Remove" ? "fas" : "far"
-            } fa-heart`}
+              checkWishlistAction(_id) ? "fas" : "far"
+              } fa-heart`}
+            onClick={wishlistDisable ? (e) => e.stopPropagation() : null}
           ></i>
         </button>
         {badge === "Out of Stock" ? (
           <span className="card-badge">{badge}</span>
         ) : (
-          ""
-        )}
+            ""
+          )}
       </div>
       <div className="card-details">
         <p className="card-title">{title}</p>
@@ -45,7 +48,13 @@ const ProductCard = ({
             {ratingArray.map((item) => (
               <i
                 key={item}
-                className={`${item <= Number(rating) ? "fas" : "far"} fa-star`}
+                className={`${
+                  item <= Number(rating)
+                    ? 'fas fa-star'
+                    : item === Math.ceil(Number(rating))
+                      ? 'fas fa-star-half-stroke'
+                      : 'far fa-star'
+                  }`}
               ></i>
             ))}
           </div>
@@ -54,9 +63,9 @@ const ProductCard = ({
       <button
         className={`ecommerce-btn ${
           badge === "Out of Stock" ? "out-of-stock-btn" : ""
-        }`}
+          }`}
         disabled={badge === "Out of Stock" ? true : cartButtonLoader}
-        onClick={() => checkCartRouteHandler(_id, setCartButtonLoader)}
+        onClick={(e) => checkCartRouteHandler(e, _id, setCartButtonLoader)}
       >
         {badge === "Out of Stock" ? (
           "Out of Stock"
@@ -68,8 +77,8 @@ const ProductCard = ({
             <div></div>
           </div>
         ) : (
-          checkCartAction(_id)
-        )}
+              checkCartAction(_id)
+            )}
       </button>
     </div>
   );

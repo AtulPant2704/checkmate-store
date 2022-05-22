@@ -1,5 +1,4 @@
-import "react-toastify/dist/ReactToastify.css";
-import "./App.css";
+import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { RequiresAuth } from "./RequiresAuth";
@@ -12,13 +11,22 @@ import {
   ProductsListing,
   Profile,
   Error404,
+  SingleProductPage,
+  Orders,
+  Address
 } from "./pages/index";
+import { AddressModal } from "./components";
+import "react-toastify/dist/ReactToastify.css";
+import "./App.css";
 
 function App() {
+  const [editAddress, setEditAddress] = useState(null);
+  const [showAddressModal, setShowAddressModal] = useState(false);
+
   return (
     <div className="App">
       <ToastContainer
-        position="top-right"
+        position="bottom-right"
         autoClose={3000}
         hideProgressBar={false}
         newestOnTop={false}
@@ -29,9 +37,11 @@ function App() {
         draggable
         pauseOnHover
       />
+      {showAddressModal ? <AddressModal editAddress={editAddress} setEditAddress={setEditAddress} showAddressModal={showAddressModal} setShowAddressModal={setShowAddressModal} /> : null}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<ProductsListing />} />
+        <Route path="/products/:productId" element={<SingleProductPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route
@@ -57,7 +67,10 @@ function App() {
               <Profile />
             </RequiresAuth>
           }
-        />
+        >
+          <Route path="orders" element={<Orders />} />
+          <Route path="address" element={<Address setShowAddressModal={setShowAddressModal} setEditAddress={setEditAddress} />} />
+        </Route>
         <Route path="*" element={<Error404 />} />
       </Routes>
     </div>

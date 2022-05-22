@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { Filters } from "./components/Filters";
-import { ProductCard } from "./components/ProductCard";
 import { useFilter, useCart, useWishlist, useAuth } from "../../context";
 import {
   getProductsHandler,
@@ -17,13 +15,18 @@ import {
   searchHandler,
 } from "../../utils";
 import { Navbar, Footer, Loader } from "../../components";
+import { Filters } from "./components/Filters";
+import { ProductCard } from "./components/ProductCard";
+import { Pagination } from "./components/Pagination";
 import "./ProductsListing.css";
 import "./loaders.css";
 
 const ProductsListing = () => {
   const navigate = useNavigate();
-  const [products, setProducts] = useState([]);
   const [productsLoader, setProductsLoader] = useState(false);
+  const [products, setProducts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage, setProductsPerPage] = useState(9);
   const [mobileFilter, setMobileFilter] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const {
@@ -40,7 +43,7 @@ const ProductsListing = () => {
   const { filterState } = useFilter();
 
   const checkCartAction = (_id) => {
-    const item = cart.find((item) => item._id === _id);
+    const item = cart.some((item) => item._id === _id);
     return item ? "Go to Cart" : "Add to Cart";
   };
 
@@ -54,16 +57,15 @@ const ProductsListing = () => {
     }
   };
 
-  const checkCartRouteHandler = (_id, setCartButtonLoader) => {
+  const checkCartRouteHandler = (e, _id, setCartButtonLoader) => {
+    e.stopPropagation();
     return checkCartAction(_id) === "Add to Cart"
       ? callAddToCartHandler(_id, setCartButtonLoader)
       : navigate("/cart");
   };
 
-  const checkWishlistAction = (_id) => {
-    const item = wishlist.find((item) => item._id === _id);
-    return item ? "Remove" : "Add";
-  };
+  const checkWishlistAction = (_id) =>
+    wishlist.some((item) => item._id === _id);
 
   const callAddToWishlistHandler = (_id, setWishlistDisable) => {
     if (token) {
@@ -80,9 +82,15 @@ const ProductsListing = () => {
     }
   };
 
-  const checkWishlistActionHandler = (_id, setWishlistDisable) => {
-    return checkWishlistAction(_id) === "Remove"
-      ? removeFromWishlistHandler(_id, token, wishlistDispatch)
+  const checkWishlistActionHandler = (e, _id, setWishlistDisable) => {
+    e.stopPropagation();
+    return checkWishlistAction(_id)
+      ? removeFromWishlistHandler(
+          _id,
+          token,
+          wishlistDispatch,
+          setWishlistDisable
+        )
       : callAddToWishlistHandler(_id, setWishlistDisable);
   };
 
@@ -102,6 +110,13 @@ const ProductsListing = () => {
   const sortedData = sortData(priceFilteredData, filterState);
   const searchedData = searchHandler(sortedData, searchQuery);
 
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = searchedData.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
+
   return (
     <>
       <Navbar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
@@ -114,25 +129,44 @@ const ProductsListing = () => {
             />
           </div>
 
-          <div className="product-container">
-            {productsLoader ? (
-              <Loader />
-            ) : searchedData.length > 0 ? (
-              searchedData.map((product) => (
-                <ProductCard
-                  key={product._id}
-                  {...product}
-                  checkCartAction={checkCartAction}
-                  checkCartRouteHandler={checkCartRouteHandler}
-                  checkWishlistAction={checkWishlistAction}
-                  checkWishlistActionHandler={checkWishlistActionHandler}
-                />
-              ))
-            ) : (
-              <div className="empty-products">
-                <h1 className="empty-msg">No Products Available</h1>
-              </div>
-            )}
+          <div className="products-section">
+            <div className="products-count">
+              <h2>
+                Featured Products
+                <span className="gray-text">
+                  (showing {searchedData.length} products)
+                </span>
+              </h2>
+            </div>
+            <div className="product-container">
+              {productsLoader ? (
+                <Loader />
+              ) : searchedData.length > 0 ? (
+                <>
+                  {currentProducts.map((product) => (
+                    <ProductCard
+                      key={product._id}
+                      {...product}
+                      checkCartAction={checkCartAction}
+                      checkCartRouteHandler={checkCartRouteHandler}
+                      checkWishlistAction={checkWishlistAction}
+                      checkWishlistActionHandler={checkWishlistActionHandler}
+                    />
+                  ))}
+                  <Pagination
+                    products={searchedData}
+                    productsPerPage={productsPerPage}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                    currentProducts={currentProducts}
+                  />
+                </>
+              ) : (
+                <div className="empty-products">
+                  <h1 className="empty-msg">No Products Available</h1>
+                </div>
+              )}
+            </div>
           </div>
         </section>
         {!mobileFilter && sortedData.length > 0 ? (

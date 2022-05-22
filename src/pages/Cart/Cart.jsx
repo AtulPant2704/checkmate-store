@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { useCart, useAuth, useWishlist } from "../../context";
 import {
   getCartItemsHandler,
@@ -8,22 +8,29 @@ import {
   getCartBill,
   moveToWishlistHandler,
 } from "../../utils";
-import { Navbar, Footer, Loader } from "../../components";
+import { Navbar, Footer, Loader, AddressModal } from "../../components";
 import { CartItem } from "./components/CartItem";
 import { CartSummary } from "./components/CartSummary";
 import { CouponModal } from "./components/CouponModa/CouponModal";
+import { AddressSelect } from "./components/AddressSelect/AddressSelect";
+import { CartBill } from "./components/CartBill/CartBill";
+import { getAddressesHandler } from "../../utils";
 import "./Cart.css";
 
 const Cart = () => {
   const [cartLoader, setCartLoader] = useState(false);
   const [couponModalOpen, setCouponModalOpen] = useState(false);
   const [couponType, setCouponType] = useState("");
+  const [checkout, setCheckout] = useState(false);
+  const [selectedAddress, setSelectedAddres] = useState(null);
+  const [showAddressModal, setShowAddressModal] = useState(false);
   const {
     cartState: { cart },
     cartDispatch,
   } = useCart();
   const {
-    authState: { token },
+    authState: { token, addresses },
+    authDispatch,
   } = useAuth();
   const {
     wishlistState: { wishlist },
@@ -62,6 +69,7 @@ const Cart = () => {
 
   const getCartItems = () => {
     getCartItemsHandler(token, cartDispatch, setCartLoader);
+    getAddressesHandler(token, authDispatch);
     window.scrollTo(0, 0);
   };
 
@@ -77,56 +85,81 @@ const Cart = () => {
           setCouponType={setCouponType}
         />
       ) : null}
+      {showAddressModal ? (
+        <AddressModal
+          showAddressModal={showAddressModal}
+          setShowAddressModal={setShowAddressModal}
+        />
+      ) : null}
       <Navbar />
-      <main className="empty-cart">
-        {cart.length !== 0 ? (
-          <>
-            {cartLoader ? (
-              <Loader />
-            ) : (
-              <>
-                <h2 className="align-center page-title">
-                  My Cart (
-                  {cart.length !== 0 ? <span>{cart.length}</span> : null})
-                </h2>
-                <section className="cart-bill-container">
-                  <div className="cart-container">
-                    {cart.map((item) => (
-                      <CartItem
-                        key={item._id}
-                        {...item}
-                        callRemoveFromCartHandler={callRemoveFromCartHandler}
-                        callUpdateCartHandler={callUpdateCartHandler}
-                        callMoveToWishlistHandler={callMoveToWishlistHandler}
-                      />
-                    ))}
-                  </div>
+      {!checkout ? (
+        <main className="empty-cart">
+          {cart.length !== 0 ? (
+            <>
+              {cartLoader ? (
+                <Loader />
+              ) : (
+                <>
+                  <h2 className="align-center page-title">
+                    My Cart (
+                    {cart.length !== 0 ? <span>{cart.length}</span> : null})
+                  </h2>
+                  <section className="cart-bill-container">
+                    <div className="cart-container">
+                      {cart.map((item) => (
+                        <CartItem
+                          key={item._id}
+                          {...item}
+                          callRemoveFromCartHandler={callRemoveFromCartHandler}
+                          callUpdateCartHandler={callUpdateCartHandler}
+                          callMoveToWishlistHandler={callMoveToWishlistHandler}
+                        />
+                      ))}
+                    </div>
 
-                  <div className="bill-container">
-                    <CartSummary
-                      cartItem={cartQuantity}
-                      itemPrice={itemsPrice}
-                      cartDiscount={500}
-                      cartDelivery={"FREE"}
-                      cartAmount={totalPrice}
-                      setCouponModalOpen={setCouponModalOpen}
-                    />
-                  </div>
-                </section>
-              </>
-            )}
-          </>
-        ) : (
-          <>
-            <h2>Your Cart is empty</h2>
-            <Link to="/products">
-              <button className="btn btn-solid-primary btn-link-products">
-                Start Shopping
-              </button>
-            </Link>
-          </>
-        )}
-      </main>
+                    <div className="bill-container">
+                      <CartSummary
+                        cartItem={cartQuantity}
+                        itemPrice={itemsPrice}
+                        cartDiscount={500}
+                        cartDelivery={"FREE"}
+                        cartAmount={totalPrice}
+                        setCouponModalOpen={setCouponModalOpen}
+                        setCheckout={setCheckout}
+                      />
+                    </div>
+                  </section>
+                </>
+              )}
+            </>
+          ) : (
+            <div className="empty-items">
+              <h2>Your Cart is empty</h2>
+              <Link to="/products">
+                <button className="btn btn-solid-primary btn-link-products">
+                  Start Shopping
+                </button>
+              </Link>
+            </div>
+          )}
+        </main>
+      ) : (
+        <main>
+          <h1 className="page-title">Checkout</h1>
+          <section className="bill-address-container">
+            <AddressSelect
+              addresses={addresses}
+              setSelectedAddres={setSelectedAddres}
+              setShowAddressModal={setShowAddressModal}
+            />
+            <CartBill
+              selectedAddress={selectedAddress}
+              itemsPrice={itemsPrice}
+              totalPrice={totalPrice}
+            />
+          </section>
+        </main>
+      )}
       <Footer />
     </>
   );

@@ -1,5 +1,7 @@
 import { v4 as uuid } from "uuid";
-import { boardImg, pieceImg, bookImg, clockImg, image1, image2, image3, image4, image5, image7, image8, image9, image10, image11, image12 } from "../../assets";
+import {
+  boardImg, pieceImg, bookImg, clockImg, image1, image2, image3, image4, image5, image7, image8, image9, image10, image11, image12, image13, image14, image15, image16, image17, image18, image19, image20, image21, image22,
+} from "../../assets";
 
 /**
  * Product Database can be added here.
@@ -13,7 +15,8 @@ export const products = [
     image: pieceImg,
     price: "5000",
     badge: "Out of Stock",
-    rating: "2",
+    rating: "2.5",
+    reviewers: "20",
     categoryName: "pieces"
   },
   {
@@ -23,6 +26,7 @@ export const products = [
     price: "8000",
     badge: "In Stock",
     rating: "4",
+    reviewers: "40",
     categoryName: "books"
   },
   {
@@ -31,17 +35,9 @@ export const products = [
     image: clockImg,
     price: "2000",
     badge: "In Stock",
-    rating: "1",
+    rating: "1.5",
+    reviewers: "35",
     categoryName: "clock"
-  },
-  {
-    _id: uuid(),
-    title: "Wooden Deluxe Board",
-    image: boardImg,
-    price: "1000",
-    badge: "In Stock",
-    rating: "1",
-    categoryName: "board"
   },
   {
     _id: uuid(),
@@ -50,6 +46,7 @@ export const products = [
     price: "1500",
     badge: "In Stock",
     rating: "5",
+    reviewers: "48",
     categoryName: "pieces"
   },
   {
@@ -59,6 +56,7 @@ export const products = [
     price: "2300",
     badge: "In Stock",
     rating: "2",
+    reviewers: "23",
     categoryName: "pieces"
   },
   {
@@ -67,7 +65,8 @@ export const products = [
     image: image3,
     price: "5100",
     badge: "Out of Stock",
-    rating: "3",
+    rating: "3.5",
+    reviewers: "19",
     categoryName: "books"
   },
   {
@@ -77,6 +76,7 @@ export const products = [
     price: "4500",
     badge: "In Stock",
     rating: "2",
+    reviewers: "57",
     categoryName: "pieces"
   },
   {
@@ -85,7 +85,8 @@ export const products = [
     image: image5,
     price: "3100",
     badge: "In Stock",
-    rating: "4",
+    rating: "4.5",
+    reviewers: "59",
     categoryName: "pieces"
   },
   {
@@ -95,7 +96,18 @@ export const products = [
     price: "9000",
     badge: "In Stock",
     rating: "3",
+    reviewers: "74",
     categoryName: "books"
+  },
+  {
+    _id: uuid(),
+    title: "Berliner Colored Chess Set",
+    image: image15,
+    price: "5499",
+    badge: "In Stock",
+    rating: "4.5",
+    reviewers: "21",
+    categoryName: "pieces"
   },
   {
     _id: uuid(),
@@ -104,6 +116,7 @@ export const products = [
     price: "7100",
     badge: "In Stock",
     rating: "2",
+    reviewers: "33",
     categoryName: "board"
   },
   {
@@ -112,7 +125,8 @@ export const products = [
     image: image9,
     price: "7000",
     badge: "Out of Stock",
-    rating: "2",
+    rating: "2.5",
+    reviewers: "47",
     categoryName: "books"
   },
   {
@@ -121,7 +135,8 @@ export const products = [
     image: image10,
     price: "5900",
     badge: "In Stock",
-    rating: "1",
+    rating: "1.5",
+    reviewers: "51",
     categoryName: "books"
   },
   {
@@ -131,6 +146,7 @@ export const products = [
     price: "8000",
     badge: "In Stock",
     rating: "4",
+    reviewers: "22",
     categoryName: "books"
   },
   {
@@ -140,6 +156,107 @@ export const products = [
     price: "8500",
     badge: "Out of Stock",
     rating: "3",
+    reviewers: "27",
     categoryName: "board"
+  },
+  {
+    _id: uuid(),
+    title: "Apache Luxury Chess Set",
+    image: image13,
+    price: "7499",
+    badge: "In Stock",
+    rating: "3.5",
+    reviewers: "21",
+    categoryName: "pieces"
+  },
+  {
+    _id: uuid(),
+    title: "Wooden Deluxe Board",
+    image: boardImg,
+    price: "1000",
+    badge: "In Stock",
+    rating: "1",
+    reviewers: "15",
+    categoryName: "board"
+  },
+  {
+    _id: uuid(),
+    title: "Berlin Green Chess Set",
+    image: image14,
+    price: "2499",
+    badge: "Out of Stock",
+    rating: "2.5",
+    reviewers: "29",
+    categoryName: "pieces"
+  },
+  {
+    _id: uuid(),
+    title: "Chess Brilliancy",
+    image: image16,
+    price: "4300",
+    badge: "In Stock",
+    rating: "3.5",
+    reviewers: "21",
+    categoryName: "books"
+  },
+  {
+    _id: uuid(),
+    title: "Easy Guide to Chess",
+    image: image17,
+    price: "3900",
+    badge: "In Stock",
+    rating: "2.5",
+    reviewers: "21",
+    categoryName: "books"
+  },
+  {
+    _id: uuid(),
+    title: "Jacques Vintage Chess Set",
+    image: image18,
+    price: "7499",
+    badge: "In Stock",
+    rating: "3.5",
+    reviewers: "21",
+    categoryName: "pieces"
+  },
+  {
+    _id: uuid(),
+    title: "The Marshall Attack",
+    image: image19,
+    price: "8499",
+    badge: "In Stock",
+    rating: "4.5",
+    reviewers: "51",
+    categoryName: "books"
+  },
+  {
+    _id: uuid(),
+    title: "Columbian Series Chess Set",
+    image: image20,
+    price: "1499",
+    badge: "Out of Stock",
+    rating: "1.5",
+    reviewers: "9",
+    categoryName: "pieces"
+  },
+  {
+    _id: uuid(),
+    title: "Play the Ponziani",
+    image: image21,
+    price: "8500",
+    badge: "Out of Stock",
+    rating: "1.5",
+    reviewers: "31",
+    categoryName: "books"
+  },
+  {
+    _id: uuid(),
+    title: "The Torre Attack",
+    image: image22,
+    price: "6500",
+    badge: "In Stock",
+    rating: "3.5",
+    reviewers: "33",
+    categoryName: "books"
   },
 ];

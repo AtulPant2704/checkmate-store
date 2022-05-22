@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const CartItem = ({
   _id,
@@ -10,11 +11,12 @@ const CartItem = ({
   callUpdateCartHandler,
   callMoveToWishlistHandler,
 }) => {
+  const navigate = useNavigate();
   const [wishlistDisable, setWishlistDisable] = useState(false);
 
   return (
     <div className="cart-card">
-      <div className="img-container">
+      <div className="img-container" onClick={() => navigate(`/products/${_id}`)}>
         <img src={image} alt={title} className="img-responsive" />
       </div>
       <div className="card-details">
