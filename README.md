@@ -28,7 +28,10 @@ CheckMate Store is an online ecommerce store for chess lovers to buy items relat
   - In Stock
   - Price Range
 - Sort Products By Price
+- Address Management
 - Payment using Razorpay API
+- Show Past Orders of the user
+- Pagination
 
 ---
 
