@@ -1,3 +1,8 @@
+.empty-cart {
+  margin: 2rem auto;
+  max-width: 1500px;
+}
+
 /* Bill Container Styling */
 .cart-bill-container {
   width: 70%;
@@ -50,12 +55,6 @@
   font-weight: 700;
 }
 
-.empty-cart {
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
 .btn-link-products {
   cursor: pointer;
   background-color: var(--secondary-color);
@@ -99,7 +98,6 @@
   }
 }
 
-
 /* Checkout Page Styling */
 .page-title {
   text-align: center;
@@ -115,30 +113,29 @@
   gap: 5rem;
 }
 
-@media screen and (max-width: 1000px){
+@media screen and (max-width: 1000px) {
   .bill-address-container {
-      width: 90%;
-      gap: 2rem;
+    width: 90%;
+    gap: 2rem;
   }
 }
 
-@media screen and (max-width: 800px){
+@media screen and (max-width: 800px) {
   .bill-address-container {
-      width: 95%;
+    width: 95%;
   }
 }
 
-@media screen and (max-width: 650px){
+@media screen and (max-width: 650px) {
   .bill-address-container {
-      width: 70%;
-      flex-direction: column;
-      gap: 1rem;
+    width: 70%;
+    flex-direction: column;
+    gap: 1rem;
   }
 }
 
-@media screen and (max-width: 450px){
+@media screen and (max-width: 450px) {
   .bill-address-container {
-      width: 90%;
+    width: 90%;
   }
 }
-

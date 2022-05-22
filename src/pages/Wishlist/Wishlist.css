@@ -43,10 +43,12 @@
   background-color: var(--secondary-color);
 }
 
-.empty-cart {
+.empty-items {
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  min-height: calc(100vh - 230px);
 }
 
 .btn-link-products {

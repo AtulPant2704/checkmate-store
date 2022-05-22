@@ -30,7 +30,7 @@ const Cart = () => {
   } = useCart();
   const {
     authState: { token, addresses },
-    authDispatch
+    authDispatch,
   } = useAuth();
   const {
     wishlistState: { wishlist },
@@ -69,7 +69,7 @@ const Cart = () => {
 
   const getCartItems = () => {
     getCartItemsHandler(token, cartDispatch, setCartLoader);
-    getAddressesHandler(token, authDispatch)
+    getAddressesHandler(token, authDispatch);
     window.scrollTo(0, 0);
   };
 
@@ -85,60 +85,65 @@ const Cart = () => {
           setCouponType={setCouponType}
         />
       ) : null}
-      {showAddressModal ? <AddressModal showAddressModal={showAddressModal} setShowAddressModal={setShowAddressModal} /> : null}
+      {showAddressModal ? (
+        <AddressModal
+          showAddressModal={showAddressModal}
+          setShowAddressModal={setShowAddressModal}
+        />
+      ) : null}
       <Navbar />
-      {!checkout ?
+      {!checkout ? (
         <main className="empty-cart">
           {cart.length !== 0 ? (
             <>
               {cartLoader ? (
                 <Loader />
               ) : (
-                  <>
-                    <h2 className="align-center page-title">
-                      My Cart (
-                {cart.length !== 0 ? <span>{cart.length}</span> : null})
-              </h2>
-                    <section className="cart-bill-container">
-                      <div className="cart-container">
-                        {cart.map((item) => (
-                          <CartItem
-                            key={item._id}
-                            {...item}
-                            callRemoveFromCartHandler={callRemoveFromCartHandler}
-                            callUpdateCartHandler={callUpdateCartHandler}
-                            callMoveToWishlistHandler={callMoveToWishlistHandler}
-                          />
-                        ))}
-                      </div>
-
-                      <div className="bill-container">
-                        <CartSummary
-                          cartItem={cartQuantity}
-                          itemPrice={itemsPrice}
-                          cartDiscount={500}
-                          cartDelivery={"FREE"}
-                          cartAmount={totalPrice}
-                          setCouponModalOpen={setCouponModalOpen}
-                          setCheckout={setCheckout}
+                <>
+                  <h2 className="align-center page-title">
+                    My Cart (
+                    {cart.length !== 0 ? <span>{cart.length}</span> : null})
+                  </h2>
+                  <section className="cart-bill-container">
+                    <div className="cart-container">
+                      {cart.map((item) => (
+                        <CartItem
+                          key={item._id}
+                          {...item}
+                          callRemoveFromCartHandler={callRemoveFromCartHandler}
+                          callUpdateCartHandler={callUpdateCartHandler}
+                          callMoveToWishlistHandler={callMoveToWishlistHandler}
                         />
-                      </div>
-                    </section>
-                  </>
-                )}
+                      ))}
+                    </div>
+
+                    <div className="bill-container">
+                      <CartSummary
+                        cartItem={cartQuantity}
+                        itemPrice={itemsPrice}
+                        cartDiscount={500}
+                        cartDelivery={"FREE"}
+                        cartAmount={totalPrice}
+                        setCouponModalOpen={setCouponModalOpen}
+                        setCheckout={setCheckout}
+                      />
+                    </div>
+                  </section>
+                </>
+              )}
             </>
           ) : (
-              <>
-                <h2>Your Cart is empty</h2>
-                <Link to="/products">
-                  <button className="btn btn-solid-primary btn-link-products">
-                    Start Shopping
-            </button>
-                </Link>
-              </>
-            )}
+            <div className="empty-items">
+              <h2>Your Cart is empty</h2>
+              <Link to="/products">
+                <button className="btn btn-solid-primary btn-link-products">
+                  Start Shopping
+                </button>
+              </Link>
+            </div>
+          )}
         </main>
-        :
+      ) : (
         <main>
           <h1 className="page-title">Checkout</h1>
           <section className="bill-address-container">
@@ -153,7 +158,8 @@ const Cart = () => {
               totalPrice={totalPrice}
             />
           </section>
-        </main>}
+        </main>
+      )}
       <Footer />
     </>
   );
