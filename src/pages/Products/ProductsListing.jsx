@@ -96,7 +96,7 @@ const ProductsListing = () => {
   const openMobileFilterHandler = () => setMobileFilter(true);
 
   const getProducts = () => {
-    getProductsHandler(setProducts, setProductsLoader);
+    getProductsHandler(setProducts, "products", setProductsLoader);
     window.scrollTo(0, 0);
   };
 

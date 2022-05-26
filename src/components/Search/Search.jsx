@@ -1,4 +1,11 @@
+import { useState, useEffect } from "react";
+import { getProductsHandler } from "../../utils";
+
 const Search = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => getProductsHandler(setProducts, "search"), []);
+
   return (
     <div className="search">
       <span className="btn-search">
