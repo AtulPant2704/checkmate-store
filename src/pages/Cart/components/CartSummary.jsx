@@ -3,6 +3,7 @@ const CartSummary = ({
   itemPrice,
   cartDelivery,
   cartAmount,
+  couponType,
   setCouponModalOpen,
   setCheckout,
 }) => {
@@ -30,7 +31,9 @@ const CartSummary = ({
         <p className="item-type-price total-price-value">₹ {cartAmount}</p>
       </div>
       {itemPrice - cartAmount > 0 ? (
-        <p className="cart-savings">You saved ₹ {itemPrice - cartAmount}</p>
+        <p className="cart-savings">
+          You saved ₹ {itemPrice - cartAmount} ({couponType}% off)
+        </p>
       ) : null}
       <button
         className="order-btn ecommerce-btn"
