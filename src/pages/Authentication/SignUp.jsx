@@ -29,37 +29,29 @@ const SignUp = () => {
   };
 
   const signUpHandler = async (event) => {
+    event.preventDefault();
     if (
-      user.email &&
-      user.password &&
-      user.firstName &&
-      user.lastName &&
-      user.confirmPassword
+      emailValidation(user.email) &&
+      passwordValidation(user.password) &&
+      confirmPasswordHandler(user.password, user.confirmPassword)
     ) {
-      event.preventDefault();
-      if (
-        emailValidation(user.email) &&
-        passwordValidation(user.password) &&
-        confirmPasswordHandler(user.password, user.confirmPassword)
-      ) {
-        try {
-          const response = await signUpService(user);
-          if (response.status === 201) {
-            authDispatch({
-              type: "SIGN_UP",
-              payload: {
-                user: response.data.createdUser,
-                token: response.data.encodedToken,
-              },
-            });
-            navigate("/products");
-            toast.success("Successfully Signed up");
-          } else {
-            throw new Error("Something went wrong! Please try again later");
-          }
-        } catch (error) {
-          toast.error(error.response.data.errors[0]);
+      try {
+        const response = await signUpService(user);
+        if (response.status === 201) {
+          authDispatch({
+            type: "SIGN_UP",
+            payload: {
+              user: response.data.createdUser,
+              token: response.data.encodedToken,
+            },
+          });
+          navigate("/products");
+          toast.success("Successfully Signed up");
+        } else {
+          throw new Error("Something went wrong! Please try again later");
         }
+      } catch (error) {
+        toast.error(error.response.data.errors[0]);
       }
     }
   };

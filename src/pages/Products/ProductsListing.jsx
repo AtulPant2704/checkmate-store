@@ -130,7 +130,8 @@ const ProductsListing = () => {
               <h2>
                 Featured Products
                 <span className="gray-text">
-                  (showing {sortedData.length} products)
+                  (showing {currentProducts.length} out of {sortedData.length}{" "}
+                  products)
                 </span>
               </h2>
             </div>
