@@ -38,9 +38,9 @@ export const users = [
   {
     _id: uuid(),
     firstName: "Guest",
-    lastName: "Default",
-    email: "test@gmail.com",
-    password: bcyrpt.hashSync("test123", 5),
+    lastName: "User",
+    email: "guest@gmail.com",
+    password: bcyrpt.hashSync("Guest@1234", 5),
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },

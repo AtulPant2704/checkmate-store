@@ -20,8 +20,8 @@ const Login = () => {
   const { wishlistDispatch } = useWishlist();
 
   const guestUser = {
-    email: "test@gmail.com",
-    password: "test123",
+    email: "guest@gmail.com",
+    password: "Guest@1234",
   };
 
   const changeHandler = (event) => {
