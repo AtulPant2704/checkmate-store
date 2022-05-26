@@ -12,7 +12,6 @@ import {
   addToCartHandler,
   addToWishlistHandler,
   removeFromWishlistHandler,
-  searchHandler,
 } from "../../utils";
 import { Loader } from "../../components";
 import { Filters } from "./components/Filters";
