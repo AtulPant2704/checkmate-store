@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { useAuth, useCart, useWishlist, useFilter } from "../../context";
 import "./Navbar.css";
 
-const Navbar = ({ searchQuery, setSearchQuery }) => {
+const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -39,11 +39,6 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
     }
   };
 
-  const searchProducts = (event) => {
-    filterDispatch({ type: "RESET", payload: {} });
-    setSearchQuery(event.target.value);
-  };
-
   return (
     <header>
       <div className="nav-header">
@@ -65,13 +60,7 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
             <span className="btn-search">
               <i className="fas fa-search"></i>
             </span>
-            <input
-              type="text"
-              placeholder="Search"
-              className="input-search"
-              value={searchQuery}
-              onChange={searchProducts}
-            />
+            <input type="text" placeholder="Search" className="input-search" />
           </div>
         ) : null}
         <div className="user-controls">
@@ -131,7 +120,9 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
             </li>
             <li onClick={() => routeHandler("/cart")}>Cart</li>
             <li onClick={() => routeHandler("/wishlist")}>Wishlist</li>
-            <li onClick={() => userHandler(checkStatus(user))}>{token ? "Profile" : "Login"}</li>
+            <li onClick={() => userHandler(checkStatus(user))}>
+              {token ? "Profile" : "Login"}
+            </li>
           </ul>
         </div>
       </div>

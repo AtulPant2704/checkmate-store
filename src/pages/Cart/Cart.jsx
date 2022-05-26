@@ -8,7 +8,7 @@ import {
   getCartBill,
   moveToWishlistHandler,
 } from "../../utils";
-import { Navbar, Footer, Loader, AddressModal } from "../../components";
+import { Loader, AddressModal } from "../../components";
 import { CartItem } from "./components/CartItem";
 import { CartSummary } from "./components/CartSummary";
 import { CouponModal } from "./components/CouponModa/CouponModal";
@@ -91,7 +91,6 @@ const Cart = () => {
           setShowAddressModal={setShowAddressModal}
         />
       ) : null}
-      <Navbar />
       {!checkout ? (
         <main className="empty-cart">
           {cart.length !== 0 ? (
@@ -159,7 +158,6 @@ const Cart = () => {
           </section>
         </main>
       )}
-      <Footer />
     </>
   );
 };

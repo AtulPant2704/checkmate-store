@@ -14,7 +14,7 @@ import {
   removeFromWishlistHandler,
   searchHandler,
 } from "../../utils";
-import { Navbar, Footer, Loader } from "../../components";
+import { Loader } from "../../components";
 import { Filters } from "./components/Filters";
 import { ProductCard } from "./components/ProductCard";
 import { Pagination } from "./components/Pagination";
@@ -28,7 +28,6 @@ const ProductsListing = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage, setProductsPerPage] = useState(9);
   const [mobileFilter, setMobileFilter] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
   const {
     authState: { token },
   } = useAuth();
@@ -108,18 +107,16 @@ const ProductsListing = () => {
   const inStockFilteredData = inStockFilter(ratingFilteredData, filterState);
   const priceFilteredData = priceFilter(inStockFilteredData, filterState);
   const sortedData = sortData(priceFilteredData, filterState);
-  const searchedData = searchHandler(sortedData, searchQuery);
 
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = searchedData.slice(
+  const currentProducts = sortedData.slice(
     indexOfFirstProduct,
     indexOfLastProduct
   );
 
   return (
     <>
-      <Navbar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       <main>
         <section className="filter-product-container">
           <div className={`filter-container ${mobileFilter ? "active" : ""}`}>
@@ -134,14 +131,14 @@ const ProductsListing = () => {
               <h2>
                 Featured Products
                 <span className="gray-text">
-                  (showing {searchedData.length} products)
+                  (showing {sortedData.length} products)
                 </span>
               </h2>
             </div>
             <div className="product-container">
               {productsLoader ? (
                 <Loader />
-              ) : searchedData.length > 0 ? (
+              ) : sortedData.length > 0 ? (
                 <>
                   {currentProducts.map((product) => (
                     <ProductCard
@@ -154,7 +151,7 @@ const ProductsListing = () => {
                     />
                   ))}
                   <Pagination
-                    products={searchedData}
+                    products={sortedData}
                     productsPerPage={productsPerPage}
                     currentPage={currentPage}
                     setCurrentPage={setCurrentPage}
@@ -180,7 +177,6 @@ const ProductsListing = () => {
           </div>
         ) : null}
       </main>
-      <Footer />
     </>
   );
 };

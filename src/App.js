@@ -13,9 +13,9 @@ import {
   Error404,
   SingleProductPage,
   Orders,
-  Address
+  Address,
 } from "./pages/index";
-import { AddressModal } from "./components";
+import { Navbar, Footer, AddressModal } from "./components";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
@@ -37,7 +37,15 @@ function App() {
         draggable
         pauseOnHover
       />
-      {showAddressModal ? <AddressModal editAddress={editAddress} setEditAddress={setEditAddress} showAddressModal={showAddressModal} setShowAddressModal={setShowAddressModal} /> : null}
+      {showAddressModal ? (
+        <AddressModal
+          editAddress={editAddress}
+          setEditAddress={setEditAddress}
+          showAddressModal={showAddressModal}
+          setShowAddressModal={setShowAddressModal}
+        />
+      ) : null}
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<ProductsListing />} />
@@ -69,10 +77,19 @@ function App() {
           }
         >
           <Route path="orders" element={<Orders />} />
-          <Route path="address" element={<Address setShowAddressModal={setShowAddressModal} setEditAddress={setEditAddress} />} />
+          <Route
+            path="address"
+            element={
+              <Address
+                setShowAddressModal={setShowAddressModal}
+                setEditAddress={setEditAddress}
+              />
+            }
+          />
         </Route>
         <Route path="*" element={<Error404 />} />
       </Routes>
+      <Footer />
     </div>
   );
 }
