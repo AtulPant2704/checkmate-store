@@ -13,6 +13,7 @@ const Login = () => {
     email: "",
     password: "",
   });
+  const [passwordType, setPasswordType] = useState("password");
   const [saveUser, setSaveUser] = useState(false);
   const { authDispatch } = useAuth();
   const { cartDispatch } = useCart();
@@ -78,7 +79,9 @@ const Login = () => {
           <h2 className="form-heading">Login</h2>
           <form action="" method="post" className="login">
             <div className="form-email">
-              <label htmlFor="email">Email address</label>
+              <label htmlFor="email">
+                Email address <span>*</span>
+              </label>
               <input
                 id="email"
                 type="email"
@@ -89,17 +92,31 @@ const Login = () => {
                 onChange={changeHandler}
               />
             </div>
-            <div className="form-password">
-              <label htmlFor="password">Password</label>
+            <div className="form-password input-wrapper">
+              <label htmlFor="password">
+                Password <span>*</span>
+              </label>
               <input
                 id="password"
                 type="password"
                 placeholder="********"
                 name="password"
+                type={passwordType}
                 value={user.password}
                 required
                 onChange={changeHandler}
               />
+              {passwordType === "password" ? (
+                <i
+                  className="fa-solid fa-eye password-icon"
+                  onClick={() => setPasswordType("text")}
+                ></i>
+              ) : (
+                <i
+                  className="fa-solid fa-eye-slash password-icon"
+                  onClick={() => setPasswordType("password")}
+                ></i>
+              )}
             </div>
             <div className="user-history">
               <input
