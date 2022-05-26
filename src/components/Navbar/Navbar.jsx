@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { useNavigate, Link, useLocation } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useAuth, useCart, useWishlist, useFilter } from "../../context";
+import { useAuth, useCart, useWishlist } from "../../context";
 import "./Navbar.css";
+import { Search } from "../Search/Search";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
   const {
     authState: { user, token },
@@ -17,7 +17,6 @@ const Navbar = () => {
   const {
     wishlistState: { wishlist },
   } = useWishlist();
-  const { filterDispatch } = useFilter();
 
   const openMenuBar = () => setMenuOpen(true);
 
@@ -55,14 +54,9 @@ const Navbar = () => {
             </Link>
           </div>
         </div>
-        {location.pathname === "/products" ? (
-          <div className="search">
-            <span className="btn-search">
-              <i className="fas fa-search"></i>
-            </span>
-            <input type="text" placeholder="Search" className="input-search" />
-          </div>
-        ) : null}
+
+        <Search />
+
         <div className="user-controls">
           <div className="user-action">
             <div
