@@ -9,6 +9,7 @@ const Search = () => {
   const [searchedProducts, setSearchProducts] = useState([]);
   const [displaySearch, setDisplaySearch] = useState(false);
   const [checkDebouce, setCheckDebounce] = useState(false);
+  const [checkClick, setCheckClick] = useState(false);
   const timerRef = useRef();
 
   useEffect(() => getProductsHandler(setProducts, "search"), []);
@@ -28,9 +29,15 @@ const Search = () => {
   }, [searchQuery]);
 
   const navigateHandler = (productId) => {
+    console.log("hello");
+    setCheckClick(true);
     navigate(`products/${productId}`);
     setSearchQuery("");
   };
+
+  useEffect(() => {
+    setCheckClick(false);
+  }, [navigate]);
 
   return (
     <>
@@ -44,7 +51,7 @@ const Search = () => {
             placeholder="Search"
             className="input-search"
             onFocus={() => setDisplaySearch(true)}
-            onBlur={() => setDisplaySearch(false)}
+            onBlur={() => (checkClick ? setDisplaySearch(false) : null)}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
@@ -55,6 +62,7 @@ const Search = () => {
           <ul className="search-items-container">
             {searchedProducts.map((product) => (
               <li
+                key={product._id}
                 className="search-item"
                 onClick={() => navigateHandler(product._id)}
               >
