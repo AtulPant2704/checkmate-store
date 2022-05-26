@@ -3,7 +3,9 @@ const PriceRangeFilter = ({ rangeValue, filterDispatch }) => {
     <div className="filter-type">
       <h3 className="filter-type-heading">Price</h3>
       <div className="filter-type-container">
-        <label htmlFor="slider">₹0 - ₹{rangeValue}</label>
+        <label className="slider-label" htmlFor="slider">
+          ₹0 - ₹{rangeValue}
+        </label>
         <input
           type="range"
           min="0"
