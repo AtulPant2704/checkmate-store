@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { Navbar, Footer } from "../../components";
 import { ProductsCategory } from "./components/ProductsCategory";
 import { boardImg, pieceImg, bookImg, clockImg } from "../../assets";
 import "./Home.css";
@@ -7,7 +6,6 @@ import "./Home.css";
 const Home = () => {
   return (
     <>
-      <Navbar />
       <main>
         <section className="intro-section">
           <div className="intro-content">
@@ -48,7 +46,6 @@ const Home = () => {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 };

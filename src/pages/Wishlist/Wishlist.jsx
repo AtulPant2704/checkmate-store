@@ -6,7 +6,7 @@ import {
   removeFromWishlistHandler,
   moveToCartHandler,
 } from "../../utils";
-import { Navbar, Footer, Loader } from "../../components";
+import { Loader } from "../../components";
 import { WishlistCard } from "./components/WishlistCard";
 import "./Wishlist.css";
 
@@ -64,7 +64,6 @@ const Wishlist = () => {
 
   return (
     <>
-      <Navbar />
       <main className="empty-cart">
         {wishlist.length !== 0 ? (
           <>
@@ -102,7 +101,6 @@ const Wishlist = () => {
           </div>
         )}
       </main>
-      <Footer />
     </>
   );
 };

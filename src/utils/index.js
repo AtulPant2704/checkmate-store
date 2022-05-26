@@ -1,7 +1,6 @@
 export { getProductsHandler } from "./productsFiltersHandler/getProductsHandler";
 export { getSingleProductHandler } from "./productsFiltersHandler/getSingleProductHandler";
 export { getCategoriesHandler } from "./productsFiltersHandler/getCategoriesHandler";
-export { searchHandler } from "./productsFiltersHandler/searchHandler";
 export { categoryFilter } from "./filters/categoryFilter";
 export { sortData } from "./filters/sortData";
 export { priceFilter } from "./filters/priceFilter";
@@ -22,6 +21,4 @@ export { addNewAddressHandler } from "./addressHandlers/addNewAddressHandler";
 export { removeAddressHandler } from "./addressHandlers/removeAddressHandler";
 export { updateAddressHandler } from "./addressHandlers/updateAddressHandler";
 export { getOrdersHandler } from "./orderHandlers/getOrdersHandler";
-export { addNewOrderHandler } from "./orderHandlers/addNewOrderHandler"
-
-
+export { addNewOrderHandler } from "./orderHandlers/addNewOrderHandler";

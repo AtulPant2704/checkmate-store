@@ -4,7 +4,6 @@ import { toast } from "react-toastify";
 import { useAuth, useCart, useWishlist } from "../../context";
 import { loginService } from "../../services";
 import { getCartItemsHandler, getWishlistItemsHandler } from "../../utils";
-import { Navbar, Footer } from "../../components";
 import "./Authentication.css";
 
 const Login = () => {
@@ -32,6 +31,7 @@ const Login = () => {
   const guestUserHandler = (event) => {
     event.preventDefault();
     setUser(guestUser);
+    setSaveUser(true);
   };
 
   const loginHandler = async (event) => {
@@ -43,7 +43,10 @@ const Login = () => {
         if (response.status === 200) {
           if (saveUser) {
             localStorage.setItem("token", response.data.encodedToken);
-            localStorage.setItem("user", JSON.stringify(response.data.foundUser));
+            localStorage.setItem(
+              "user",
+              JSON.stringify(response.data.foundUser)
+            );
           }
           getWishlistItemsHandler(response.data.encodedToken, wishlistDispatch);
           getCartItemsHandler(response.data.encodedToken, cartDispatch);
@@ -52,7 +55,7 @@ const Login = () => {
             payload: {
               user: response.data.foundUser,
               token: response.data.encodedToken,
-              addresses: response.data.foundUser.address
+              addresses: response.data.foundUser.address,
             },
           });
           navigate(location?.state?.from?.pathname || -1, { replace: true });
@@ -70,7 +73,6 @@ const Login = () => {
 
   return (
     <>
-      <Navbar />
       <section className="form-section">
         <div className="form-wrapper">
           <h2 className="form-heading">Login</h2>
@@ -100,7 +102,14 @@ const Login = () => {
               />
             </div>
             <div className="user-history">
-              <input type="checkbox" id="user-save" checked={saveUser} onChange={(e) => e.target.checked ? setSaveUser(true) : setSaveUser(false)} />
+              <input
+                type="checkbox"
+                id="user-save"
+                checked={saveUser}
+                onChange={(e) =>
+                  e.target.checked ? setSaveUser(true) : setSaveUser(false)
+                }
+              />
               <label htmlFor="user-save">Remember me</label>
             </div>
             <button
@@ -118,7 +127,6 @@ const Login = () => {
           </Link>
         </div>
       </section>
-      <Footer />
     </>
   );
 };

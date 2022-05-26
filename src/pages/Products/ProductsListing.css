@@ -205,6 +205,15 @@
     margin: auto;
   }
 
+  .products-count {
+    text-align: center;
+  }
+
+  .products-count span {
+    display: block;
+    margin-left: 0;
+  }
+
   .filter-mobile-container {
     display: block;
     bottom: 0;

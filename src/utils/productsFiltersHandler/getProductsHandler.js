@@ -1,8 +1,10 @@
 import { getProductsService } from "../../services";
 
-const getProductsHandler = async (setProducts, setProductsLoader) => {
+const getProductsHandler = async (setProducts, from, setProductsLoader) => {
   try {
-    setProductsLoader(true);
+    if (from === "products") {
+      setProductsLoader(true);
+    }
     const response = await getProductsService();
     if (response.status === 200) {
       setProducts(response.data.products);
@@ -12,7 +14,9 @@ const getProductsHandler = async (setProducts, setProductsLoader) => {
   } catch (error) {
     console.error(error);
   } finally {
-    setProductsLoader(false);
+    if (from === "products") {
+      setProductsLoader(false);
+    }
   }
 };
 
