@@ -22,3 +22,6 @@ export { removeAddressHandler } from "./addressHandlers/removeAddressHandler";
 export { updateAddressHandler } from "./addressHandlers/updateAddressHandler";
 export { getOrdersHandler } from "./orderHandlers/getOrdersHandler";
 export { addNewOrderHandler } from "./orderHandlers/addNewOrderHandler";
+export { confirmPasswordHandler } from "./formValidation/confirmPassword";
+export { passwordValidation } from "./formValidation/passwordValidation";
+export { emailValidation } from "./formValidation/emailValidation";

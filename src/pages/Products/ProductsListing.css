@@ -67,6 +67,10 @@
   cursor: pointer;
 }
 
+.filter-type .slider-label {
+  display: block;
+}
+
 .filter-type .slider {
   width: 70%;
 }

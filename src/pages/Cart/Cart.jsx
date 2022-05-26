@@ -122,6 +122,7 @@ const Cart = () => {
                         itemPrice={itemsPrice}
                         cartDelivery={"FREE"}
                         cartAmount={totalPrice}
+                        couponType={couponType}
                         setCouponModalOpen={setCouponModalOpen}
                         setCheckout={setCheckout}
                       />

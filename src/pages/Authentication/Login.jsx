@@ -13,14 +13,15 @@ const Login = () => {
     email: "",
     password: "",
   });
+  const [passwordType, setPasswordType] = useState("password");
   const [saveUser, setSaveUser] = useState(false);
   const { authDispatch } = useAuth();
   const { cartDispatch } = useCart();
   const { wishlistDispatch } = useWishlist();
 
   const guestUser = {
-    email: "test@gmail.com",
-    password: "test123",
+    email: "guest@gmail.com",
+    password: "Guest@1234",
   };
 
   const changeHandler = (event) => {
@@ -37,37 +38,30 @@ const Login = () => {
   const loginHandler = async (event) => {
     event.preventDefault();
 
-    if (user.email !== "" && user.password !== "") {
-      try {
-        const response = await loginService(user);
-        if (response.status === 200) {
-          if (saveUser) {
-            localStorage.setItem("token", response.data.encodedToken);
-            localStorage.setItem(
-              "user",
-              JSON.stringify(response.data.foundUser)
-            );
-          }
-          getWishlistItemsHandler(response.data.encodedToken, wishlistDispatch);
-          getCartItemsHandler(response.data.encodedToken, cartDispatch);
-          authDispatch({
-            type: "LOGIN",
-            payload: {
-              user: response.data.foundUser,
-              token: response.data.encodedToken,
-              addresses: response.data.foundUser.address,
-            },
-          });
-          navigate(location?.state?.from?.pathname || -1, { replace: true });
-          toast.success("Successfully Logged In");
-        } else {
-          throw new Error("Something went wrong! Please try again later");
+    try {
+      const response = await loginService(user);
+      if (response.status === 200) {
+        if (saveUser) {
+          localStorage.setItem("token", response.data.encodedToken);
+          localStorage.setItem("user", JSON.stringify(response.data.foundUser));
         }
-      } catch (error) {
-        toast.error(error.response.data.errors[0]);
+        getWishlistItemsHandler(response.data.encodedToken, wishlistDispatch);
+        getCartItemsHandler(response.data.encodedToken, cartDispatch);
+        authDispatch({
+          type: "LOGIN",
+          payload: {
+            user: response.data.foundUser,
+            token: response.data.encodedToken,
+            addresses: response.data.foundUser.address,
+          },
+        });
+        navigate(location?.state?.from?.pathname || -1, { replace: true });
+        toast.success("Successfully Logged In");
+      } else {
+        throw new Error("Something went wrong! Please try again later");
       }
-    } else {
-      toast.warning("Both the fields need to be entered");
+    } catch (error) {
+      toast.error(error.response.data.errors[0]);
     }
   };
 
@@ -76,9 +70,11 @@ const Login = () => {
       <section className="form-section">
         <div className="form-wrapper">
           <h2 className="form-heading">Login</h2>
-          <form action="" method="post" className="login">
+          <form className="login" onSubmit={loginHandler}>
             <div className="form-email">
-              <label htmlFor="email">Email address</label>
+              <label htmlFor="email">
+                Email address <span>*</span>
+              </label>
               <input
                 id="email"
                 type="email"
@@ -89,17 +85,31 @@ const Login = () => {
                 onChange={changeHandler}
               />
             </div>
-            <div className="form-password">
-              <label htmlFor="password">Password</label>
+            <div className="form-password input-wrapper">
+              <label htmlFor="password">
+                Password <span>*</span>
+              </label>
               <input
                 id="password"
                 type="password"
                 placeholder="********"
                 name="password"
+                type={passwordType}
                 value={user.password}
                 required
                 onChange={changeHandler}
               />
+              {passwordType === "password" ? (
+                <i
+                  className="fa-solid fa-eye password-icon"
+                  onClick={() => setPasswordType("text")}
+                ></i>
+              ) : (
+                <i
+                  className="fa-solid fa-eye-slash password-icon"
+                  onClick={() => setPasswordType("password")}
+                ></i>
+              )}
             </div>
             <div className="user-history">
               <input
@@ -118,7 +128,7 @@ const Login = () => {
             >
               Add Guest credentials
             </button>
-            <button type="submit" className="btn-submit" onClick={loginHandler}>
+            <button type="submit" className="btn-submit">
               Submit
             </button>
           </form>

@@ -74,7 +74,11 @@ export const loginHandler = function (schema, request) {
       return new Response(
         404,
         {},
-        { errors: ["The email you entered is not Registered. Not Found error"] }
+        {
+          errors: [
+            "The credentials you entered are invalid. Unauthorized access error.",
+          ],
+        }
       );
     }
     if (bcrypt.compareSync(password, foundUser.password)) {
