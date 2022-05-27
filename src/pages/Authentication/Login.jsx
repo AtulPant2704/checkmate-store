@@ -104,7 +104,6 @@ const Login = () => {
               </label>
               <input
                 id="password"
-                type="password"
                 placeholder="********"
                 name="password"
                 autoComplete="off"

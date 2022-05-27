@@ -119,7 +119,6 @@ const SignUp = () => {
               </label>
               <input
                 id="password"
-                type="password"
                 placeholder="********"
                 name="password"
                 minLength="8"
@@ -148,7 +147,6 @@ const SignUp = () => {
               </label>
               <input
                 id="confirm-password"
-                type="password"
                 placeholder="********"
                 name="confirmPassword"
                 autoComplete="off"
