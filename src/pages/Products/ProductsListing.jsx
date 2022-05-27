@@ -38,7 +38,7 @@ const ProductsListing = () => {
     wishlistState: { wishlist },
     wishlistDispatch,
   } = useWishlist();
-  const { filterState } = useFilter();
+  const { filterState, filterDispatch } = useFilter();
 
   const checkCartAction = (_id) => {
     const item = cart.some((item) => item._id === _id);
@@ -99,7 +99,12 @@ const ProductsListing = () => {
     window.scrollTo(0, 0);
   };
 
-  useEffect(() => getProducts(), []);
+  useEffect(() => {
+    getProducts();
+    return () => {
+      filterDispatch({ type: "RESET", payload: {} });
+    };
+  }, []);
 
   const categoryFilteredData = categoryFilter(products, filterState);
   const ratingFilteredData = ratingFilter(categoryFilteredData, filterState);
