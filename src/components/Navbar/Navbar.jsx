@@ -27,13 +27,13 @@ const Navbar = () => {
   };
 
   const userHandler = async (type) => {
-    type === "Login" ? navigate("/login") : navigate("/profile");
+    type === "Login" ? routeHandler("/login") : routeHandler("/profile");
   };
 
   const routeHandler = (path) => {
     closeMenuBar();
     navigate(path);
-    if (!token) {
+    if (!token && path !== "/login") {
       toast.warning("You're not logged in");
     }
   };
