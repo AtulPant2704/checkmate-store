@@ -28,11 +28,13 @@ const CartSummary = ({
       </div>
       <div className="items-price total-price-container">
         <p className="item-type total-price">Total Amount</p>
-        <p className="item-type-price total-price-value">₹ {cartAmount}</p>
+        <p className="item-type-price total-price-value">
+          ₹ {cartAmount.toFixed(2)}
+        </p>
       </div>
       {itemPrice - cartAmount > 0 ? (
         <p className="cart-savings">
-          You saved ₹ {itemPrice - cartAmount} ({couponType}% off)
+          You saved ₹ {(itemPrice - cartAmount).toFixed(2)}({couponType}% off)
         </p>
       ) : null}
       <button
