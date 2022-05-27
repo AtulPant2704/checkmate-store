@@ -45,8 +45,12 @@ const Login = () => {
           localStorage.setItem("token", response.data.encodedToken);
           localStorage.setItem("user", JSON.stringify(response.data.foundUser));
         }
-        getWishlistItemsHandler(response.data.encodedToken, wishlistDispatch);
-        getCartItemsHandler(response.data.encodedToken, cartDispatch);
+        getWishlistItemsHandler(
+          response.data.encodedToken,
+          wishlistDispatch,
+          "login"
+        );
+        getCartItemsHandler(response.data.encodedToken, cartDispatch, "login");
         authDispatch({
           type: "LOGIN",
           payload: {
@@ -94,6 +98,7 @@ const Login = () => {
                 type="password"
                 placeholder="********"
                 name="password"
+                autoComplete="off"
                 type={passwordType}
                 value={user.password}
                 required
