@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth, useCart, useWishlist } from "../../context";
@@ -15,7 +15,10 @@ const Login = () => {
   });
   const [passwordType, setPasswordType] = useState("password");
   const [saveUser, setSaveUser] = useState(false);
-  const { authDispatch } = useAuth();
+  const {
+    authState: { token },
+    authDispatch,
+  } = useAuth();
   const { cartDispatch } = useCart();
   const { wishlistDispatch } = useWishlist();
 
@@ -68,6 +71,12 @@ const Login = () => {
       toast.error(error.response.data.errors[0]);
     }
   };
+
+  useEffect(() => {
+    if (token) {
+      navigate("/products");
+    }
+  }, []);
 
   return (
     <>

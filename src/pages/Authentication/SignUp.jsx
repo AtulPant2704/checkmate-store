@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth } from "../../context";
@@ -21,7 +21,10 @@ const SignUp = () => {
   });
   const [passwordType, setPasswordType] = useState("password");
   const [confirmPasswordType, setConfirmPasswordType] = useState("password");
-  const { authDispatch } = useAuth();
+  const {
+    authState: { token },
+    authDispatch,
+  } = useAuth();
 
   const changeHandler = (event) => {
     const { name, value } = event.target;
@@ -55,6 +58,12 @@ const SignUp = () => {
       }
     }
   };
+
+  useEffect(() => {
+    if (token) {
+      navigate("/products");
+    }
+  }, []);
 
   return (
     <>
