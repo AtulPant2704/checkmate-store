@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { RequiresAuth } from "./RequiresAuth";
 import {
@@ -20,6 +20,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
 function App() {
+  const { pathname } = useLocation();
   const [editAddress, setEditAddress] = useState(null);
   const [showAddressModal, setShowAddressModal] = useState(false);
 
@@ -45,7 +46,15 @@ function App() {
           setShowAddressModal={setShowAddressModal}
         />
       ) : null}
-      <Navbar />
+      {pathname === "/" ||
+      pathname.includes("/products") ||
+      pathname === "login" ||
+      pathname === "signup" ||
+      pathname === "wishlist" ||
+      pathname === "cart" ||
+      pathname.includes("/profile") ? (
+        <Navbar />
+      ) : null}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<ProductsListing />} />
@@ -89,7 +98,15 @@ function App() {
         </Route>
         <Route path="*" element={<Error404 />} />
       </Routes>
-      <Footer />
+      {pathname === "/" ||
+      pathname.includes("/products") ||
+      pathname === "login" ||
+      pathname === "signup" ||
+      pathname === "wishlist" ||
+      pathname === "cart" ||
+      pathname.includes("/profile") ? (
+        <Footer />
+      ) : null}
     </div>
   );
 }
