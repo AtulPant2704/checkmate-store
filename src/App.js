@@ -48,10 +48,10 @@ function App() {
       ) : null}
       {pathname === "/" ||
       pathname.includes("/products") ||
-      pathname === "login" ||
-      pathname === "signup" ||
-      pathname === "wishlist" ||
-      pathname === "cart" ||
+      pathname === "/login" ||
+      pathname === "/signup" ||
+      pathname === "/wishlist" ||
+      pathname === "/cart" ||
       pathname.includes("/profile") ? (
         <Navbar />
       ) : null}
@@ -100,10 +100,10 @@ function App() {
       </Routes>
       {pathname === "/" ||
       pathname.includes("/products") ||
-      pathname === "login" ||
-      pathname === "signup" ||
-      pathname === "wishlist" ||
-      pathname === "cart" ||
+      pathname === "/login" ||
+      pathname === "/signup" ||
+      pathname === "/wishlist" ||
+      pathname === "/cart" ||
       pathname.includes("/profile") ? (
         <Footer />
       ) : null}
