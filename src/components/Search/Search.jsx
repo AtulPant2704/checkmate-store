@@ -9,10 +9,8 @@ const Search = () => {
   const [searchedProducts, setSearchProducts] = useState([]);
   const [displaySearch, setDisplaySearch] = useState(false);
   const [checkDebouce, setCheckDebounce] = useState(false);
-  const [checkClick, setCheckClick] = useState(false);
   const timerRef = useRef();
-
-  useEffect(() => getProductsHandler(setProducts, "search"), []);
+  const searchBarRef = useRef();
 
   useEffect(() => {
     clearTimeout(timerRef.current);
@@ -29,19 +27,29 @@ const Search = () => {
   }, [searchQuery]);
 
   const navigateHandler = (productId) => {
-    console.log("hello");
-    setCheckClick(true);
     navigate(`products/${productId}`);
     setSearchQuery("");
   };
 
+  const closeSearchBar = (e) => {
+    if (!searchBarRef.current.contains(e.target)) {
+      setDisplaySearch(false);
+    }
+  };
+
   useEffect(() => {
-    setCheckClick(false);
-  }, [navigate]);
+    document.addEventListener("click", closeSearchBar);
+
+    return () => {
+      document.removeEventListener("click", closeSearchBar);
+    };
+  }, []);
+
+  useEffect(() => getProductsHandler(setProducts, "search"), []);
 
   return (
     <>
-      <div className="search">
+      <div className="search" ref={searchBarRef}>
         <div className="input-search">
           <span className="btn-search">
             <i className="fas fa-search"></i>
@@ -51,7 +59,6 @@ const Search = () => {
             placeholder="Search"
             className="input-search"
             onFocus={() => setDisplaySearch(true)}
-            onBlur={() => (checkClick ? setDisplaySearch(false) : null)}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
