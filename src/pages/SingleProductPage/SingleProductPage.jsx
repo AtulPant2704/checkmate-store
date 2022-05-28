@@ -80,9 +80,9 @@ const SingleProductPage = () => {
       : callAddToWishlistHandler(_id, setWishlistDisable);
   };
 
-  useEffect(() => getSingleProductHandler(productId, setProduct, setLoader), [
-    productId,
-  ]);
+  useEffect(() => {
+    getSingleProductHandler(productId, setProduct, setLoader, navigate);
+  }, [productId]);
 
   return (
     <>
